@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<body>
-<h1>Main page</h1>
- <canvas id="myCanvas" width="600" height="600" style="border:1px solid #000000;">
-</canvas> 
-<script>
-var c = document.getElementById("myCanvas");
+var c = document.getElementById("gamepanel");
 var ctx = c.getContext("2d");
 
 ctx.fillStyle= "#000000";
@@ -34,7 +27,7 @@ for(j = 0; j < numC; j++){
 	}
 }
 
-function create2DArray(var w, var h){
+function create2DArray(w, h){
 	var t = new Array(h);
 		for(i = 0; i < w; i++){
 			t[i]=new Array(w).fill(0);
@@ -46,7 +39,3 @@ function drawGrid(){
 
 
 }
-</script>
-</body>
-</html>
-
