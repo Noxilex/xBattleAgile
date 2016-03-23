@@ -1,0 +1,46 @@
+package mainPackage;
+
+import java.io.File;
+import java.util.ArrayList;
+
+public class Map {
+
+	private String p = File.pathSeparator;
+	private String rscPath = ".."+p+".."+p+"Resources"+p+"Textures"+p+"Maps"+p;
+	private String basicTexturePath = rscPath+"Basic"+p;
+	private String activeTexturePack;
+	
+	public Map() {
+		this.activeTexturePack = basicTexturePath;
+	}
+
+	/**
+	 * @return the path to the Maps textures packs folder
+	 */
+	public String getResourcePath() {
+		return rscPath;
+	}
+	
+	/**
+	 * @return The Currently active texture pack
+	 */
+	public String getActiveTexturePack() {
+		return activeTexturePack;
+	}
+	
+	/**
+	 * Set the new name of the active texture pack
+	 * @param texturePackName
+	 */
+	public void setActiveTexturePack(String texturePackName) {
+		this.activeTexturePack = texturePackName;
+	}
+	
+	private int[][] generateNewMap() {
+		int[][] map = new int[][];
+		
+	}
+	
+}
+
+

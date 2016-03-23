@@ -1,0 +1,15 @@
+package mainPackage;
+
+public class Map {
+
+	private p = File.pathSeparator;
+	private String rscPath = "../../Resources/Textures/Maps"
+	private ArrayList<String> chemin
+	
+	public Map() {
+		
+	}
+	
+}
+
+
