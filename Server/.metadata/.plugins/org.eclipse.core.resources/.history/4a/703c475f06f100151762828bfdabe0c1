@@ -1,0 +1,14 @@
+package mainPackage;
+
+public class Map {
+
+	private String rscPath = "../../Resources/Textures/Maps"
+	private ArrayList<String> chemin
+	
+	public Map() {
+		
+	}
+	
+}
+
+

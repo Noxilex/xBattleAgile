@@ -1,0 +1,12 @@
+package mainPackage;
+
+public class Map {
+
+	
+	public Map() {
+		
+	}
+	
+}
+
+

@@ -1,0 +1,18 @@
+INDEX VERSION 1.126+/tmp/cailliea/xBattleAwakening/Server/.metadata/.plugins/org.eclipse.jdt.core
+3840181845.index
+644665015.index
+2359858367.index
+3885903570.index
+1469615711.index
+615703219.index
+2609942418.index
+2653735158.index
+3021321478.index
+2580785110.index
+747742781.index
+2999326421.index
+671300235.index
+2685257440.index
+2290877554.index
+2125921259.index
+467566071.index
