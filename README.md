@@ -1,2 +1,2 @@
 # xBattleAgile
-xBattle remake using Agile methodology
+xBattle remake, using Agile methodology
