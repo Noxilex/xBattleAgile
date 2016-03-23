@@ -2,15 +2,50 @@
 <html>
 <body>
 <h1>Main page</h1>
- <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
+ <canvas id="myCanvas" width="600" height="600" style="border:1px solid #000000;">
 </canvas> 
 <script>
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
-ctx.fillStyle = "#FF0000";
-ctx.fillRect(0,0,150,75);
+
+ctx.fillStyle= "#000000";
+ctx.fillRect= "";
+ctx.fillStyle= "#FF0000";
+
+var height = c.height;
+var width = c.width;
+var numC = 20;
+var h = height/numC;
+var w = width/numC;
+var table = create2DArray(w, h);
+
+//for each (var subT in table) {
+//	for each (var v in subT) {
+//		ctx.strokeRect();
+//	}
+//}
+
+for(j = 0; j < numC; j++){
+	for(i = 0; i < numC; i++){
+		var test = table[j][i];
+		if(test==0){
+			ctx.strokeRect(i*w,j*h,w,h);
+		}	
+	}
+}
+
+function create2DArray(var w, var h){
+	var t = new Array(h);
+		for(i = 0; i < w; i++){
+			t[i]=new Array(w).fill(0);
+		}
+	return t;
+}
+
+function drawGrid(){
 
 
+}
 </script>
 </body>
 </html>
