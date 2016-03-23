@@ -1,5 +1,14 @@
+//Initializing
 var c = document.getElementById("gamepanel");
+c.addEventListener("mousedown", doMouseDown, false);	
 var ctx = c.getContext("2d");
+
+function doMouseDown(event) {
+	canvas_x = event.pageX;
+	canvas_y = event.pageY;
+	var cell = get_cell(canvas_x, canvas_y);
+	alert("X="+cell[0]+"Y="+cell[1]);
+}
 
 var height = c.height;
 var width = c.width;
@@ -63,3 +72,15 @@ function drawGrid(w,h,taille){
 		}
 	}
 }
+
+//Return the position of the table where the user clicked
+//as a table of coordinates
+function get_cell(abs_x, abs_y){
+	return [Math.round(abs_x/numC), Math.round(abs_y/numC)];
+}
+
+//Modify the content of the cell at the coordinates x,y with 
+//the desired value
+function modify_cell(x, y, value){
+	table[y][x]=value;
+} 

@@ -6,11 +6,11 @@
         <meta charset="UTF-8">
         <title>xBattle Awakening</title>
     </head>
-    <body>
+    <body onLoad=initialise()>
 		<div id="group-auth">
     	<span id="title">Welcome on </br>xBattle Awakening</span>
     	<div id="authentication">
-    		<button id="login-button" class="connect-button" onclick="$('#gamepanel').toggle()">Login</button>
+    		<button id="login-button" class="connect-button" onclick="$('#gamepanel').toggle();$('#group-auth').toggle()">Login</button>
     		<button id="register-button" class="connect-button">Register</button>
     	</div>
 		</div>
