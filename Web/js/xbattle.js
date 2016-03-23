@@ -1,14 +1,6 @@
 //Initializing
 var c = document.getElementById("gamepanel");
-c.addEventListener("mousedown", doMouseDown, false);	
 var ctx = c.getContext("2d");
-
-function doMouseDown(event) {
-	canvas_x = event.pageX;
-	canvas_y = event.pageY;
-	var cell = get_cell(canvas_x, canvas_y);
-	alert("X="+cell[0]+"Y="+cell[1]);
-}
 
 var height = c.height;
 var width = c.width;
@@ -16,6 +8,15 @@ var numC = 20;
 var h = height/numC;
 var w = width/numC;
 var table = create2DArray(w, h);
+
+ c.addEventListener('mousedown', function(evt) {
+    var mousePos = getMousePos(c, evt);
+	cell=get_cell(mousePos.x, mousePos.y);
+	$("#coord").text('Mouse position: ' + cell[0] + ',' + cell[1]);
+	modify_cell(cell[0], cell[1], (table[cell[1]][cell[0]]+1)%5);
+	draw2DArray();
+	drawGrid(w,h,numC);
+});
 
 ctx.fillStyle= "#000000";
 ctx.fillRect(0,0,width,height);
@@ -26,6 +27,14 @@ table[3][5]=3;
 table[3][6]=4;
 draw2DArray();
 drawGrid(w,h,numC);
+
+function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top
+    };
+  }
 
 function create2DArray(w, h){
 	var t = new Array(h);
@@ -76,7 +85,7 @@ function drawGrid(w,h,taille){
 //Return the position of the table where the user clicked
 //as a table of coordinates
 function get_cell(abs_x, abs_y){
-	return [Math.round(abs_x/numC), Math.round(abs_y/numC)];
+	return [Math.floor(abs_x/h), Math.floor(abs_y/h)];
 }
 
 //Modify the content of the cell at the coordinates x,y with 
