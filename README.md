@@ -1,2 +1,2 @@
-# xBattleAwaken
+# xBattleAwakening
 xBattle remake, using Agile methodology
