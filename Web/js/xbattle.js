@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<body>
-<h1>Main page</h1>
- <canvas id="myCanvas" width="600" height="600" style="border:1px solid #000000;">
-</canvas> 
-<script>
-var c = document.getElementById("myCanvas");
+var c = document.getElementById("gamepanel");
 var ctx = c.getContext("2d");
 
 var height = c.height;
@@ -19,6 +12,9 @@ ctx.fillStyle= "#000000";
 ctx.fillRect(0,0,width,height);
 
 table[3][3]=1;
+table[3][4]=2;
+table[3][5]=3;
+table[3][6]=4;
 draw2DArray();
 drawGrid(w,h,numC);
 
@@ -43,15 +39,15 @@ function draw2DArray(){
 		for(i = 0; i < numC; i++){
 			var test = table[j][i];
 			if(test==0){
-				ctx.fillStyle="#F6E3CE";			
+				ctx.fillStyle="#F6E3CE";
 			}else if(test==1){
-				ctx.fillStyle="#0000FF";
+				ctx.fillStyle="#6666FF";
 			}else if(test==2){
-				ctx.fillStyle="#000066";
+				ctx.fillStyle="#6666AA";
 			}else if(test==3){
-				ctx.fillStyle="brown";
+				ctx.fillStyle="#D7A25E";
 			}else if(test==4){
-				ctx.fillStyle="dark-brown";
+				ctx.fillStyle="#B78B51";
 			}else{
 				console.log("Error on cell:["+i+","+j+"]");
 			}
@@ -67,8 +63,3 @@ function drawGrid(w,h,taille){
 		}
 	}
 }
-
-</script>
-</body>
-</html>
-
