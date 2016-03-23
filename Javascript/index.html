@@ -8,10 +8,6 @@
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 
-ctx.fillStyle= "#000000";
-ctx.fillRect= "";
-ctx.fillStyle= "#FF0000";
-
 var height = c.height;
 var width = c.width;
 var numC = 20;
@@ -19,22 +15,14 @@ var h = height/numC;
 var w = width/numC;
 var table = create2DArray(w, h);
 
-//for each (var subT in table) {
-//	for each (var v in subT) {
-//		ctx.strokeRect();
-//	}
-//}
+ctx.fillStyle= "#000000";
+ctx.fillRect(0,0,width,height);
 
-for(j = 0; j < numC; j++){
-	for(i = 0; i < numC; i++){
-		var test = table[j][i];
-		if(test==0){
-			ctx.strokeRect(i*w,j*h,w,h);
-		}	
-	}
-}
+table[3][3]=1;
+draw2DArray();
+drawGrid(w,h,numC);
 
-function create2DArray(var w, var h){
+function create2DArray(w, h){
 	var t = new Array(h);
 		for(i = 0; i < w; i++){
 			t[i]=new Array(w).fill(0);
@@ -42,10 +30,44 @@ function create2DArray(var w, var h){
 	return t;
 }
 
-function drawGrid(){
 
-
+/*
+0: land
+1: water
+2: deep-water
+3: mountain
+4: high-mountain
+*/
+function draw2DArray(){
+	for(j = 0; j < numC; j++){
+		for(i = 0; i < numC; i++){
+			var test = table[j][i];
+			if(test==0){
+				ctx.fillStyle="#F6E3CE";			
+			}else if(test==1){
+				ctx.fillStyle="#0000FF";
+			}else if(test==2){
+				ctx.fillStyle="#000066";
+			}else if(test==3){
+				ctx.fillStyle="brown";
+			}else if(test==4){
+				ctx.fillStyle="dark-brown";
+			}else{
+				console.log("Error on cell:["+i+","+j+"]");
+			}
+			ctx.fillRect(i*w,j*h,w,h);
+		}
+	}	
 }
+
+function drawGrid(w,h,taille){
+	for(j = 0; j < taille; j++){
+		for(i = 0; i < taille; i++){
+			ctx.strokeRect(i*w,j*h,w,h);
+		}
+	}
+}
+
 </script>
 </body>
 </html>
