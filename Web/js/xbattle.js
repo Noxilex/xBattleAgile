@@ -84,3 +84,29 @@ function get_cell(abs_x, abs_y){
 function modify_cell(x, y, value){
 	table[y][x]=value;
 } 
+
+
+function login(){
+	var username = $("#nickname-input").val();
+	var password = $("#password-input").val();
+	
+	//Serveur connection.
+	swal("Logged", "Welcome back " + username + ".", "success");
+
+	$("#group-auth").hide();
+	$("#gamepanel").show();
+}
+
+function register(){
+	var username = $("#nickname-input").val();
+	var password = $("#password-input").val();
+
+	if(Math.random() > 0.5){
+		swal("Register failed", "The username \"" + username + "\" is already taken.", "error");
+	}else{
+		swal("Registered", "Thanks for registering \"" + username + "\".\nYou have been logged in.", "success");
+		$("#group-auth").hide();
+		$("#gamepanel").show();		
+	}
+
+}
