@@ -1,3 +1,7 @@
 bin/
 .metadata/
 Server/.metadata/
+Server/BackEnd/librairies/*
+Server/BackEnd/.classpath
+Server/BackEnd/.project
+Server/BackEnd/.settings
