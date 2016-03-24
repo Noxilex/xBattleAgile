@@ -20,21 +20,24 @@ public class User implements Principal {
     private String passwdHash;
     private String salt;
     private int nbgameWin;
+    private int nbgame;
 
-    private static User anonymous = new User(-1, "Anonymous", "anonym");
+    private static User anonymous = new User(-1, "Anonymous");
 
     public User(int id, String name) {
         this.id = id;
         this.name = name;
         this.nbgameWin =0;
+        this.nbgame =0;
     }
 
-    public User(int id, String name, String alias) {
+    /*public User(int id, String name, String alias) {
         this.id = id;
         this.name = name;
         this.alias = alias;
         this.nbgameWin =0;
-    }
+        this.nbgame =0;
+    }*/
 
     public int getNbgameWin() {
 		return nbgameWin;

@@ -53,7 +53,8 @@
             android:textColor="@color/Color3"
             android:elegantTextHeight="false"
             android:layout_marginBottom="25dp"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:onClick="onClick_Pres" />
 
         <Button
             android:layout_width="fill_parent"
