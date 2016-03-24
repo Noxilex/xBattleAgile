@@ -1,5 +1,10 @@
 package mainPackage;
 
+/**
+ * @author cailliea
+ *	Class managing coordinates
+ *
+ */
 public class Coord {
 
 	private int x;
