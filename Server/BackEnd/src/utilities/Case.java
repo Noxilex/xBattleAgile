@@ -19,11 +19,22 @@ public class Case {
 		this.coord = coord;
 		this.owner = 0;
 		this.pipes = new boolean[]{false, false, false, false, false, false, false, false};
-		this.level = 0;		
 		this.fieldType = fieldType;
-	}
-	
-	
+		switch (fieldType){
+		case 5:
+			this.level = 25;
+			break;
+		case 6:
+			this.level = 50;
+			break;
+		case 7:
+			this.level = 100;
+			break;
+		default:
+			this.level = 0;
+			break;
+		}
+	}	
 
 	/**
 	 * @return the type of the field.
@@ -32,7 +43,6 @@ public class Case {
 	 * 5 = water1; 6 = water2; 7 = water3
 	 */
 	public int getFieldType() {
-		System.out.println("The field type at "+coord.toString()+" is "+logGetReadableFieldType(this.fieldType));
 		return this.fieldType;
 	}
 
@@ -42,7 +52,6 @@ public class Case {
 	 */
 	public void setFieldType(int fieldTypeId) {
 		this.fieldType = fieldTypeId;
-		System.out.println("Field type id is now "+fieldTypeId);
 	}
 	
 	/**
@@ -50,7 +59,6 @@ public class Case {
 	 * Change the level of the player liquid via operation.
 	 */
 	public void changeLevel(int change) {
-		System.out.println(change+" has been add to the liquid level.");
 		this.level+=change;
 	}
 	
@@ -60,14 +68,12 @@ public class Case {
 	 */
 	public void setLevel(int lvl) {
 		this.level = lvl;
-		System.out.println("Set the liquid level at "+lvl);
 	}
 	
 	/**
 	 * @return get the player liquid level. 0-100
 	 */
 	public int getLevel() {
-		System.out.println("Liquid level at "+coord.toString());
 		return this.level;
 	}
 	
@@ -76,17 +82,6 @@ public class Case {
 	 */
 	public int getNumberOfActivePipes() {
 		int actives = 0;
-		String s = "[";
-		for (int i=0; i<pipes.length; i++) {
-			if (pipes[i]) {
-				actives++;
-				s+="active";
-			} else {
-				s+="inactive";
-			}
-		}
-		s+="]";
-		System.out.println("Directions pipes are : "+s);
 		return actives;
 	}
 	
@@ -95,7 +90,6 @@ public class Case {
 	 * In clock order, starting at noon. 
 	 */
 	public boolean[] getPipes() {
-		System.out.println("Having "+logPipes(this.pipes));
 		return this.pipes;
 	}
 
@@ -105,19 +99,13 @@ public class Case {
 	 */
 	public void setPipes(boolean[] pipes) {
 		this.pipes = pipes;
-		System.out.println("Set new directions as : "+logPipes(pipes));
 	}
 
 	/**
 	 * @param direction
 	 * @return Check if the pipe toward the specified direction is active
 	 */
-	public boolean getDirectionOfPipe(int direction) {
-		String s;
-		if (this.pipes[direction]) {s="active";}
-		else {s="inactive";}
-		
-		System.out.println("The "+logGetReadableDirection(direction)+" is "+s);
+	public boolean getDirectionOfPipe(int direction) {		
 		return this.pipes[direction];
 	}
 	
@@ -126,7 +114,6 @@ public class Case {
 	 * @return The Coord coordinates of the case
 	 */
 	public Coord getCoord() {
-		System.out.println("Coord : "+this.coord.toString());
 		return this.coord;
 	}
 
@@ -136,14 +123,12 @@ public class Case {
 	 */
 	public void setCoord(Coord coord) {
 		this.coord = coord;
-		System.out.println("Set new coord as "+this.coord.toString());
 	}
 	
 	/**
 	 * @return The X value of the coordinates of the case
 	 */
 	public int getX() {
-		System.out.println("x="+this.coord.x());
 		return this.coord.x();
 	}
 	
@@ -151,7 +136,6 @@ public class Case {
 	 * @return The Y value of the coordinates of the case
 	 */
 	public int getY() {
-		System.out.println("y="+this.coord.y());
 		return this.coord.y();
 	}	
 	
@@ -159,7 +143,6 @@ public class Case {
 	 * @return the owner id. 0 = NONE
 	 */
 	public int getOwner() {
-		System.out.println("The id owner of this case is "+this.owner);
 		return this.owner;
 	}
 
@@ -169,7 +152,6 @@ public class Case {
 	 */
 	public void setOwner(int ownerId) {		
 		this.owner = ownerId;
-		System.out.println("The new owner id is "+ownerId);
 		}
 	
 	/*---------------------------------------LOG FUNCTIONS-------------------------*/
@@ -273,7 +255,7 @@ public class Case {
 	 * @param pipes
 	 * @return
 	 */
-	private String logPipes(boolean[] pipes) {
+	public String logPipes(boolean[] pipes) {
 		String s = "[";
 		for (int i=0; i<pipes.length; i++) {
 			if (pipes[i]) {s+="true";} 
