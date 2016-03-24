@@ -127,10 +127,20 @@ function login(){
 	var login = $("#nickname-input").val();
 	var pwd = $("#password-input").val();
 	$.get("v1/userdb/auth/login?name="+login+"&mdp="+pwd, function(data, status){
-		console.log(data.text);
-	});
+		if(status=="success"){
+			swal("Logged", "Welcome back " + login + ".", "success");
+		}
+		console.log(data);
+		console.log(status);
+		//console.log(typeof(data));
+	})
+	.done(function() {
+    	//alert( "second success" );
+  	})
+	.fail(function() {
+    	swal("Failed to log in");
+  	});
 	//Serveur connection.
-	swal("Logged", "Welcome back " + login + ".", "success");
 }
 
 function register() {
