@@ -125,16 +125,33 @@ function login(){
 	$("#gamepanel").show();
 }
 
-function register(){
+function register(name, pwd) {
+
 	var username = $("#nickname-input").val();
 	var password = $("#password-input").val();
+	var url = "v1/userdb/";
 
-	if(Math.random() > 0.5){
-		swal("Register failed", "The username \"" + username + "\" is already taken.", "error");
-	}else{
-		swal("Registered", "Thanks for registering \"" + username + "\".\nYou have been logged in.", "success");
-		$("#group-auth").hide();
-		$("#gamepanel").show();		
-	}
-
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : url,
+		dataType : "json",
+		data : JSON.stringify({
+			"name" : name,
+			"password" : pwd,
+			"id" : 0
+		}),
+		success : 
+			swal("Registered", "Thanks for registering \"" + username + "\".\nYou have been logged in.", "success");
+			$("#group-auth").hide();
+			$("#gamepanel").show();	
+		function(data, textStatus, jqXHR) {
+			afficheUser(data);
+		},
+		error :
+			swal("Register failed", "The username \"" + username + "\" is already taken.", "error"); 
+			function(jqXHR, textStatus, errorThrown) {
+			alert('postUser error: ' + textStatus);
+		}
+	});
 }
