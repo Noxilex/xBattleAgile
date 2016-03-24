@@ -31,10 +31,19 @@ public class Map {
 	}
 
 	/**
-	 * @return The integer array of the map
+	 * @return The integer array version of the map
 	 */
-	public int[][] getMap() {
+	public int[][] getIntMap() {
+		logDisplayMap(caseMap);
 		return intMap;
+	}
+	
+	/**
+	 * @return The Case array version of the map
+	 */
+	public Case[][] getCaseMap() {
+		logDisplayMap(caseMap);
+		return caseMap;
 	}
 	
 	/**
@@ -42,6 +51,7 @@ public class Map {
 	 * @return the integer in the case [c.x][c.y]
 	 */
 	public int getIdCase(Coord c) {
+		System.out.println("The field id of the case "+c.toString()+" is "+intMap[c.x()][c.y()]);
 		return intMap[c.x()][c.y()];
 	}
 	
@@ -49,6 +59,7 @@ public class Map {
 	 * @return the path to the Maps textures packs folder
 	 */
 	public String getResourcePath() {
+		System.out.println("The maps resource path is" +rscPath);
 		return rscPath;
 	}
 	
@@ -56,6 +67,7 @@ public class Map {
 	 * @return The Currently active texture pack
 	 */
 	public String getActiveTexturePack() {
+		System.out.println("Current textxure pack is "+activeTexturePack);
 		return activeTexturePack;
 	}
 	
@@ -65,16 +77,17 @@ public class Map {
 	 */
 	public void setActiveTexturePack(String texturePackName) {
 		this.activeTexturePack = texturePackName;
+		System.out.println(texturePackName+" has been set.");
 	}
 	
 	/**
 	 * 
 	 * @param lenX
 	 * @param lenY
-	 * @return the 
+	 * @return the fieldTypeId array version of the map 
 	 */
 	private int[][] generateNewMap(int lenX, int lenY) {
-		System.out.println("Generating a new map dim :"+lenX+"x"+lenY);
+		System.out.println("Generating a new integer map, as dim :"+lenX+"x"+lenY);
 		int[][] iMap = new int[lenX][lenY];
 		for (int x=0; x<lenX; x++) {
 			for (int y=0; y<lenY; y++) {
@@ -84,6 +97,10 @@ public class Map {
 		return iMap;
 	}
 
+	/**
+	 * @param intMap
+	 * @return the Case type array version of the Map (translated from the intMap version
+	 */
 	private Case[][] generateCaseMap(int[][] intMap) {
 		System.out.println("Generating associated cases");
 		Case[][] cMap = new Case[intMap.length][intMap[0].length];
@@ -96,9 +113,12 @@ public class Map {
 	}
 	
 	
+	/*---------------------------------------LOG FUNCTIONS-------------------------*/	
+	
 	/**
-	 * Only for the debug. Display the map in character.
+	 * LOG FUNCTION
 	 * @param map
+	 * Only for the debug. Display the map in character.
 	 */
 	private void logDisplayMap(Case[][] map){
 		for (int x=0; x<map.length; x++) {

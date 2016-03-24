@@ -21,21 +21,28 @@ public class Player {
 	public Player(String pseudo, int gameId, String skinImg) {
 		this.pseudo = pseudo;
 		this.gameId = gameId;
-		this.skinImg = skinImg;
+		if (skinImg.isEmpty()) {
+			this.skinImg="basic"+p;
+		} else {
+			this.skinImg = skinImg;
+		}
+
 	}
 	
 	/**
 	 * @param pseudo
 	 * Change the current pseudo to new pseudo
 	 */
-	public void setPseudo(String pseudo) {
+	public void setPseudo(String pseudo) {		
 		this.pseudo = pseudo;
+		System.out.println("The new player's nickname is "+pseudo);
 	}
 	
 	/**
 	 * @return the nickname of the player
 	 */
 	public String getPseudo() {
+		System.out.println("The player's nickname is "+this.pseudo);
 		return this.pseudo;
 	}
 	
