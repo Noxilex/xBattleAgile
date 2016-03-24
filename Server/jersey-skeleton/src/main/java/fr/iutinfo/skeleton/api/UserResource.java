@@ -20,13 +20,21 @@ public class UserResource {
     Logger logger = LoggerFactory.getLogger(UserResource.class);
 
     @POST
-
     public User createUser(User user) {
         int id = users.size();
         user.setId(id + 1);
         users.put(user.getId(), user);
         return user;
     }
+    
+    /*@POST
+    public User createUser(String name, String alias) {
+        int id = users.size();
+        User user = new User (id,name, alias);
+        user.setId(id + 1);
+        users.put(user.getId(), user);
+        return user;
+    }*/
 
     @DELETE
     @Path("{id}")

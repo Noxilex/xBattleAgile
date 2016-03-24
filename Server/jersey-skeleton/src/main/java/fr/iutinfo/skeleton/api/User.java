@@ -19,21 +19,32 @@ public class User implements Principal {
     private String password;
     private String passwdHash;
     private String salt;
+    private int nbgameWin;
 
     private static User anonymous = new User(-1, "Anonymous", "anonym");
 
     public User(int id, String name) {
         this.id = id;
         this.name = name;
+        this.nbgameWin =0;
     }
 
     public User(int id, String name, String alias) {
         this.id = id;
         this.name = name;
         this.alias = alias;
+        this.nbgameWin =0;
     }
 
-    public User() {
+    public int getNbgameWin() {
+		return nbgameWin;
+	}
+
+	public void setNbgameWin(int nbgameWin) {
+		this.nbgameWin = nbgameWin;
+	}
+
+	public User() {
     }
 
     public String getEmail() {
