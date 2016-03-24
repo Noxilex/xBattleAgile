@@ -1,66 +1,59 @@
 //Initializing
-var c = document.getElementById("gamepanel");
-var ctx = c.getContext("2d");
+var canvas = $("#gamepanel")[0];
+var ctx = canvas.getContext("2d");
 
-var height = c.height;
-var width = c.width;
-var numC = 20;
-var h = height/numC;
-var w = width/numC;
-var table = create2DArray(w, h);
+var WIDTH = canvas.width;
+var HEIGHT = canvas.height;
 
-console.log("Global width:" + width);
-console.log("Global height:" + height);
-console.log("Cell width:" + w);
-console.log("Cell height:" + h);
+var CELL_SIZE = 30;
+var MAP_X = 20;
+var MAP_Y = 20;
+
+var map;
+
+buildMap();
+drawMap();
+
 
 //Event on monsedown
- c.addEventListener('mousedown', function(evt) {
-    var mousePos = getMousePos(c, evt);
-	cell=get_cell(mousePos.x, mousePos.y);
-	$("#coord").text('Mouse position: ' + cell[0] + ',' + cell[1]);
-	modify_cell(cell[0], cell[1], (table[cell[1]][cell[0]]+1)%5);
-	draw2DArray();
-	drawGrid(w,h,numC);
+$(canvas).click(function(event){
+	var mousePos = getMousePos(canvas, event);
+	var cell = map[Math.floor(mousePos.y/CELL_SIZE)][Math.floor(mousePos.x/CELL_SIZE)];
+	$("#coord").text('Mouse position: ' + cell.x + ', ' + cell.y);
+	cell.value = (cell.value+1)%5;
+	drawMap();
 });
+
 //Hover of the mouse
-c.addEventListener('mousemove', function(evt) {
-    var mousePos = getMousePos(c, evt);
-	cell=get_cell(mousePos.x, mousePos.y);
-	$("#coord").text('Mouse position: ' + cell[0] + ',' + cell[1]);
-	draw2DArray();
-	drawGrid(w,h,numC);
-	ctx.strokeStyle="#330000";
-	ctx.strokeRect(cell[0]*w, cell[1]*h, w, h);
+$(canvas).mousemove(function(event){
+	var mousePos = getMousePos(canvas, event);
+	var cell = map[Math.floor(mousePos.y/CELL_SIZE)][Math.floor(mousePos.x/CELL_SIZE)];
+	$("#coord").text('Mouse position: ' + cell.x + ', ' + cell.y);
+	drawMap();
 	ctx.fillStyle="rgba(200, 255, 255, 0.5)";
-	ctx.fillRect(cell[0]*w, cell[1]*h, w, h);
+	ctx.fillRect(cell.x*CELL_SIZE+1, cell.y*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
 });
 
-ctx.fillStyle= "#000000";
-ctx.fillRect(0,0,width,height);
-
-table[3][3]=1;
-table[3][4]=2;
-table[3][5]=3;
-table[3][6]=4;
-draw2DArray();
-drawGrid(w,h,numC);
+function buildMap(){
+	map = [];
+	for(var j = 0 ; j < MAP_Y ; j++){
+		var subMap = [];
+		for(var i = 0 ; i < MAP_X ; i++){
+			subMap.push(new Cell(i, j, Math.floor(Math.random()*5)));
+		}
+		map.push(subMap);
+	}
+}
 
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     return {
-      x: evt.clientX - rect.left,
-      y: evt.clientY - rect.top
+      x: evt.clientX - rect.left - 2,
+      y: evt.clientY - rect.top - 2
     };
   }
 
-function create2DArray(w, h){
-	var t = new Array(h);
-		for(i = 0; i < w; i++){
-			t[i]=new Array(w).fill(0);
-		}
-	return t;
-}
+
 
 
 /*
@@ -70,35 +63,29 @@ function create2DArray(w, h){
 3: mountain
 4: high-mountain
 */
-function draw2DArray(){
-	for(j = 0; j < numC; j++){
-		for(i = 0; i < numC; i++){
-			var test = table[j][i];
-			if(test==0){
-				ctx.fillStyle="#F6E3CE";
-			}else if(test==1){
-				ctx.fillStyle="#6666FF";
-			}else if(test==2){
-				ctx.fillStyle="#6666AA";
-			}else if(test==3){
-				ctx.fillStyle="#D7A25E";
-			}else if(test==4){
-				ctx.fillStyle="#B78B51";
-			}else{
-				console.log("Error on cell:["+i+","+j+"]");
+function drawMap(){
+	for(j = 0 ; j < MAP_Y ; j++){
+		for(i = 0 ; i < MAP_X ; i++){
+			switch(map[j][i].value){
+				case 0:
+					ctx.fillStyle="#F6E3CE"; //Beige
+					break;
+				case 1:
+					ctx.fillStyle="#6666FF";
+					break;
+				case 2:
+					ctx.fillStyle="#6666AA";
+					break;
+				case 3:
+					ctx.fillStyle="#D7A25E";
+					break;
+				case 4:
+					ctx.fillStyle="#B78B51";
+					break;
 			}
-			ctx.fillRect(i*w,j*h,w,h);
+			ctx.fillRect(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
 		}
 	}	
-}
-
-function drawGrid(w,h,taille){
-	ctx.strokeStyle="#000000";
-	for(j = 0; j < taille; j++){
-		for(i = 0; i < taille; i++){
-			ctx.strokeRect(i*w,j*h,w,h);
-		}
-	}
 }
 
 //Return the position of the table where the user clicked
@@ -109,9 +96,15 @@ function get_cell(abs_x, abs_y){
 
 //Modify the content of the cell at the coordinates x,y with 
 //the desired value
-function modify_cell(x, y, value){
-	table[y][x]=value;
-} 
+function modifyCell(x, y, value){
+	map[y][x] = value;
+}
+
+function Cell(x, y, value){
+	this.x = x;
+	this.y = y;
+	this.value = value;
+}
 
 
 function login(){
