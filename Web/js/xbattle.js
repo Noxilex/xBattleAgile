@@ -15,23 +15,6 @@ buildMap();
 drawMap();
 
 
-
-/*console.log("Global width:" + WIDTH);
-console.log("Global height:" + HEIGHT);
-console.log("Cell width:" + w);
-console.log("Cell height:" + h);
-
-
-canvas.addEventListener('mousedown', function(evt) {
-    var mousePos = getMousePos(canvas, evt);
-	cell=get_cell(mousePos.x, mousePos.y);
-	$("#coord").text('Mouse position: ' + cell[0] + ',' + cell[1]);
-	modify_cell(cell[0], cell[1], (table[cell[1]][cell[0]]+1)%5);
-	draw2DArray();
-	drawGrid(w,h,numC);
-});
-*/
-
 //Event on monsedown
 $(canvas).click(function(event){
 	var mousePos = getMousePos(canvas, event);
@@ -50,32 +33,6 @@ $(canvas).mousemove(function(event){
 	ctx.fillStyle="rgba(200, 255, 255, 0.5)";
 	ctx.fillRect(cell.x*CELL_SIZE+1, cell.y*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
 });
-
-
-//Hover of the mouse
-/*canvas.addEventListener('mousemove', function(evt) {
-    var mousePos = getMousePos(canvas, evt);
-	cell=get_cell(mousePos.x, mousePos.y);
-	$("#coord").text('Mouse position: ' + cell[0] + ',' + cell[1]);
-	draw2DArray();
-	drawGrid(w,h,numC);
-	ctx.strokeStyle="#330000";
-	ctx.strokeRect(cell[0]*w, cell[1]*h, w, h);
-	ctx.fillStyle="rgba(200, 255, 255, 0.5)";
-	ctx.fillRect(cell[0]*w, cell[1]*h, w, h);
-});
-*/
-
-/*ctx.fillStyle= "#000000";
-ctx.fillRect(0 ,0 ,WIDTH ,HEIGHT);
-
-table[3][3]=1;
-table[3][4]=2;
-table[3][5]=3;
-table[3][6]=4;
-draw2DArray();
-drawGrid(w,h,numC);
-*/
 
 function buildMap(){
 	map = [];
