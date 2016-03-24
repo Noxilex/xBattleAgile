@@ -32,6 +32,7 @@ public class UserDBResource {
 		user.setId(id);
 		return user;
 	}
+	
 
 	@PUT
 	@Path("/{id}")
@@ -53,16 +54,16 @@ public class UserDBResource {
 		return user;
 	}
 
-	@POST
-	@Path("/{name}{mdp")
-	public User getlogin(@PathParam("name") String name,
-			@PathParam("mdp") String mdp) {
+	@GET
+	@Path("/auth/login")
+	public User getlogin(@QueryParam("name") String name,
+			@QueryParam("mdp") String mdp) {
 		User user = dao.findByName(name);
 		if (user == null) {
-			throw new WebApplicationException(404);
+			throw new WebApplicationException(403);
 		}
 		if (!user.isGoodPassword(mdp))
-			throw new WebApplicationException(404);
+			throw new WebApplicationException(403);
 		return user;
 	}
 
