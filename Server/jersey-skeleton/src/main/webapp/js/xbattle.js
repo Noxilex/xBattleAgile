@@ -125,7 +125,7 @@ function login(){
 	$("#gamepanel").show();
 }
 
-function register(name, pwd) {
+function register() {
 
 	var username = $("#nickname-input").val();
 	var password = $("#password-input").val();
@@ -141,16 +141,14 @@ function register(name, pwd) {
 			"password" : pwd,
 			"id" : 0
 		}),
-		success : 
+		success :function(data, textStatus, jqXHR) {
 			swal("Registered", "Thanks for registering \"" + username + "\".\nYou have been logged in.", "success");
 			$("#group-auth").hide();
-			$("#gamepanel").show();	
-		function(data, textStatus, jqXHR) {
+			$("#gamepanel").show();
 			afficheUser(data);
 		},
-		error :
-			swal("Register failed", "The username \"" + username + "\" is already taken.", "error"); 
-			function(jqXHR, textStatus, errorThrown) {
+		error :function(jqXHR, textStatus, errorThrown) {
+			swal("Register failed", "The username \"" + username + "\" is already taken.", "error");
 			alert('postUser error: ' + textStatus);
 		}
 	});
