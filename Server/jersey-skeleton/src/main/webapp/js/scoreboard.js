@@ -1,7 +1,7 @@
 var myJSONObject = {"players": [
-        {"name": "Henri", "pwd": "mdp", "score": 10},
-        {"name": "Paul", "pwd": "mdp", "score": 20},
-        {"name": "Claude", "pwd": "mdp", "score" : 15}
+        {"name": "Henri", "score": 10},
+        {"name": "Paul", "score": 20},
+        {"name": "Claude", "score" : 15}
     ]
 };
 var players = myJSONObject.players;
