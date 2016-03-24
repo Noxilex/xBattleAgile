@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:id="@+id/layout_pres"
+    style="@style/NoActionBar"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -87,7 +88,9 @@
             android:background="@color/Color3"
             android:textColor="@color/Color1"
             android:gravity="center"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp" />
 
     </LinearLayout>
 </RelativeLayout>
