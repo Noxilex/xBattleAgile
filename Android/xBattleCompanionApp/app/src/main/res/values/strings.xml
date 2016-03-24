@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">xBattle Companion App</string>
+
+    <string name="title">xBattle</string>
+    <string name="title2">Companion App</string>
+    <string name="button1">Présentation</string>
+    <string name="button2">Tutoriel</string>
+    <string name="button3">Statistiques</string>
+    <string name="action_settings">Settings</string>
+</resources>

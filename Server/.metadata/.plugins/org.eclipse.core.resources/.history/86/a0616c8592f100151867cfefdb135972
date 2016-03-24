@@ -1,0 +1,7 @@
+package mainPackage;
+
+public class Case {
+
+	private Coord coord = new Coord();
+	
+}
