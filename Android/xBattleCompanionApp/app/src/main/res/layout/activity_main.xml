@@ -5,7 +5,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
     android:id="@+id/relLayout"
-    android:background="#be9b7b">
+    android:background="@color/Color5">
 
     <LinearLayout
         android:orientation="vertical"
@@ -20,7 +20,7 @@
             android:textSize="75sp"
             android:textIsSelectable="false"
             android:id="@+id/title"
-            android:textColor="#4b3832"
+            android:textColor="@color/Color1"
             android:layout_alignParentTop="true"
             android:layout_alignLeft="@+id/title2"
             android:layout_alignStart="@+id/title2"
@@ -33,7 +33,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/title2"
             android:id="@+id/title2"
-            android:textColor="#3c2f2f"
+            android:textColor="@color/Color4"
             android:textSize="30sp"
             android:layout_below="@+id/title"
             android:layout_marginBottom="50dp"
@@ -49,8 +49,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:background="#3c2f2f"
-            android:textColor="#fff4e6"
+            android:background="@color/Color4"
+            android:textColor="@color/Color3"
             android:elegantTextHeight="false"
             android:layout_marginBottom="25dp"
             android:textSize="25dp" />
@@ -65,8 +65,8 @@
             android:layout_alignStart="@+id/button"
             android:layout_alignRight="@+id/button"
             android:layout_alignEnd="@+id/button"
-            android:background="#3c2f2f"
-            android:textColor="#fff4e6"
+            android:background="@color/Color4"
+            android:textColor="@color/Color3"
             android:layout_marginBottom="25dp"
             android:textSize="25dp" />
 
@@ -81,8 +81,8 @@
             android:layout_marginBottom="36dp"
             android:layout_alignRight="@+id/button2"
             android:layout_alignEnd="@+id/button2"
-            android:background="#3c2f2f"
-            android:textColor="#fff4e6"
+            android:background="@color/Color4"
+            android:textColor="@color/Color3"
             android:textSize="25dp" />
     </LinearLayout>
 

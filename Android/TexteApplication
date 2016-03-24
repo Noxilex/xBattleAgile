@@ -1,25 +1,23 @@
-Cette page est dédiée à l'écriture de l'application android.
-Elle concerne la page de présentation du jeu ainsi que la page du tutoriel. (le texte suivi d'un # signifie qu'il y a un hyperlien)
+//	Cette page est dédiée à l'écriture de l'application android.
+//	Elle concerne la page de présentation du jeu ainsi que la page du tutoriel. (le texte suivi d'un # signifie qu'il y a un hyperlien)
 
 		Page de présentation
 
-Quest-ce que xBattle?
-	- C'est un jeu de stratégie en temps réel datant de 1991.
-	Le jeu est son concept ont malheureusement été abandonnés 		au fil du temps (#Quels sont les règles?)
+Qu'est-ce que xBattle ?
+	- C'est un jeu de stratégie en temps réel datant de 1991. Le jeu est son concept ont malheureusement été abandonnés au fil du temps (#Quels sont les règles?)
 
-Et xBattle Awakening alors?
+Et xBattle Awakening alors ?
 	- La nouvelle version! Nous avons pour objectif de redonner vie à ce jeu tactique tout en lui donnant un coup de neuf! Le projet est disponnible par navigateur et cette application vous donne les #règles ainsi que les #statistiques de vos dernières parties.
 
-Qui êtes-vous?
-
+Qui êtes-vous ?
 	- Un groupe d'étudiants en fin de GEA et de deuxième année de DUT informatique. Nous développons ce projet avec la méthodologie agile pendant 1 semaine.
 
 
 		Page de tutoriel (cette page sera à modifier)
 
-Donc c'est quoi ce jeu ? Et quel est le but?
+Donc c'est quoi ce jeu ? Et quel est le but ?
 
-	- xBattle Awakening est un jeu de stratégie ou plusieurs 		joueurs doivent contrôler des flux de liquide, les positionner et les faire combattre.
+	- xBattle Awakening est un jeu de stratégie ou plusieurs joueurs doivent contrôler des flux de liquide, les positionner et les faire combattre.
 	
 [...]
 	La partie est terminée lorsqu'il ne reste qu'il seul joueur 

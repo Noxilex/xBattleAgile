@@ -6,5 +6,13 @@
     <string name="button1">Présentation</string>
     <string name="button2">Tutoriel</string>
     <string name="button3">Statistiques</string>
+
+    <string name="pres_title1">Qu\'est-ce que xBattle ?</string>
+    <string name="pres_text1">C\'est un jeu de stratégie en temps réel datant de 1991. Le jeu est son concept ont malheureusement été abandonnés au fil du temps</string>
+    <string name="pres_title2">Et xBattle Awakening alors ?</string>
+    <string name="pres_text2">La nouvelle version! Nous avons pour objectif de redonner vie à ce jeu tactique tout en lui donnant un coup de neuf! Le projet est disponnible par navigateur et cette application vous donne les #règles ainsi que les #statistiques de vos dernières parties.</string>
+    <string name="pres_title3">Qui êtes-vous ?</string>
+    <string name="pres_text3">Un groupe d\'étudiants en deuxième année de DUT informatique ou de DUT GEA. Nous développons ce projet avec la méthodologie agile pendant 1 semaine.</string>
+
     <string name="action_settings">Settings</string>
 </resources>
