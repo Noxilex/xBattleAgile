@@ -53,6 +53,7 @@ then
 	echo "[*] Envoie des modifications ..."
 	git add ./ > /dev/null
 	git commit -m "$cmmtname" > /dev/null
+	git pull > /dev/null
 	git push -u origin master > /dev/null
 	echo "[+] Envoie termine"
 	echo ""
