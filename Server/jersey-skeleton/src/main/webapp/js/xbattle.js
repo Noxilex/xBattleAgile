@@ -127,7 +127,7 @@ function login(){
 	var login = $("#nickname-input").val();
 	var pwd = $("#password-input").val();
 	$.get("v1/userdb/auth/login?name="+login+"&mdp="+pwd, function(data, status){
-		console.log(data);
+		console.log(data.text);
 	});
 	//Serveur connection.
 	swal("Logged", "Welcome back " + login + ".", "success");
