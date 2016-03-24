@@ -114,7 +114,7 @@ function login(){
 		console.log("Data: " + data + "\nStatus: " + status);
 	});
 	//Serveur connection.
-	swal("Logged", "Welcome back " + username + ".", "success");
+	swal("Logged", "Welcome back " + login + ".", "success");
 }
 
 function register() {
@@ -132,6 +132,7 @@ function register() {
 			"name" : username,
 			"password" : pwd,
 			"id" : 0
+		}),
 		success :function(data, textStatus, jqXHR) {
 			swal("Registered", "Thanks for registering \"" + username + "\".\nYou have been logged in.", "success");
 			$("#group-auth").hide();
