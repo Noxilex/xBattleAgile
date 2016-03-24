@@ -1,0 +1,48 @@
+package mainPackage;
+
+public class Coord {
+
+	private int x;
+	private int y;
+	
+	public Coord(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public Coord() {}
+	
+	/**
+	 * @return the Coord x
+	 */
+	public int x() {
+		return this.x;
+	}
+	
+	/**
+	 * @return the Coord y
+	 */
+	public int y() {
+		return this.y;
+	}
+	
+	/**
+	 * @param x
+	 * Set the coord x
+	 */
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+	/**
+	 * @param y
+	 */
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+	public String toString() {
+		return "("+x+";"+y+")";
+	}
+	
+}

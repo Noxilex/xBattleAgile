@@ -1,0 +1,10 @@
+package mainPackage;
+
+public class Case {
+
+	private Coord coord;
+	private int owner;
+	private boolean[] 
+	
+	
+}
