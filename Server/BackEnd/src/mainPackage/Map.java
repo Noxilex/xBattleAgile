@@ -7,6 +7,11 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.json.simple.JSONObject;
+
+import utilities.Case;
+import utilities.Coord;
+
 /**
  * @author cailliea
  * Class that generate a random Map.
@@ -28,6 +33,16 @@ public class Map {
 		this.intMap = generateNewMap(30, 20);
 		this.caseMap = generateCaseMap(intMap);
 		logDisplayMap(caseMap);
+	}
+	
+	/**
+	 * JSON MAKER
+	 * 
+	 */
+	public JSONObject createMapJson() {
+		JSONObject json = new JSONObject();
+		
+		return json;
 	}
 
 	/**
