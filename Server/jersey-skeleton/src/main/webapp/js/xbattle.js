@@ -113,7 +113,7 @@ function modify_cell(x, y, value){
 	table[y][x]=value;
 } 
 
-//Request client connection.
+
 function login(){
 	var username = $("#nickname-input").val();
 	var password = $("#password-input").val();
@@ -125,7 +125,6 @@ function login(){
 	$("#gamepanel").show();
 }
 
-//Request new client registration.
 function register(){
 	var username = $("#nickname-input").val();
 	var password = $("#password-input").val();
