@@ -1,10 +1,12 @@
 package fr.univ_lille1.iut_info.bernardt.xbattlecompanionapp;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -77,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
                 presTitle1.setBackgroundResource(R.color.Color1);
                 presTitle2.setBackgroundResource(R.color.Color5);
                 presTitle3.setBackgroundResource(R.color.Color5);
+                presTitle1.setTextColor(getResources().getColor(R.color.Color3));
+                presTitle2.setTextColor(getResources().getColor(R.color.Color1));
+                presTitle3.setTextColor(getResources().getColor(R.color.Color1));
                 presCurrentTitle.setText(getResources().getString(R.string.pres_title1));
                 presText.setText(getResources().getString(R.string.pres_text1));
                 break;
@@ -84,6 +89,9 @@ public class MainActivity extends AppCompatActivity {
                 presTitle1.setBackgroundResource(R.color.Color5);
                 presTitle2.setBackgroundResource(R.color.Color1);
                 presTitle3.setBackgroundResource(R.color.Color5);
+                presTitle1.setTextColor(getResources().getColor(R.color.Color1));
+                presTitle2.setTextColor(getResources().getColor(R.color.Color3));
+                presTitle3.setTextColor(getResources().getColor(R.color.Color1));
                 presCurrentTitle.setText(getResources().getString(R.string.pres_title2));
                 presText.setText(getResources().getString(R.string.pres_text2));
                 break;
@@ -91,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
                 presTitle1.setBackgroundResource(R.color.Color5);
                 presTitle2.setBackgroundResource(R.color.Color5);
                 presTitle3.setBackgroundResource(R.color.Color1);
+                presTitle1.setTextColor(getResources().getColor(R.color.Color1));
+                presTitle2.setTextColor(getResources().getColor(R.color.Color1));
+                presTitle3.setTextColor(getResources().getColor(R.color.Color3));
                 presCurrentTitle.setText(getResources().getString(R.string.pres_title3));
                 presText.setText(getResources().getString(R.string.pres_text3));
                 break;
