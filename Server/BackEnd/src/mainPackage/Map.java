@@ -21,6 +21,7 @@ public class Map {
 	private String activeTexturePack;
 	private Random rand = new Random();
 	private int[][] intMap;
+	private Case[][] caseMap;
 	
 	public Map() {
 		this.activeTexturePack = basicTexturePath;

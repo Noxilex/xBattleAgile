@@ -1,0 +1,25 @@
+﻿function postUserBdd(name, alias, pwd) {
+    postUserGeneric(name, alias, pwd, "v1/userdb/");
+}
+
+function postUserGeneric(name, alias, pwd, url) {
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : url,
+		dataType : "json",
+		data : JSON.stringify({
+			"name" : name,
+			"alias" : alias,
+			"password" : pwd,
+			"id" : 0
+		}),
+		success : function(data, textStatus, jqXHR) {
+			afficheUser(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('postUser error: ' + textStatus);
+		}
+	});
+}
+
