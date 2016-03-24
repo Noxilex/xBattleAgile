@@ -2,11 +2,25 @@
 	display: block;
 	text-align: center;
 	font-size: 50px;
-	margin-bottom: 42px;
+	margin-bottom: 16px;
   	animation: bounce 1s .5s;
   	transform: scale(0.85);
+  	-webkit-animation: bounce 1s .5s;
+  	-webkit-transform: scale(0.85);
 }
 
+#bar-extend {
+	margin: auto;
+	background-color: black;
+	width: 0;
+	opacity: 0;
+	height: 2px;
+	margin-bottom: 26px;
+	animation: grow-bar 1s 1.2s;
+	animation-fill-mode: forwards;
+	-webkit-animation: grow-bar 1s 1.2s;
+	-webkit-animation-fill-mode: forwards;
+}
 
 #group-auth {
     position: absolute;
@@ -33,6 +47,7 @@
 
 #gamepanel {
 	border: 1px solid black;
+	background-color: black;
 	display: none;
 }
 
@@ -51,6 +66,7 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    border-radius: 2px;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
@@ -77,4 +93,14 @@
   60% { transform: scale(0.6); opacity: 1 }
   80% { transform: scale(0.95) }
   100% { transform: scale(0.85) }
+}
+
+@keyframes grow-bar {
+	from {width: 0; opacity: 0;}
+    to {width: 120px; opacity: 1;}
+}
+
+@-webkit-keyframes grow-bar {
+	from {width: 0; opacity: 0;}
+    to {width: 120px; opacity: 1;}
 }
