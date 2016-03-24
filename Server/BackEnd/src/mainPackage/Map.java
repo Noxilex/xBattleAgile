@@ -7,6 +7,12 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import utilities.Case;
+import utilities.Coord;
+
 /**
  * @author cailliea
  * Class that generate a random Map.
@@ -29,7 +35,31 @@ public class Map {
 		this.caseMap = generateCaseMap(intMap);
 		logDisplayMap(caseMap);
 	}
+	
 
+	/**
+	 * JSON FUNCTION
+	 * @return the json file
+	 */
+	public JSONObject jsonFieldMap() {
+		JSONObject json = new JSONObject();
+		json.put("texturePack", this.getActiveTexturePack());
+		JSONArray listCell = new JSONArray();
+		Case[][] cmap = getCaseMap();
+		for (int x=0; x<cmap.length; x++) {
+			for (int y=0; y<cmap[0].length; y++) {
+				listCell.add(cmap[x][y].getFieldType());
+			}
+		}
+		json.put("FieldMap", listCell);
+		return json;		
+	}
+	
+	/**
+	 * JSON FUNCTION
+	 */
+	
+	
 	/**
 	 * @return The integer array version of the map
 	 */
