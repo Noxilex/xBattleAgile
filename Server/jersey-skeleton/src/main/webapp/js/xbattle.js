@@ -115,14 +115,13 @@ function modify_cell(x, y, value){
 
 
 function login(){
-	var username = $("#nickname-input").val();
-	var password = $("#password-input").val();
-	
+	var login = $("#nickname-input").val();
+	var pwd = $("#password-input").val();
+	$.get("v1/userdb/"+login, function(data, status){
+		console.log("Data: " + data + "\nStatus: " + status);
+	});
 	//Serveur connection.
 	swal("Logged", "Welcome back " + username + ".", "success");
-
-	$("#group-auth").hide();
-	$("#gamepanel").show();
 }
 
 function register() {
