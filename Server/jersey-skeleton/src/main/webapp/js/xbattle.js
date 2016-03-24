@@ -140,7 +140,6 @@ function register() {
 			"name" : username,
 			"password" : pwd,
 			"id" : 0
-		}),
 		success :function(data, textStatus, jqXHR) {
 			swal("Registered", "Thanks for registering \"" + username + "\".\nYou have been logged in.", "success");
 			$("#group-auth").hide();
