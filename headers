@@ -1,0 +1,10 @@
+HTTP/1.0 504 Gateway Time-out
+Server: squid/2.7.STABLE5-20081024
+Date: Thu, 24 Mar 2016 10:06:10 GMT
+Content-Type: text/html
+Content-Length: 1281
+X-Squid-Error: ERR_DNS_FAIL 0
+X-Cache: MISS from cacheserv3.univ-lille1.fr
+Via: 1.0 cacheserv3.univ-lille1.fr:3128 (squid/2.7.STABLE5-20081024)
+Connection: close
+

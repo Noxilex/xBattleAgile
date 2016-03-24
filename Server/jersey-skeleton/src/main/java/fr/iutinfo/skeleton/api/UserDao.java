@@ -7,10 +7,10 @@ import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 import java.util.List;
 
 public interface UserDao {
-	@SqlUpdate("create table users (id integer primary key autoincrement, name varchar(100), alias varchar(100), email varchar(100), passwdHash varchar(32), salt varchar(32))")
+	@SqlUpdate("create table users (id integer primary key autoincrement, name varchar(100),  email varchar(100), passwdHash varchar(32), salt varchar(32), nbWin integer)")
 	void createUserTable();
 
-	@SqlUpdate("insert into users (name,alias,email, passwdHash, salt) values (:name, :alias, :email, :passwdHash, :salt)")
+	@SqlUpdate("insert into users (name,alias,email, passwdHash, salt, nbWin) values (:name, :email, :passwdHash, :salt, :nbWin)")
 	@GetGeneratedKeys
 	int insert(@BindBean() User user);
 
@@ -29,5 +29,8 @@ public interface UserDao {
 	@RegisterMapperFactory(BeanMapperFactory.class)
 	User findById(@Bind("id") int id);
 
+	@SqlUpdate("update users SET nbWin = nbWin+1 where id = :id")
+	@RegisterMapperFactory(BeanMapperFactory.class)
+	void incWin(@Bind("id") int id);
 	void close();
 }
