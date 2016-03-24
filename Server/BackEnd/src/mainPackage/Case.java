@@ -15,11 +15,12 @@ public class Case {
 	private int level;
 	private int fieldType;
 
-	public Case(Coord coord) {
+	public Case(Coord coord, int fieldType) {
 		this.coord = coord;
-		owner = 0;
-		pipes = new boolean[]{false, false, false, false, false, false, false, false};
-		level = 0;		
+		this.owner = 0;
+		this.pipes = new boolean[]{false, false, false, false, false, false, false, false};
+		this.level = 0;		
+		this.fieldType = fieldType;
 	}
 
 	/**

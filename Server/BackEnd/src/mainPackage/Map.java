@@ -26,7 +26,8 @@ public class Map {
 	public Map() {
 		this.activeTexturePack = basicTexturePath;
 		this.intMap = generateNewMap(30, 20);
-		logDisplayMap(intMap);
+		this.caseMap = generateCaseMap(intMap);
+		logDisplayMap(caseMap);
 	}
 
 	/**
@@ -74,26 +75,36 @@ public class Map {
 	 */
 	private int[][] generateNewMap(int lenX, int lenY) {
 		System.out.println("Generating a new map dim :"+lenX+"x"+lenY);
-		int[][] map = new int[lenX][lenY];
+		int[][] iMap = new int[lenX][lenY];
 		for (int x=0; x<lenX; x++) {
 			for (int y=0; y<lenY; y++) {
-				map[x][y] = rand.nextInt(8);
+				iMap[x][y] = rand.nextInt(8);
 			}
 		}
-		return map;
+		return iMap;
 	}
 
+	private Case[][] generateCaseMap(int[][] intMap) {
+		System.out.println("Generating associated cases");
+		Case[][] cMap = new Case[intMap.length][intMap[0].length];
+		for (int x=0; x<intMap.length; x++) {
+			for (int y=0; y<intMap[0].length; y++) {
+				cMap[x][y] = new Case(new Coord(x, y), intMap[x][y]);
+			}
+		}
+		return cMap;
+	}
 	
 	
 	/**
 	 * Only for the debug. Display the map in character.
 	 * @param map
 	 */
-	private void logDisplayMap(int[][] map){
+	private void logDisplayMap(Case[][] map){
 		for (int x=0; x<map.length; x++) {
 			System.out.print("|");
 			for (int y=0; y<map[0].length; y++) {
-				int t = map[x][y];
+				int t = map[x][y].getFieldType();
 				String s;
 				switch (t) {
 					case 0 : s = "pl";
