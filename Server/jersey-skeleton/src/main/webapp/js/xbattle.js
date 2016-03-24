@@ -137,7 +137,7 @@ function register() {
 		url : url,
 		dataType : "json",
 		data : JSON.stringify({
-			"name" : name,
+			"name" : username,
 			"password" : pwd,
 			"id" : 0
 		}),
