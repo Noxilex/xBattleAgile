@@ -128,7 +128,7 @@ function login(){
 function register() {
 
 	var username = $("#nickname-input").val();
-	var password = $("#password-input").val();
+	var pwd = $("#password-input").val();
 	var url = "v1/userdb/";
 
 	$.ajax({
