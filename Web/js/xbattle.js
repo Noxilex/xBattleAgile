@@ -9,6 +9,12 @@ var h = height/numC;
 var w = width/numC;
 var table = create2DArray(w, h);
 
+console.log("Global width:" + width);
+console.log("Global height:" + height);
+console.log("Cell width:" + w);
+console.log("Cell height:" + h);
+
+//Event on monsedown
  c.addEventListener('mousedown', function(evt) {
     var mousePos = getMousePos(c, evt);
 	cell=get_cell(mousePos.x, mousePos.y);
@@ -16,6 +22,18 @@ var table = create2DArray(w, h);
 	modify_cell(cell[0], cell[1], (table[cell[1]][cell[0]]+1)%5);
 	draw2DArray();
 	drawGrid(w,h,numC);
+});
+//Hover of the mouse
+c.addEventListener('mousemove', function(evt) {
+    var mousePos = getMousePos(c, evt);
+	cell=get_cell(mousePos.x, mousePos.y);
+	$("#coord").text('Mouse position: ' + cell[0] + ',' + cell[1]);
+	draw2DArray();
+	drawGrid(w,h,numC);
+	ctx.strokeStyle="#330000";
+	ctx.strokeRect(cell[0]*w, cell[1]*h, w, h);
+	ctx.fillStyle="rgba(200, 255, 255, 0.5)";
+	ctx.fillRect(cell[0]*w, cell[1]*h, w, h);
 });
 
 ctx.fillStyle= "#000000";
@@ -75,6 +93,7 @@ function draw2DArray(){
 }
 
 function drawGrid(w,h,taille){
+	ctx.strokeStyle="#000000";
 	for(j = 0; j < taille; j++){
 		for(i = 0; i < taille; i++){
 			ctx.strokeRect(i*w,j*h,w,h);
