@@ -56,7 +56,7 @@ public class UserDBResource {
 
 	@GET
 	@Path("/auth/login")
-	public boolean getlogin(@QueryParam("name") String name,
+	public User getlogin(@QueryParam("name") String name,
 			@QueryParam("mdp") String mdp) {
 		User user = dao.findByName(name);
 		if (user == null) {
@@ -64,7 +64,7 @@ public class UserDBResource {
 		}
 		if (!user.isGoodPassword(mdp))
 			throw new WebApplicationException(403);
-		return true;
+		return user;
 	}
 
 	@GET
