@@ -81,17 +81,14 @@ public class Map {
 
 	private int[][] generateNewMap(int lenX, int lenY) {
 		int[][] iMap = new int[lenX][lenY];
-		for (int x=0; x<lenX; x++) {
-			for (int y=0; y<lenY; y++) {
-				iMap[x][y] = rand.nextInt(8);
-				for (int x=0; x<lenX; x+=2) {
-					for (int y=0; y<lenY; y+=2) {
-						int random = rand.nextInt(10);
-						if (random==8) {
-							random=0;
-						} else if (random==9) {
-							random=1;
-						}
+		for (int x=0; x<lenX; x+=2) {
+			for (int y=0; y<lenY; y+=2) {
+				int random = rand.nextInt(10);
+				if (random==8) {
+					random=0;
+				} else if (random==9) {
+					random=1;
+				}
 				printField(iMap, random, x, y);
 			}
 		}
