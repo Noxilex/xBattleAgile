@@ -94,14 +94,7 @@ public class Case {
 	public void setPipes(int pipes) {
 		this.pipes = pipes;
 	}
-
-	/**
-	 * @return The Coord coordinates of the case
-	 */
-	public String getCoord() {
-		return this.coord.toString();
-	}
-
+	
 	/**
 	 * @param coord
 	 * Set coord at the Case
