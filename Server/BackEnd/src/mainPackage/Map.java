@@ -38,10 +38,11 @@ public class Map {
 
 	/**
 	 * JSON FUNCTION
-	 * @return the json file
+	 * @return the JSON a new map
 	 */
-	public JSONObject jsonMap() {
-		Case[][] cmap = getCaseMap();
+	public JSONObject jsonGenerateMap(int lenX, int lenY) {
+		int[][] map = generateNewMap(lenX, lenY);
+		Case[][] cmap = generateCaseMap(map);
 		
 		JSONObject json = new JSONObject();
 		json.put("texturePack", this.getActiveTexturePack());
@@ -64,6 +65,29 @@ public class Map {
 		return json;		
 	}
 	
+	public JSONObject jsonGetMap(int[][] map) {
+		Case[][] cmap = generateCaseMap(map);
+		
+		JSONObject json = new JSONObject();
+		json.put("texturePack", this.getActiveTexturePack());
+		JSONArray listCell = new JSONArray();		
+		JSONArray listOwn = new JSONArray();
+		JSONArray listPipes = new JSONArray();
+		JSONArray listLevel = new JSONArray();
+		for (int x=0; x<cmap.length; x++) {
+			for (int y=0; y<cmap[0].length; y++){
+				listCell.add(cmap[x][y].getFieldType());
+				listOwn.add(cmap[x][y].getOwner());
+				listPipes.add(cmap[x][y].logPipes(cmap[x][y].getPipes()));
+				listLevel.add(cmap[x][y].getLevel());				
+			}
+		}
+		json.put("FieldMap", listCell);
+		json.put("OwnMap", listOwn);
+		json.put("PipesListMap", listPipes);
+		json.put("LiquidLevel", listLevel);
+		return json;		
+	}
 
 	
 	/**
