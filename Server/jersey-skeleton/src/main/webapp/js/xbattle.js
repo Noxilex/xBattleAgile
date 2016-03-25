@@ -25,7 +25,7 @@ $(canvas).click(function(event){
 
 //Hover of the mouse
 $(canvas).mousemove(function(event){
-	lastCellUnderMouse = cellUnderMouse();
+	lastCellUnderMouse = cellUnderMouse(event);
 	$("#coord").text('Mouse position: ' + lastCellUnderMouse.x + ', ' + lastCellUnderMouse.y);
 	drawMap();
 	ctx.fillStyle="rgba(200, 255, 255, 0.5)";
@@ -45,17 +45,17 @@ function buildMap(){
 
 
 
-function getMousePos(canvas, evt) {
+function getMousePos(event) {
     var rect = canvas.getBoundingClientRect();
     return {
-      	x: evt.clientX - rect.left - 2,
-      	y: evt.clientY - rect.top - 2
+      	x: event.clientX - rect.left - 2,
+      	y: event.clientY - rect.top - 2
     };
 }
 
 
-function cellUnderMouse(){
-	var mousePos = getMousePos(canvas, event);
+function cellUnderMouse(event){
+	var mousePos = getMousePos(event);
 	return map[Math.floor(mousePos.y/CELL_SIZE)][Math.floor(mousePos.x/CELL_SIZE)];
 }
 
