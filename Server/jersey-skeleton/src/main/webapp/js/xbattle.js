@@ -207,7 +207,7 @@ function login(){
     	//alert( "second success" );
   	})
 	.fail(function() {
-    	swal("Failed to log in");
+		swal("Loggin failed", "No match found between this username and password.", "error");
   	});
 	//Serveur connection.
 }
@@ -242,13 +242,19 @@ function register() {
 
 $(function(){
 
+	$(".authent-input").keydown(function(event){
+        if((event.which || event.keyCode) === 13){
+            login();
+        }
+    });
 	
 
 	$(canvas).keydown(function(event){
-        var pressed = event.which || event.keyCode;
-        updatePipe(pressed);
+        updatePipe(event.which || event.keyCode);
     });
 
     canvas.focus();
+
+
 
 });
