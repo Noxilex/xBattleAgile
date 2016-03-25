@@ -14,5 +14,14 @@
     <string name="pres_title3">Qui êtes-vous ?</string>
     <string name="pres_text3">Un groupe d\'étudiants en deuxième année de DUT informatique ou de DUT GEA. Nous développons ce projet avec la méthodologie agile pendant 1 semaine.</string>
 
+    <string name="tuto_title1">Types de terrain</string>
+    <string name="tuto_title2">Tuto 2</string>
+    <string name="tuto_title3">Tuto 3</string>
+
+    <string name="tuto_type1">Plaine</string>
+    <string name="tuto_type2">Colline</string>
+    <string name="tuto_type3">Sable</string>
+    <string name="tuto_type4">Mer</string>
+
     <string name="action_settings">Settings</string>
 </resources>

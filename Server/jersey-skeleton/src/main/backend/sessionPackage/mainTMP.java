@@ -1,4 +1,4 @@
-package src.sessionPackage;
+package sessionPackage;
 
 public class mainTMP {
 

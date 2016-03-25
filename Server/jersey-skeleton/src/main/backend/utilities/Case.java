@@ -1,4 +1,4 @@
-package src.utilities;
+package utilities;
 
 /**
  * @author cailliea
@@ -14,11 +14,13 @@ public class Case {
 	private int pipes;
 	private int level;
 	private int fieldType;
+	
+	public Case(){}
 
 	public Case(Coord coord, int fieldType) {
 		this.coord = coord;
 		this.owner = 0;
-		this.pipes = 0;
+		this.pipes = 5 ;
 		this.fieldType = fieldType;
 		switch (fieldType){
 		case 5:
@@ -78,14 +80,6 @@ public class Case {
 	}
 	
 	/**
-	 * @return The number of active directions
-	 */
-	public int getNumberOfActivePipes() {
-		int actives = 0;
-		return actives;
-	}
-	
-	/**
 	 * @return The Array of the different direction of the pipe.
 	 * In clock order, starting at noon. 
 	 */
@@ -101,14 +95,6 @@ public class Case {
 		this.pipes = pipes;
 	}
 	
-
-	/**
-	 * @return The Coord coordinates of the case
-	 */
-	public Coord getCoord() {
-		return this.coord;
-	}
-
 	/**
 	 * @param coord
 	 * Set coord at the Case
@@ -195,52 +181,7 @@ public class Case {
 		return s;
 	}
 	
-	/**
-	 * LOG FUNCTION
-	 * @param direction
-	 * @return A readable string of the specified direction
-	 */
-	private String logGetReadableDirection(int direction) {
-		String s;
-		switch (direction) {
-		case 0:
-			s = "North";
-			break;
-		
-		case 1:
-			s = "North East";
-			break;
-		
-		case 2:
-			s = "East";
-			break;
-			
-		case 3:
-			s = "South East";
-			break;
-		
-		case 4:
-			s = "South";
-			break;
-			
-		case 5:
-			s = "South West";
-			break;
-			
-		case 6:
-			s = "West";
-			break;
-			
-		case 7:
-			s = "North West";
-			break;
-			
-		default:
-			s = "#ERROR#";
-			break;
-		}
-		return s;
-	}
 
+	
 	
 }

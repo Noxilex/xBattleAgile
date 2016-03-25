@@ -1,4 +1,4 @@
-package src.mainPackage;
+package mainPackage;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -24,13 +24,14 @@ public class Player {
 		this.pseudo = pseudo;
 		this.gameId = gameId;
 		if (skinImg.isEmpty()) {
-			this.skinImg="basic"+p;
+			this.skinImg="Defaut";
 		} else {
 			this.skinImg = skinImg;
 		}
 
 	}
 	
+	public Player(){}
 	/**
 	 * GAME MECANIC FUNCTION
 	 * 
@@ -65,13 +66,6 @@ public class Player {
 	}
 	
 	/**
-	 * @return the Path to the Players textures pack folder
-	 */
-	public String getResourcePath() {
-		return rscPath;
-	}
-	
-	/**
 	 * @return the Skin image name
 	 */
 	public String getSkinImg() {
@@ -100,6 +94,24 @@ public class Player {
 	public String getPseudo() {
 		return this.pseudo;
 	}
+
+	public int getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(int gameId) {
+		this.gameId = gameId;
+	}
+
+	public ArrayList<Case> getOwnedCases() {
+		return ownedCases;
+	}
+
+	public void setOwnedCases(ArrayList<Case> ownedCases) {
+		this.ownedCases = ownedCases;
+	}
+	
+	
 	
 	
 }

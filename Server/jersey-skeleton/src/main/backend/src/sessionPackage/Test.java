@@ -1,4 +1,4 @@
-package sessionPackage;
+package src.sessionPackage;
 
 public class Test {
 

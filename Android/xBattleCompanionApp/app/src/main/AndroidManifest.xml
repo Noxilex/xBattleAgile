@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PresActivity"></activity>
+        <activity android:name=".TutoActivity"></activity>
     </application>
 
 </manifest>

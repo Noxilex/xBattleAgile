@@ -1,4 +1,4 @@
-package src.mainPackage;
+package mainPackage;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,29 +26,19 @@ public class Map {
 	private int[][] intMap;
 	private Case[][] caseMap;
 	private int plain=0;
-	private int sand=1;
-	private int hill1=2;
-	private int hill2=3;
-	private int hill3=4;
-	private int water1=5;
-	private int water2=6;
-	private int water3=7;
+ 	private int sand=1;
+ 	private int hill1=2;
+ 	private int hill2=3;
+ 	private int hill3=4;
+ 	private int water1=5;
+ 	private int water2=6;
+ 	private int water3=7;
 	
 	public Map() {
 		this.activeTexturePack = "Default";
 		this.intMap = generateNewMap(30, 20);
 		this.caseMap = generateCaseMap(intMap);
 		logDisplayMap(caseMap);
-	}
-	
-
-
-	
-	/**
-	 * @return The integer array version of the map
-	 */
-	public int[][] getIntMap() {
-		return intMap;
 	}
 	
 	/**
@@ -65,14 +55,6 @@ public class Map {
 	public int getIdCase(Coord c) {
 		return intMap[c.x()][c.y()];
 	}
-	
-	/**
-	 * @return the path to the Maps textures packs folder
-	 */
-	public String getResourcePath() {
-		return rscPath;
-	}
-	
 	/**
 	 * @return The Currently active texture pack
 	 */
@@ -94,6 +76,9 @@ public class Map {
 	 * @param lenY
 	 * @return the fieldTypeId array version of the map 
 	 */
+	
+
+
 	private int[][] generateNewMap(int lenX, int lenY) {
 		int[][] iMap = new int[lenX][lenY];
 		for (int x=0; x<lenX; x+=2) {
@@ -109,14 +94,12 @@ public class Map {
 		}
 		return iMap;
 	}
-	
-
-	/**
-	 * @return the type of the field.
-	 * 0 = plain ; 1 = sand 
-	 * 2 = hill 1; 3 = hill 2; 4 = hill 3
-	 * 5 = water1; 6 = water2; 7 = water3
-	 */
+/**
+* @return the type of the field.
+* 0 = plain ; 1 = sand 
+* 2 = hill 1; 3 = hill 2; 4 = hill 3
+* 5 = water1; 6 = water2; 7 = water3
+*/
 	private int[][] printField(int[][] iMap, int fieldId, int x, int y) {
 		if (fieldId<=hill1 || fieldId==water1) {
 			for (int cptX=x-2; cptX<x+2; cptX++) {
@@ -142,7 +125,7 @@ public class Map {
 			} else if (fieldId==water2) {
 				border=defaut;
 				miborder=water1;
-				center=water2;
+				center=water2;	
 			} else if (fieldId==water3) {
 				border=water1;
 				miborder=water2;
@@ -152,7 +135,6 @@ public class Map {
 				miborder=border;
 				center=miborder;
 			}
-
 			for (int cptX=x-2; cptX<x+2; cptX++) {
 				for (int cptY=y-2; cptY<y+2; cptY++) {
 					if (setOnMap(cptX, cptY, iMap)) {
@@ -163,28 +145,27 @@ public class Map {
 							iMap[cptX][cptY]=miborder;
 						}
 						if (cptX==x-1 || cptX==x || cptY==y || cptY==y+1) {
-							iMap[cptX][cptY]=center;	
+						iMap[cptX][cptY]=center;	
 						}
 					}
 				}
 			}
-		
 		}
 		return iMap;
 	}
-	
 	/**
-	 * @param x
-	 * @param y
-	 * @param intMap
-	 * @return if the (x,y) cell of the map is editable
-	 */
-	private boolean setOnMap(int x, int y, int[][] intMap) {
+	* @param x
+	* @param y
+	* @param intMap
+	* @return if the (x,y) cell of the map is editable
+	*/
+	boolean setOnMap(int x, int y, int[][] intMap) {
 		if (x<0 || x>=intMap.length || y<0 || y>=intMap[0].length) {
 			return false;
 		}
 		return true;
 	}
+
 
 	/**
 	 * @param intMap
@@ -199,10 +180,17 @@ public class Map {
 		}
 		return cMap;
 	}
+
+	public void setIntMap(int[][] intMap) {
+		this.intMap = intMap;
+	}
 	
-	
-	/*---------------------------------------LOG FUNCTIONS-------------------------*/	
-	
+
+	public void setCaseMap(Case[][] caseMap) {
+		this.caseMap = caseMap;
+	}
+
+
 	/**
 	 * LOG FUNCTION
 	 * @param map

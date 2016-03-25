@@ -157,28 +157,19 @@ function drawMap(){
 		for(i = 0 ; i < MAP_X ; i++){
 			switch(map[j][i].type){
 				case 0:
-					ctx.fillStyle="#008000"; //Beige
+					ctx.fillStyle="#F6E3CE"; //Beige
 					break;
 				case 1:
-					ctx.fillStyle="#FFFF99";
+					ctx.fillStyle="#6666FF";
 					break;
 				case 2:
-					ctx.fillStyle="#CC9900";
+					ctx.fillStyle="#6666AA";
 					break;
 				case 3:
-					ctx.fillStyle="#996600";
+					ctx.fillStyle="#D7A25E";
 					break;
 				case 4:
-					ctx.fillStyle="#660000";
-					break;
-				case 5:
-					ctx.fillStyle="#66CCFF";
-					break;
-				case 6:
-					ctx.fillStyle="#3366FF";
-					break;
-				case 7:
-					ctx.fillStyle="#000099";
+					ctx.fillStyle="#B78B51";
 					break;
 			}
 			ctx.fillRect(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
