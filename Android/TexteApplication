@@ -15,11 +15,27 @@ Qui êtes-vous ?
 
 		Page de tutoriel (cette page sera à modifier)
 
+
+
 Donc c'est quoi ce jeu ? Et quel est le but ?
 
 	- xBattle Awakening est un jeu de stratégie ou plusieurs joueurs doivent contrôler des flux de liquide, les positionner et les faire combattre.
 	
 [...]
 	La partie est terminée lorsqu'il ne reste qu'il seul joueur 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	Les différents types de terrain.
+
+		- Plaine : C'est le type de terrain basique. Demandant un temps normal pour être conquises et n'ayant pas de caractéristiques spéciales, les plaines sont des zones idéales pour les affrontements. (Vitesse de prise : 1.00 | Caractéristique : Aucune)
+
+		- Montagne : Les montagnes sont plus difficiles à prendre que les plaine. Dominant le terrain, ces reliefs vous demanderons beaucoup de temps pour les capturer. Néanmoins, passer par les montagnes peut être un atout de placement décisif. Plus la montagne est haute, plus la vitesse de prise est faible. ( Vitesse de prise : 0.75/0.50/0.25  | Caractéristique : Aucune)
+
+		- Mer : Les mers (qu'on voit danser...), à l'instar des plaines ou des montagnes ne sont en soit pas franchissables. Cependant, vous pouver utiliser des ressources pour les drainer et les transformer en plaine. Ainsi la création de chemins inattendus est possible! Plus les mers sont hautes, plus il faudrait de ressources pour les changer en plaines.
+( Vitesse de prise : 0.00 | Caractéristique : Vitesse de drain : 1.00, Quantité : 0.25 case/0.5 case/1 case)
+
+		- Sable : Les cases de sable sont, à l'apparence, comme des plaines. Mais attention à ne pas rester dans le sable trop longtemps ! Il draine petit à petit vos ressources jusqu'à ce qu'il ne reste plus rien : un passage dangereux qui peut être une porte d'entrée... ou de sortie!
+(Vitesse de prise : 1.00 | Caractéristique : draine les ressources du joueur : 0.10 case/seconde)
 
 
