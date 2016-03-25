@@ -99,7 +99,7 @@ public class Case {
 	 * @return The Coord coordinates of the case
 	 */
 	public Coord getCoord() {
-		return this.coord;
+		return this.coord.toString;
 	}
 
 	/**
