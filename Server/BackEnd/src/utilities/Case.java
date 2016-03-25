@@ -11,14 +11,14 @@ public class Case {
 
 	private Coord coord;
 	private int owner;
-	private boolean[] pipes;
+	private int pipes;
 	private int level;
 	private int fieldType;
 
 	public Case(Coord coord, int fieldType) {
 		this.coord = coord;
 		this.owner = 0;
-		this.pipes = new boolean[]{false, false, false, false, false, false, false, false};
+		this.pipes = 0;
 		this.fieldType = fieldType;
 		switch (fieldType){
 		case 5:
@@ -89,7 +89,7 @@ public class Case {
 	 * @return The Array of the different direction of the pipe.
 	 * In clock order, starting at noon. 
 	 */
-	public boolean[] getPipes() {
+	public int getPipes() {
 		return this.pipes;
 	}
 
@@ -97,16 +97,8 @@ public class Case {
 	 * @param pipes 
 	 * Set a new direction-array of pipes
 	 */
-	public void setPipes(boolean[] pipes) {
+	public void setPipes(int pipes) {
 		this.pipes = pipes;
-	}
-
-	/**
-	 * @param direction
-	 * @return Check if the pipe toward the specified direction is active
-	 */
-	public boolean getDirectionOfPipe(int direction) {		
-		return this.pipes[direction];
 	}
 	
 
@@ -249,22 +241,6 @@ public class Case {
 		}
 		return s;
 	}
-	
-	/**
-	 *  LOG FUNCTION
-	 * @param pipes
-	 * @return
-	 */
-	public String logPipes(boolean[] pipes) {
-		String s = "[";
-		for (int i=0; i<pipes.length; i++) {
-			if (pipes[i]) {s+="true";} 
-			else {s+="false";}
-			
-			if (i<pipes.length-1) {s+=",";}
-		}
-		return s+"]";
-	}
-	
+
 	
 }
