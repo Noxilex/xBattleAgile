@@ -15,13 +15,17 @@
     <string name="pres_text3">Un groupe d\'étudiants en deuxième année de DUT informatique ou de DUT GEA. Nous développons ce projet avec la méthodologie agile pendant 1 semaine.</string>
 
     <string name="tuto_title1">Types de terrain</string>
-    <string name="tuto_title2">Tuto 2</string>
+    <string name="tuto_title2">Placement des tuyaux</string>
     <string name="tuto_title3">Tuto 3</string>
 
-    <string name="tuto_type1">Plaine</string>
-    <string name="tuto_type2">Colline</string>
-    <string name="tuto_type3">Sable</string>
-    <string name="tuto_type4">Mer</string>
+    <string name="tuto_type1">Plaine : C\'est le type de terrain basique. Demandant un temps normal pour être conquises et n\'ayant pas de caractéristiques spéciales, les plaines sont des zones idéales pour les affrontements. (Vitesse de prise : 1.00 | Caractéristique : Aucune)</string>
+    <string name="tuto_type2">Les montagnes sont plus difficiles à prendre que les plaine. Dominant le terrain, ces reliefs vous demanderons beaucoup de temps pour les capturer. Néanmoins, passer par les montagnes peut être un atout de placement décisif. Plus la montagne est haute, plus la vitesse de prise est faible. ( Vitesse de prise : 0.75/0.50/0.25  | Caractéristique : Aucune)</string>
+    <string name="tuto_type3">Les mers (qu\'on voit danser...), à l\'instar des plaines ou des montagnes ne sont en soit pas franchissables. Cependant, vous pouver utiliser des ressources pour les drainer et les transformer en plaine. Ainsi la création de chemins inattendus est possible! Plus les mers sont hautes, plus il faudrait de ressources pour les changer en plaines.
+( Vitesse de prise : 0.00 | Caractéristique : Vitesse de drain : 1.00, Quantité : 0.25 case/0.5 case/1 case)</string>
+    <string name="tuto_type4">Les cases de sable sont, à l\'apparence, comme des plaines. Mais attention à ne pas rester dans le sable trop longtemps ! Il draine petit à petit vos ressources jusqu\'à ce qu\'il ne reste plus rien : un passage dangereux qui peut être une porte d\'entrée... ou de sortie!
+(Vitesse de prise : 1.00 | Caractéristique : draine les ressources du joueur : 0.10 case/seconde)</string>
+
+    <string name="tuto_pipes1">Cliquez sur une case puis sur une touche du pavé numérique pour placer un tuyau</string>
 
     <string name="action_settings">Settings</string>
 </resources>

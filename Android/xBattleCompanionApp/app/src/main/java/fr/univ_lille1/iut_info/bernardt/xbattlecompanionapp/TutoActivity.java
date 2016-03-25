@@ -12,6 +12,15 @@ import android.widget.TextView;
  */
 public class TutoActivity extends AppCompatActivity {
 
+    /*
+
+    AJOUTER CLIGUETEMENT APRES SWIPE 
+
+
+     */
+
+    private int onglet_tuto;
+
     private ImageView hillView;
     private int[] hills={R.drawable.hill1,R.drawable.hill2,R.drawable.hill3};
 
@@ -21,7 +30,7 @@ public class TutoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tutoriel);
+        setContentView(R.layout.tutorial_tab1);
 
         hillView=(ImageView)findViewById(R.id.hillView);
         waterView=(ImageView)findViewById(R.id.waterView);
@@ -41,12 +50,80 @@ public class TutoActivity extends AppCompatActivity {
         };
         handler.postDelayed(runnable, 0);
 
+        addSwipeListener(R.id.layout_tuto1);
 
-        findViewById(R.id.layout_tuto).setOnTouchListener(new OnSwipeTouchListener(TutoActivity.this) {
+        onglet_tuto = 1;
+    }
+
+    public void addSwipeListener(int idLayout){
+        findViewById(idLayout).setOnTouchListener(new OnSwipeTouchListener(TutoActivity.this) {
+            public void onSwipeRight() {
+                if (onglet_tuto > 1) {
+                    onglet_tuto--;
+                    changeTab(onglet_tuto);
+                } else {
+                    changeTab(3);
+                }
+            }
+
+            public void onSwipeLeft() {
+                if (onglet_tuto < 3) {
+                    onglet_tuto++;
+                    changeTab(onglet_tuto);
+                } else {
+                    changeTab(1);
+                }
+            }
 
             public void onSwipeBottom() {
+                // changeContentView(R.layout.menu);
                 finish();
             }
         });
+    }
+
+    public void changeTab(int iTab){
+        onglet_tuto = iTab;
+
+        switch (iTab){
+            case 1:
+                setContentView(R.layout.tutorial_tab1);
+                addSwipeListener(R.id.layout_tuto1);
+                break;
+            case 2:
+                setContentView(R.layout.tutorial_tab2);
+                addSwipeListener(R.id.layout_tuto2);
+                break;
+            case 3:
+
+                break;
+        }
+    }
+
+    public void onClick_Title(View view){
+        switch(view.getId()){
+            case R.id.pres_title1:
+                changeTab(1);
+                break;
+            case R.id.pres_title2:
+                changeTab(2);
+                break;
+            case R.id.pres_title3:
+                changeTab(3);
+                break;
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt("onglet_tuto", onglet_tuto);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        onglet_tuto = savedInstanceState.getInt("onglet_tuto");
+        changeTab(onglet_tuto);
     }
 }
