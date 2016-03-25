@@ -191,10 +191,6 @@ function reduce_cell(){
 
 
 function login(){
-
-	//TESTING
-		getMap();
-	//
 	var login = $("#nickname-input").val();
 	var pwd = $("#password-input").val();
 	$.get("v1/userdb/auth/login?name="+login+"&mdp="+pwd, function(data, status){
@@ -211,7 +207,7 @@ function login(){
     	//alert( "second success" );
   	})
 	.fail(function() {
-		swal("Loggin failed", "No match found between this username and password.", "error");
+    	swal("Failed to log in");
   	});
 	//Serveur connection.
 }
@@ -247,27 +243,15 @@ function register() {
 function getMap(){
 	var url = "v1/map";
 
-	$.getJSON(url, function(result){
-        $.each(result, function(i, field){
-            console.log("i:"+i+ " field:" + field);
-        });
-    });
+	$.getJSON(url,data,success(data,status,xhr));
 }
 
 $(function(){
-
-	$(".authent-input").keydown(function(event){
-        if((event.which || event.keyCode) === 13){
-            login();
-        }
-    });
-
 	$(canvas).keydown(function(event){
-        updatePipe(event.which || event.keyCode);
+        var pressed = event.which || event.keyCode;
+        updatePipe(pressed);
     });
 
     canvas.focus();
-
-
 
 });
