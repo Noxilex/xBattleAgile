@@ -191,10 +191,6 @@ function reduce_cell(){
 
 
 function login(){
-
-	//TESTING
-		getMap();
-	//
 	var login = $("#nickname-input").val();
 	var pwd = $("#password-input").val();
 	$.get("v1/userdb/auth/login?name="+login+"&mdp="+pwd, function(data, status){
@@ -247,11 +243,7 @@ function register() {
 function getMap(){
 	var url = "v1/map";
 
-	$.getJSON(url, function(result){
-        $.each(result, function(i, field){
-            console.log("i:"+i+ " field:" + field);
-        });
-    });
+	$.getJSON(url,data,success(data,status,xhr));
 }
 
 $(function(){

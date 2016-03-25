@@ -1,8 +1,8 @@
 package fr.iutinfo.skeleton.api;
 
-import mainPackage.Map;
+//import mainPackage.Map;
 
-import org.json.simple.JSONObject;
+//import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
