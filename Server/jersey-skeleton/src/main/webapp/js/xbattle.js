@@ -5,11 +5,13 @@ var ctx = canvas.getContext("2d");
 var WIDTH = canvas.width;
 var HEIGHT = canvas.height;
 
-var CELL_SIZE = 30;
-var MAP_X = 20;
-var MAP_Y = 20;
+var CELL_SIZE = 40;
+var MAP_X = 15;
+var MAP_Y = 15;
 
 var map;
+
+var lastCellUnderMouse;
 
 buildMap();
 drawMap();
@@ -17,21 +19,17 @@ drawMap();
 
 //Event on monsedown
 $(canvas).click(function(event){
-	var mousePos = getMousePos(canvas, event);
-	var cell = map[Math.floor(mousePos.y/CELL_SIZE)][Math.floor(mousePos.x/CELL_SIZE)];
-	$("#coord").text('Mouse position: ' + cell.x + ', ' + cell.y);
-	cell.value = (cell.value+1)%5;
+	lastCellUnderMouse.type = (lastCellUnderMouse.type+1)%5;
 	drawMap();
 });
 
 //Hover of the mouse
 $(canvas).mousemove(function(event){
-	var mousePos = getMousePos(canvas, event);
-	var cell = map[Math.floor(mousePos.y/CELL_SIZE)][Math.floor(mousePos.x/CELL_SIZE)];
-	$("#coord").text('Mouse position: ' + cell.x + ', ' + cell.y);
+	lastCellUnderMouse = cellUnderMouse();
+	$("#coord").text('Mouse position: ' + lastCellUnderMouse.x + ', ' + lastCellUnderMouse.y);
 	drawMap();
 	ctx.fillStyle="rgba(200, 255, 255, 0.5)";
-	ctx.fillRect(cell.x*CELL_SIZE+1, cell.y*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
+	ctx.fillRect(lastCellUnderMouse.x*CELL_SIZE+1, lastCellUnderMouse.y*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
 });
 
 function buildMap(){
@@ -45,15 +43,21 @@ function buildMap(){
 	}
 }
 
+
+
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     return {
-      x: evt.clientX - rect.left - 2,
-      y: evt.clientY - rect.top - 2
+      	x: evt.clientX - rect.left - 2,
+      	y: evt.clientY - rect.top - 2
     };
-  }
+}
 
 
+function cellUnderMouse(){
+	var mousePos = getMousePos(canvas, event);
+	return map[Math.floor(mousePos.y/CELL_SIZE)][Math.floor(mousePos.x/CELL_SIZE)];
+}
 
 
 /*
@@ -66,7 +70,7 @@ function getMousePos(canvas, evt) {
 function drawMap(){
 	for(j = 0 ; j < MAP_Y ; j++){
 		for(i = 0 ; i < MAP_X ; i++){
-			switch(map[j][i].value){
+			switch(map[j][i].type){
 				case 0:
 					ctx.fillStyle="#F6E3CE"; //Beige
 					break;
@@ -84,27 +88,97 @@ function drawMap(){
 					break;
 			}
 			ctx.fillRect(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
+
+			var pipe = map[j][i].pipe;
+			if(pipe === 1 || pipe === 4 || pipe === 7){
+				ctx.beginPath();
+			    ctx.moveTo(i*CELL_SIZE, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
+			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2)+3, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
+			    ctx.lineWidth = 5;
+			    ctx.stroke();
+			}
+			if(pipe >= 7 && pipe <= 9){
+				ctx.beginPath();
+			    ctx.moveTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE);
+			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2)+3);
+			    ctx.lineWidth = 5;
+			    ctx.stroke();
+			}
+			if(pipe === 3 || pipe === 6 || pipe === 9){
+				ctx.beginPath();
+			    ctx.moveTo((i+1)*CELL_SIZE, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
+			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2)-3, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
+			    ctx.lineWidth = 5;
+			    ctx.stroke();
+			}
+			if(pipe >= 1 && pipe <= 3){
+				ctx.beginPath();
+			    ctx.moveTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), (j+1)*CELL_SIZE);
+			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2)-3);
+			    ctx.lineWidth = 5;
+			    ctx.stroke();
+			}
+
 		}
 	}	
 }
 
-//Return the position of the table where the user clicked
-//as a table of coordinates
-function get_cell(abs_x, abs_y){
-	return [Math.floor(abs_x/h), Math.floor(abs_y/h)];
+
+function updatePipe(keycode){
+	var cell = lastCellUnderMouse;
+	switch(keycode){
+		case 97:
+		case 87:
+			cell.pipe = 1;
+			break;
+		case 98:
+		case 88:
+			cell.pipe = 2;
+			break;
+		case 99:
+		case 67:
+			cell.pipe = 3;
+			break;
+		case 100:
+		case 81:
+			cell.pipe = 4;
+			break;
+		case 101:
+		case 83:
+			cell.pipe = 5;
+			break;
+		case 102:
+		case 68:
+			cell.pipe = 6;
+			break;
+		case 103:
+		case 65:
+			cell.pipe = 7;
+			break;
+		case 104:
+		case 90:
+			cell.pipe = 8;
+			break;;
+		case 105:
+		case 69:
+			cell.pipe = 9;
+			break;
+	}
+
+	drawMap();
+    $("#coord").text("Pipe : " + cell.pipe);
+
 }
 
-//Modify the content of the cell at the coordinates x,y with 
-//the desired value
-function modifyCell(x, y, value){
-	map[y][x] = value;
-}
-
-function Cell(x, y, value){
+function Cell(x, y, type){
 	this.x = x;
 	this.y = y;
-	this.value = value;
+	this.type = type;
+	this.player;
+	this.pipe = 5;
 }
+
+
 
 
 function login(){
@@ -115,6 +189,8 @@ function login(){
 	});
 	//Serveur connection.
 	swal("Logged", "Welcome back " + login + ".", "success");
+	$("#group-auth").hide();
+	$("#gamepanel").show();
 }
 
 function register() {
@@ -145,3 +221,16 @@ function register() {
 		}
 	});
 }
+
+$(function(){
+
+	
+
+	$(canvas).keydown(function(event){
+        var pressed = event.which || event.keyCode;
+        updatePipe(pressed);
+    });
+
+    canvas.focus();
+
+});
