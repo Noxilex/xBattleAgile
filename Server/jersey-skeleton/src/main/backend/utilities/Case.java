@@ -98,8 +98,8 @@ public class Case {
 	/**
 	 * @return The Coord coordinates of the case
 	 */
-	public Coord getCoord() {
-		return this.coord.toString;
+	public String getCoord() {
+		return this.coord.toString();
 	}
 
 	/**
