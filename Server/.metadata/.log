@@ -592,3 +592,11 @@ java.net.SocketTimeoutException: connect timed out
 	at org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientFileSystemBrowser.runRequest(HttpClientFileSystemBrowser.java:232)
 	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:69)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.ui.ide 4 4 2016-03-25 10:06:00.941
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 2 1 2016-03-25 10:06:00.941
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2016-03-25 10:06:00.941
+!MESSAGE The project description file (.project) for 'BackEnd' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
