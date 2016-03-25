@@ -2,6 +2,7 @@ package fr.univ_lille1.iut_info.bernardt.xbattlecompanionapp;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 
 /**
@@ -21,6 +22,8 @@ public class PresActivity extends AppCompatActivity {
                 if (onglet_pres > 1) {
                     onglet_pres--;
                     changeTab(onglet_pres);
+                } else {
+                    changeTab(3);
                 }
             }
 
@@ -28,6 +31,8 @@ public class PresActivity extends AppCompatActivity {
                 if (onglet_pres < 3) {
                     onglet_pres++;
                     changeTab(onglet_pres);
+                } else {
+                    changeTab(1);
                 }
             }
 
@@ -54,6 +59,7 @@ public class PresActivity extends AppCompatActivity {
     }
 
     public void changeTab(int iTab){
+        onglet_pres = iTab;
         TextView presTitle1 = (TextView) findViewById(R.id.pres_title1);
         TextView presTitle2 = (TextView) findViewById(R.id.pres_title2);
         TextView presTitle3 = (TextView) findViewById(R.id.pres_title3);
@@ -90,6 +96,20 @@ public class PresActivity extends AppCompatActivity {
                 presTitle3.setTextColor(getResources().getColor(R.color.Color3));
                 presCurrentTitle.setText(getResources().getString(R.string.pres_title3));
                 presText.setText(getResources().getString(R.string.pres_text3));
+                break;
+        }
+    }
+
+    public void onClick_Title(View view){
+        switch(view.getId()){
+            case R.id.pres_title1:
+                changeTab(1);
+                break;
+            case R.id.pres_title2:
+                changeTab(2);
+                break;
+            case R.id.pres_title3:
+                changeTab(3);
                 break;
         }
     }
