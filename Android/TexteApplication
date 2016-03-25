@@ -1,6 +1,6 @@
 //	Cette page est dédiée à l'écriture de l'application android.
 //	Elle concerne la page de présentation du jeu ainsi que la page du tutoriel. (le texte suivi d'un # signifie qu'il y a un hyperlien)
-
+(23/03/2016)
 		Page de présentation
 
 Qu'est-ce que xBattle ?
@@ -25,7 +25,7 @@ Donc c'est quoi ce jeu ? Et quel est le but ?
 	La partie est terminée lorsqu'il ne reste qu'il seul joueur 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+(25/03/2016) : 14h10
 	Les différents types de terrain.
 
 		- Plaine : C'est le type de terrain basique. Demandant un temps normal pour être conquises et n'ayant pas de caractéristiques spéciales, les plaines sont des zones idéales pour les affrontements. (Vitesse de prise : 1.00 | Caractéristique : Aucune)
@@ -37,5 +37,21 @@ Donc c'est quoi ce jeu ? Et quel est le but ?
 
 		- Sable : Les cases de sable sont, à l'apparence, comme des plaines. Mais attention à ne pas rester dans le sable trop longtemps ! Il draine petit à petit vos ressources jusqu'à ce qu'il ne reste plus rien : un passage dangereux qui peut être une porte d'entrée... ou de sortie!
 (Vitesse de prise : 1.00 | Caractéristique : draine les ressources du joueur : 0.10 case/seconde)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+(25/03/2016) : 14h30
+
+Ressources, déplacement et capture
+
+Vous intéragissez avec le terrain par le biais de ce que nous appelons ici ressource : c'est le liquide de couleur que contrôle le joueur!
+Les ressources ne peuvent faire que deux actions, se déplacer et prendre des cases. Par exemple, si vous êtes le joueur [bleu], alors cette case vous appartient, car des ressources vous appartenant sont présentes dans la dite case.
+Un joueur qui n'a plus de ressources est un joueur qui a perdu ; de ce fait, le dernier joueur à qui il reste des ressources a gagné la partie.
+
+Pour déplacer des ressources, il vous faut créer un lien avec [les touches directionnelles]. Chaque [touche directionnelle] correspond à un point cardinal. (sachant qu'une direction en diagonal équivaut aux deux points cardinaux entre cette direction).
+
+Une fois le lien créé, les ressources vont se déplacer naturellement vers le sens du lien, comme un liquide. Il est possible de changer le/les liens de la case ou de les supprimer à n'importe quel moment.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 
