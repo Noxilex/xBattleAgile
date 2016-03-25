@@ -10,6 +10,10 @@ var table = $('#scoreboard');
 table.html('');
 
 // génération des cellules de la table à l'image de l'exemple
+var header = $('<tr></tr>');
+header.append('<th>Nom</th>');
+header.append('<th>Score</th>');
+table.append(header);
 for(i=0; i < nbLigne; i++){
 	var row = $('<tr></tr>');
 	var p = players[i];

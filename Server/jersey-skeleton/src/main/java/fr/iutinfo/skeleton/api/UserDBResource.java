@@ -1,5 +1,8 @@
 package fr.iutinfo.skeleton.api;
 
+import mainPackage.Map;
+
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,6 +70,15 @@ public class UserDBResource {
 		return user;
 	}
 
+	//TODO Must add some parameters
+	@GET
+	@Path("/map")
+	public  JSONObject getMap() {
+		Map m = new Map ();
+		JSONObject data = m.jsonGenerateMap(20, 20);
+		return data;
+	}
+	
 	@GET
 	public List<User> getAllUsers() {
 		return dao.all();
