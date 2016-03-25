@@ -129,6 +129,8 @@ function login(){
 	$.get("v1/userdb/auth/login?name="+login+"&mdp="+pwd, function(data, status){
 		if(status=="success"){
 			swal("Logged", "Welcome back " + login + ".", "success");
+			$("#group-auth").hide();
+			$("#gamepanel").show();
 		}
 		console.log(data);
 		console.log(status);
