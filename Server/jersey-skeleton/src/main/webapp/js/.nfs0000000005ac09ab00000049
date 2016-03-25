@@ -191,10 +191,6 @@ function reduce_cell(){
 
 
 function login(){
-
-	//TESTING
-		getMap();
-	//
 	var login = $("#nickname-input").val();
 	var pwd = $("#password-input").val();
 	$.get("v1/userdb/auth/login?name="+login+"&mdp="+pwd, function(data, status){
