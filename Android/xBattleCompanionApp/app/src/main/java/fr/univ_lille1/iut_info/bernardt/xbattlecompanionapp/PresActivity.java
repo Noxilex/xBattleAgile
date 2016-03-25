@@ -53,7 +53,6 @@ public class PresActivity extends AppCompatActivity {
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        System.out.println("RESTORE : " + savedInstanceState.getInt("onglet_pres"));
         onglet_pres = savedInstanceState.getInt("onglet_pres");
         changeTab(onglet_pres);
     }

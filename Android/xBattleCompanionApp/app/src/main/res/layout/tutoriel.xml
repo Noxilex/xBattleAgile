@@ -1,5 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context=".TutoActivity"
+    android:id="@+id/layout_tuto">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="1"
+        android:background="@color/Color3" >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/tuto_title1"
+                android:id="@+id/textView"
+                android:onClick="onClick_Title"
+                android:clickable="true"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:background="@color/Color1"
+                android:elegantTextHeight="false"
+                android:textColor="@color/Color3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textView2"
+                android:onClick="onClick_Title"
+                android:clickable="true"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="15dp"
+                android:background="@color/Color5"
+                android:textColor="@color/Color1"
+                android:text="@string/tuto_title2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textView3"
+                android:onClick="onClick_Title"
+                android:clickable="true"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="15dp"
+                android:background="@color/Color5"
+                android:textColor="@color/Color1"
+                android:text="@string/tuto_title3" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/tuto_title1"
+            android:id="@+id/textView4"
+            android:layout_weight="0.15"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="@color/Color1"
+            android:textColor="@color/Color3" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:background="@color/Color3"
+            android:layout_weight="0">
+
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:background="@color/Color3"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/plainView"
+                    android:src="@drawable/plain"
+                    android:layout_weight="0.2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/tuto_type1"
+                    android:id="@+id/textView5"
+                    android:layout_weight="0.8"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:elegantTextHeight="false"
+                    android:textColor="@color/Color1"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/hillView"
+                    android:src="@drawable/hill1"
+                    android:layout_weight="0.2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/tuto_type2"
+                    android:id="@+id/textView6"
+                    android:layout_weight="0.8"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:elegantTextHeight="false"
+                    android:textColor="@color/Color1"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/sandView"
+                    android:src="@drawable/sand"
+                    android:layout_weight="0.2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/tuto_type3"
+                    android:id="@+id/textView7"
+                    android:layout_weight="0.8"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:elegantTextHeight="false"
+                    android:textColor="@color/Color1"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/waterView"
+                    android:src="@drawable/water1"
+                    android:layout_weight="0.2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/tuto_type4"
+                    android:id="@+id/textView8"
+                    android:layout_weight="0.8"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:elegantTextHeight="false"
+                    android:textColor="@color/Color1"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
 </RelativeLayout>

@@ -46,4 +46,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void onClick_Tuto(View view){
+        Intent i = new Intent(getApplicationContext(), TutoActivity.class);
+        startActivity(i);
+    }
+
 }
