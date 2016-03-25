@@ -87,11 +87,11 @@ public class UserResourceTest extends JerseyTest {
 
     }
 
-    @Test
+   /* @Test
     public void read_user_richard_should_return_good_alias() {
         h.createUserWithAlias("richard stallman", "rms");
         User user = target("/user/richard stallman").request().get(User.class);
         assertEquals("rms", user.getAlias());
-    }
+    }*/
 
 }

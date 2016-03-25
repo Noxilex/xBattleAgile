@@ -28,10 +28,10 @@ public class Helper {
         return doPost(user);
     }
 
-    User createUserWithAlias(String name, String alias) {
+    /*User createUserWithAlias(String name, String alias) {
         User user = new User(0, name, alias);
         return doPost(user);
-    }
+    }*/
 
 
     User createUserWithEmail(String name, String email) {

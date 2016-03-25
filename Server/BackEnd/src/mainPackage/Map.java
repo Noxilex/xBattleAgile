@@ -7,6 +7,12 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import utilities.Case;
+import utilities.Coord;
+
 /**
  * @author cailliea
  * Class that generate a random Map.
@@ -17,24 +23,53 @@ public class Map {
 
 	private String p = File.pathSeparator;
 	private String rscPath = ".."+p+".."+p+"Resources"+p+"Textures"+p+"Maps"+p;
-	private String basicTexturePath = rscPath+"Basic"+p;
 	private String activeTexturePack;
 	private Random rand = new Random();
 	private int[][] intMap;
 	private Case[][] caseMap;
 	
 	public Map() {
-		this.activeTexturePack = basicTexturePath;
+		this.activeTexturePack = "Default";
 		this.intMap = generateNewMap(30, 20);
 		this.caseMap = generateCaseMap(intMap);
 		logDisplayMap(caseMap);
 	}
+	
 
+	/**
+	 * JSON FUNCTION
+	 * @return the json file
+	 */
+	public JSONObject jsonMap() {
+		Case[][] cmap = getCaseMap();
+		
+		JSONObject json = new JSONObject();
+		json.put("texturePack", this.getActiveTexturePack());
+		JSONArray listCell = new JSONArray();		
+		JSONArray listOwn = new JSONArray();
+		JSONArray listPipes = new JSONArray();
+		JSONArray listLevel = new JSONArray();
+		for (int x=0; x<cmap.length; x++) {
+			for (int y=0; y<cmap[0].length; y++){
+				listCell.add(cmap[x][y].getFieldType());
+				listOwn.add(cmap[x][y].getOwner());
+				listPipes.add(cmap[x][y].logPipes(cmap[x][y].getPipes()));
+				listLevel.add(cmap[x][y].getLevel());				
+			}
+		}
+		json.put("FieldMap", listCell);
+		json.put("OwnMap", listOwn);
+		json.put("PipesListMap", listPipes);
+		json.put("LiquidLevel", listLevel);
+		return json;		
+	}
+	
+
+	
 	/**
 	 * @return The integer array version of the map
 	 */
 	public int[][] getIntMap() {
-		logDisplayMap(caseMap);
 		return intMap;
 	}
 	
@@ -42,7 +77,6 @@ public class Map {
 	 * @return The Case array version of the map
 	 */
 	public Case[][] getCaseMap() {
-		logDisplayMap(caseMap);
 		return caseMap;
 	}
 	
@@ -51,7 +85,6 @@ public class Map {
 	 * @return the integer in the case [c.x][c.y]
 	 */
 	public int getIdCase(Coord c) {
-		System.out.println("The field id of the case "+c.toString()+" is "+intMap[c.x()][c.y()]);
 		return intMap[c.x()][c.y()];
 	}
 	
@@ -59,7 +92,6 @@ public class Map {
 	 * @return the path to the Maps textures packs folder
 	 */
 	public String getResourcePath() {
-		System.out.println("The maps resource path is" +rscPath);
 		return rscPath;
 	}
 	
@@ -67,7 +99,6 @@ public class Map {
 	 * @return The Currently active texture pack
 	 */
 	public String getActiveTexturePack() {
-		System.out.println("Current textxure pack is "+activeTexturePack);
 		return activeTexturePack;
 	}
 	
@@ -77,7 +108,6 @@ public class Map {
 	 */
 	public void setActiveTexturePack(String texturePackName) {
 		this.activeTexturePack = texturePackName;
-		System.out.println(texturePackName+" has been set.");
 	}
 	
 	/**
@@ -87,7 +117,6 @@ public class Map {
 	 * @return the fieldTypeId array version of the map 
 	 */
 	private int[][] generateNewMap(int lenX, int lenY) {
-		System.out.println("Generating a new integer map, as dim :"+lenX+"x"+lenY);
 		int[][] iMap = new int[lenX][lenY];
 		for (int x=0; x<lenX; x++) {
 			for (int y=0; y<lenY; y++) {
@@ -102,7 +131,6 @@ public class Map {
 	 * @return the Case type array version of the Map (translated from the intMap version
 	 */
 	private Case[][] generateCaseMap(int[][] intMap) {
-		System.out.println("Generating associated cases");
 		Case[][] cMap = new Case[intMap.length][intMap[0].length];
 		for (int x=0; x<intMap.length; x++) {
 			for (int y=0; y<intMap[0].length; y++) {

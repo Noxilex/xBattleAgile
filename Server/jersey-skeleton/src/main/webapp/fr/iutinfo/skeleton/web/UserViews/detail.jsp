@@ -23,6 +23,8 @@
                 alias : ${it.alias} <br/>
                 email : ${it.email} <br/>
                 mot de passe : ${it.passwdHash} <br/>
+                nbGameWin : ${it.nbgameWin} <br/>
+                nbgame : ${it.nbgame} <br/>
               </div>
             </div>
         </div>

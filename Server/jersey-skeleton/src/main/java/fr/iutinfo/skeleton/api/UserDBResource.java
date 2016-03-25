@@ -19,7 +19,7 @@ public class UserDBResource {
 	public UserDBResource() {
 		try {
 			dao.createUserTable();
-			dao.insert(new User(0, "Margaret Thatcher", "la Dame de fer"));
+			dao.insert(new User(0, "Margaret Thatcher"));
 		} catch (Exception e) {
 			System.out.println("Table déjà là !");
 		}
@@ -32,15 +32,16 @@ public class UserDBResource {
 		user.setId(id);
 		return user;
 	}
+	
 
 	@PUT
 	@Path("/{id}")
-	public Response updateUserWin(@PathParam("id") int id, User user) {
+	public User updateUserWin(@PathParam("id") int id, User user) {
 		dao.incWin(id);
 		if (user == null) {
 			throw new WebApplicationException(404);
 		}
-		return Response.status(200).entity(user).build();
+		return user;
 	}
 
 	@GET
@@ -50,6 +51,19 @@ public class UserDBResource {
 		if (user == null) {
 			throw new WebApplicationException(404);
 		}
+		return user;
+	}
+
+	@GET
+	@Path("/auth/login")
+	public User getlogin(@QueryParam("name") String name,
+			@QueryParam("mdp") String mdp) {
+		User user = dao.findByName(name);
+		if (user == null) {
+			throw new WebApplicationException(403);
+		}
+		if (!user.isGoodPassword(mdp))
+			throw new WebApplicationException(403);
 		return user;
 	}
 

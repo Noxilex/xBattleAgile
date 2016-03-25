@@ -45,7 +45,8 @@
                 android:layout_weight="0.1"
                 android:gravity="center_vertical|center_horizontal"
                 android:textSize="15dp"
-                android:background="@color/Color5" />
+                android:background="@color/Color5"
+                android:textColor="@color/Color1" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -58,7 +59,8 @@
                 android:layout_weight="0.1"
                 android:gravity="center_vertical|center_horizontal"
                 android:textSize="15dp"
-                android:background="@color/Color5" />
+                android:background="@color/Color5"
+                android:textColor="@color/Color1" />
         </LinearLayout>
 
         <TextView
@@ -87,7 +89,9 @@
             android:background="@color/Color3"
             android:textColor="@color/Color1"
             android:gravity="center"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp" />
 
     </LinearLayout>
 </RelativeLayout>

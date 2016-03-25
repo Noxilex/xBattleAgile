@@ -180,17 +180,36 @@ function Cell(x, y, type){
 
 
 
+//Makes one cell flowing to another
+function flaw(Cell, Cell, value){
+		
+}
+
+function reduce_cell(){
+	
+}
+
 
 function login(){
 	var login = $("#nickname-input").val();
 	var pwd = $("#password-input").val();
-	$.get("v1/userdb/"+login, function(data, status){
-		console.log("Data: " + data + "\nStatus: " + status);
-	});
+	$.get("v1/userdb/auth/login?name="+login+"&mdp="+pwd, function(data, status){
+		if(status=="success"){
+			swal("Logged", "Welcome back " + login + ".", "success");
+			$("#group-auth").hide();
+			$("#gamepanel").show();
+		}
+		console.log(data);
+		console.log(status);
+		//console.log(typeof(data));
+	})
+	.done(function() {
+    	//alert( "second success" );
+  	})
+	.fail(function() {
+    	swal("Failed to log in");
+  	});
 	//Serveur connection.
-	swal("Logged", "Welcome back " + login + ".", "success");
-	$("#group-auth").hide();
-	$("#gamepanel").show();
 }
 
 function register() {
@@ -217,7 +236,6 @@ function register() {
 		},
 		error :function(jqXHR, textStatus, errorThrown) {
 			swal("Register failed", "The username \"" + username + "\" is already taken.", "error");
-			alert('postUser error: ' + textStatus);
 		}
 	});
 }
