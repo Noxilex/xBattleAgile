@@ -35,73 +35,6 @@ public class Map {
 		logDisplayMap(caseMap);
 	}
 	
-
-	/**
-	 * JSON FUNCTION
-	 * @return the JSON a new map
-	 */
-	
-	/*
-	public JSONObject jsonGenerateMap(int lenX, int lenY) {
-		int[][] map = generateNewMap(lenX, lenY);
-		Case[][] cmap = generateCaseMap(map);
-		
-		JSONObject json = new JSONObject();
-		json.put("texturePack", this.getActiveTexturePack());
-		JSONArray listCell = new JSONArray();		
-		JSONArray listOwn = new JSONArray();
-		JSONArray listPipes = new JSONArray();
-		JSONArray listLevel = new JSONArray();
-		for (int x=0; x<cmap.length; x++) {
-			for (int y=0; y<cmap[0].length; y++){
-				listCell.add(cmap[x][y].getFieldType());
-				listOwn.add(cmap[x][y].getOwner());
-				listPipes.add(cmap[x][y].logPipes(cmap[x][y].getPipes()));
-				listLevel.add(cmap[x][y].getLevel());				
-			}
-		}
-		json.put("FieldMap", listCell);
-		json.put("OwnMap", listOwn);
-		json.put("PipesListMap", listPipes);
-		json.put("LiquidLevel", listLevel);
-		return json;		
-	}
-	//*
-	
-	public JSONObject jsonGetMap(int[][] map) {
-		Case[][] cmap = generateCaseMap(map);
-		
-		JSONObject json = new JSONObject();
-		json.put("texturePack", this.getActiveTexturePack());
-		JSONArray listCell = new JSONArray();		
-		JSONArray listOwn = new JSONArray();
-		JSONArray listPipes = new JSONArray();
-		JSONArray listLevel = new JSONArray();
-		for (int x=0; x<cmap.length; x++) {
-			for (int y=0; y<cmap[0].length; y++){
-				listCell.add(cmap[x][y].getFieldType());
-				listOwn.add(cmap[x][y].getOwner());
-				listPipes.add(cmap[x][y].logPipes(cmap[x][y].getPipes()));
-				listLevel.add(cmap[x][y].getLevel());				
-			}
-		}
-		json.put("FieldMap", listCell);
-		json.put("OwnMap", listOwn);
-		json.put("PipesListMap", listPipes);
-		json.put("LiquidLevel", listLevel);
-		return json;		
-	}
-	
-	*/
-
-	
-	/**
-	 * @return The integer array version of the map
-	 */
-	public int[][] getIntMap() {
-		return intMap;
-	}
-	
 	/**
 	 * @return The Case array version of the map
 	 */
@@ -116,14 +49,6 @@ public class Map {
 	public int getIdCase(Coord c) {
 		return intMap[c.x()][c.y()];
 	}
-	
-	/**
-	 * @return the path to the Maps textures packs folder
-	 */
-	public String getResourcePath() {
-		return rscPath;
-	}
-	
 	/**
 	 * @return The Currently active texture pack
 	 */
@@ -168,45 +93,11 @@ public class Map {
 		}
 		return cMap;
 	}
-	
-	
-	
-	/*---------------------------------------LOG FUNCTIONS-------------------------*/	
-	
-	public String getP() {
-		return p;
-	}
-
-
-	public void setP(String p) {
-		this.p = p;
-	}
-
-
-	public String getRscPath() {
-		return rscPath;
-	}
-
-
-	public void setRscPath(String rscPath) {
-		this.rscPath = rscPath;
-	}
-
-
-	public Random getRand() {
-		return rand;
-	}
-
-
-	public void setRand(Random rand) {
-		this.rand = rand;
-	}
-
 
 	public void setIntMap(int[][] intMap) {
 		this.intMap = intMap;
 	}
-
+	
 
 	public void setCaseMap(Case[][] caseMap) {
 		this.caseMap = caseMap;

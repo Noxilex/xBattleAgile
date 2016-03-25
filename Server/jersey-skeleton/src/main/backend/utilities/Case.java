@@ -11,7 +11,7 @@ public class Case {
 
 	private Coord coord;
 	private int owner;
-	private boolean[] pipes;
+	private int pipes;
 	private int level;
 	private int fieldType;
 	
@@ -20,7 +20,7 @@ public class Case {
 	public Case(Coord coord, int fieldType) {
 		this.coord = coord;
 		this.owner = 0;
-		this.pipes = new boolean[]{false, false, false, false, false, false, false, false};
+		this.pipes = 0;
 		this.fieldType = fieldType;
 		switch (fieldType){
 		case 5:
@@ -80,14 +80,6 @@ public class Case {
 	}
 	
 	/**
-	 * @return The number of active directions
-	 */
-	public int getNumberOfActivePipes() {
-		int actives = 0;
-		return actives;
-	}
-	
-	/**
 	 * @return The Array of the different direction of the pipe.
 	 * In clock order, starting at noon. 
 	 */
@@ -99,18 +91,9 @@ public class Case {
 	 * @param pipes 
 	 * Set a new direction-array of pipes
 	 */
-	public void setPipes(boolean[] pipes) {
+	public void setPipes(int pipes) {
 		this.pipes = pipes;
 	}
-
-	/**
-	 * @param direction
-	 * @return Check if the pipe toward the specified direction is active
-	 */
-	public boolean getDirectionOfPipe(int direction) {		
-		return this.pipes[direction];
-	}
-	
 
 	/**
 	 * @return The Coord coordinates of the case
@@ -205,70 +188,7 @@ public class Case {
 		return s;
 	}
 	
-	/**
-	 * LOG FUNCTION
-	 * @param direction
-	 * @return A readable string of the specified direction
-	 */
-	private String logGetReadableDirection(int direction) {
-		String s;
-		switch (direction) {
-		case 0:
-			s = "North";
-			break;
-		
-		case 1:
-			s = "North East";
-			break;
-		
-		case 2:
-			s = "East";
-			break;
-			
-		case 3:
-			s = "South East";
-			break;
-		
-		case 4:
-			s = "South";
-			break;
-			
-		case 5:
-			s = "South West";
-			break;
-			
-		case 6:
-			s = "West";
-			break;
-			
-		case 7:
-			s = "North West";
-			break;
-			
-		default:
-			s = "#ERROR#";
-			break;
-		}
-		return s;
-	}
-	
-	/**
-	 *  LOG FUNCTION
-	 * @param pipes
-	 * @return
-	 */
-	public String logPipes(boolean[] pipes) {
-		String s = "[";
-		for (int i=0; i<pipes.length; i++) {
-			if (pipes[i]) {s+="true";} 
-			else {s+="false";}
-			
-			if (i<pipes.length-1) {s+=",";}
-		}
-		return s+"]";
-	}
-	
-	
+
 	
 	
 }

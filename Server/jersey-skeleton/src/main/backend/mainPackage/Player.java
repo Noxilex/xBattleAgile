@@ -24,7 +24,7 @@ public class Player {
 		this.pseudo = pseudo;
 		this.gameId = gameId;
 		if (skinImg.isEmpty()) {
-			this.skinImg="basic"+p;
+			this.skinImg="Defaut";
 		} else {
 			this.skinImg = skinImg;
 		}
@@ -66,13 +66,6 @@ public class Player {
 	}
 	
 	/**
-	 * @return the Path to the Players textures pack folder
-	 */
-	public String getResourcePath() {
-		return rscPath;
-	}
-	
-	/**
 	 * @return the Skin image name
 	 */
 	public String getSkinImg() {
@@ -100,22 +93,6 @@ public class Player {
 	 */
 	public String getPseudo() {
 		return this.pseudo;
-	}
-
-	public String getP() {
-		return p;
-	}
-
-	public void setP(String p) {
-		this.p = p;
-	}
-
-	public String getRscPath() {
-		return rscPath;
-	}
-
-	public void setRscPath(String rscPath) {
-		this.rscPath = rscPath;
 	}
 
 	public int getGameId() {
