@@ -7,8 +7,6 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import utilities.Case;
 import utilities.Coord;

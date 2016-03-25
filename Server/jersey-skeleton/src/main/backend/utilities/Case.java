@@ -83,7 +83,7 @@ public class Case {
 	 * @return The Array of the different direction of the pipe.
 	 * In clock order, starting at noon. 
 	 */
-	public boolean[] getPipes() {
+	public int getPipes() {
 		return this.pipes;
 	}
 

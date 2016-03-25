@@ -1,4 +1,4 @@
-package utilities;
+package src.utilities;
 
 /**
  * @author cailliea
