@@ -6,6 +6,8 @@ import mainPackage.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import src.utilities.Coord;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -18,6 +20,7 @@ import java.util.List;
 public class UserDBResource {
 	private static UserDao dao = BDDFactory.getDbi().open(UserDao.class);
 	final static Logger logger = LoggerFactory.getLogger(UserDBResource.class);
+	Map map = new Map();
 
 	public UserDBResource() {
 		try {
@@ -35,7 +38,6 @@ public class UserDBResource {
 		user.setId(id);
 		return user;
 	}
-	
 
 	@PUT
 	@Path("/{id}")
@@ -70,13 +72,88 @@ public class UserDBResource {
 		return user;
 	}
 
-	//TODO Must add some parameters
+	// TODO Must add some parameters
 	@GET
 	@Path("/map")
-	public  Map getMap() {
-		return new Map ();
+	public Map getMap() {
+		return map;
 	}
-	
+
+	@PUT
+	@Path("/map/putaction")
+	public Map putAction(@QueryParam("coord") Coord coord,
+			@QueryParam("sens") int sens, @QueryParam("player") int player) {
+
+		if (map.getCaseMap()[coord.x()][coord.y()].getOwner() == player) {
+
+			if (map.getCaseMap()[coord.x()][coord.y()].getPipes() == 2) {
+				if (sens == 6)
+					map.getCaseMap()[coord.x()][coord.y()].setPipes(3);
+				
+			} else if (map.getCaseMap()[coord.x()][coord.y()].getPipes() == 6) {
+				if (sens == 8)
+					map.getCaseMap()[coord.x()][coord.y()].setPipes(9);
+				if (sens == 2)
+					map.getCaseMap()[coord.x()][coord.y()].setPipes(3);
+
+			} else if (map.getCaseMap()[coord.x()][coord.y()].getPipes() == 8) {
+				if (sens == 6)
+					map.getCaseMap()[coord.x()][coord.y()].setPipes(9);
+				if (sens == 4)
+					map.getCaseMap()[coord.x()][coord.y()].setPipes(7);
+
+			} else if (map.getCaseMap()[coord.x()][coord.y()].getPipes() == 4) {
+				if (sens == 8)
+					map.getCaseMap()[coord.x()][coord.y()].setPipes(7);
+				if (sens == 2)
+					map.getCaseMap()[coord.x()][coord.y()].setPipes(1);
+
+			} else {
+
+				map.getCaseMap()[coord.x()][coord.y()].setPipes(sens);
+			}
+		}
+		return map;
+	}
+
+	@DELETE
+	@Path("/map/delaction")
+	public Map delAction(@QueryParam("coord") Coord coord,
+			@QueryParam("sens") int sens, @QueryParam("player") int player) {
+
+		if (map.getCaseMap()[coord.x()][coord.y()].getOwner() == player) {
+
+			if (map.getCaseMap()[coord.x()][coord.y()].getPipes() == 9) {
+				if (sens == 8)
+					map.getCaseMap()[coord.x()][coord.y()].setPipes(6);
+				if (sens == 6)
+					map.getCaseMap()[coord.x()][coord.y()].setPipes(8);
+
+			} else if (map.getCaseMap()[coord.x()][coord.y()].getPipes() == 7) {
+				if (sens == 8)
+					map.getCaseMap()[coord.x()][coord.y()].setPipes(4);
+				if (sens == 4)
+					map.getCaseMap()[coord.x()][coord.y()].setPipes(8);
+
+			} else if (map.getCaseMap()[coord.x()][coord.y()].getPipes() == 3) {
+				if (sens == 2)
+					map.getCaseMap()[coord.x()][coord.y()].setPipes(6);
+				if (sens == 6)
+					map.getCaseMap()[coord.x()][coord.y()].setPipes(2);
+
+			} else if (map.getCaseMap()[coord.x()][coord.y()].getPipes() == 1) {
+				if (sens == 4)
+					map.getCaseMap()[coord.x()][coord.y()].setPipes(2);
+				if (sens == 2)
+					map.getCaseMap()[coord.x()][coord.y()].setPipes(4);
+
+			} else {
+				map.getCaseMap()[coord.x()][coord.y()].setPipes(0);
+			}
+		}
+		return map;
+	}
+
 	@GET
 	public List<User> getAllUsers() {
 		return dao.all();

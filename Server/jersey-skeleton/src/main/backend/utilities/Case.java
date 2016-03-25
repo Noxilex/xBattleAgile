@@ -20,7 +20,7 @@ public class Case {
 	public Case(Coord coord, int fieldType) {
 		this.coord = coord;
 		this.owner = 0;
-		this.pipes = 0;
+		this.pipes = 5 ;
 		this.fieldType = fieldType;
 		switch (fieldType){
 		case 5:
