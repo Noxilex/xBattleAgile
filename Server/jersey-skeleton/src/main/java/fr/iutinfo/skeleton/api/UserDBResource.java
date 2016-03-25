@@ -1,7 +1,6 @@
 package fr.iutinfo.skeleton.api;
 
-import mainPackage.Map;
-
+//import mainPackage.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
