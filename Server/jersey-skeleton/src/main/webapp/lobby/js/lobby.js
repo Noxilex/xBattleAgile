@@ -4,21 +4,8 @@ var players = [	{name: "Toto", avatar: "red"},
 
 
 function update(){
-	$.get("v1/userdb/lobby/", function(data, status){
-		console.log(data);
-		console.log(status);
-		//console.log(typeof(data));
-	})
-	.done(function() {
-		console.log("done");
-    	//alert( "second success" );
-  	})
-	.fail(function() {
-		console.log("fail");
-  	});
 
-
-
+	swal("ABC");
 
 	var playersList = $(".queue_container .queue_line .queue_item");
 	for(var i = 0 ; i < 8 ; i++){
@@ -29,7 +16,6 @@ function update(){
 		}else{
 			playerItem.children(".queue_name").text("Empty");
 			playerItem.children(".queue_avatar").css("background-color", "LightGray");
-
 		}
 	}
 }
@@ -43,5 +29,5 @@ function leave(){
 }
 
 $(function(){
-	update();
-})
+
+});
