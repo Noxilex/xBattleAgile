@@ -228,7 +228,7 @@ function drawMap(){
 			}
 	
 			//TODO Modify Cell size
-			drawPlayer(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, map[j][i].level);
+			drawPlayer(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
 			//ctx.fillRect(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
 
 			var pipe = map[j][i].pipe;

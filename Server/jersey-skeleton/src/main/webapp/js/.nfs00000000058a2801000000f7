@@ -17,12 +17,10 @@ var lastCellUnderMouse;
 
 //Event on monsedown
 $(canvas).click(function(event){
-	lastCellUnderMouse.player = 1;
-	console.log(lastCellUnderMouse);
-		
-	if(lastCellUnderMouse.level<=95 && lastCellUnderMouse.player!=0){
+	if(lastCellUnderMouse == 0)
+		lastCellUnderMouse.player = 1;
+	else
 		lastCellUnderMouse.level+=5;
-	}
 	drawMap();
 });
 
@@ -228,7 +226,7 @@ function drawMap(){
 			}
 	
 			//TODO Modify Cell size
-			drawPlayer(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, map[j][i].level);
+			drawPlayer(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
 			//ctx.fillRect(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
 
 			var pipe = map[j][i].pipe;
