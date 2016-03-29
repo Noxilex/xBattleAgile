@@ -81,8 +81,8 @@
 			</div>
 		</div>
 		<div id="queue-button">
-			<button id="join-button" class="connect-button" onclick="join();">Join</button>
-		    <button id="leave-button" class="connect-button" onclick="leave();">Leave</button>
+			<button id="join-button" class="connect-button" onclick="join();">Login</button>
+		    <button id="leave-button" class="connect-button" onclick="register();">Leave</button>
 		</div>
 	</div>
 

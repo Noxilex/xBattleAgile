@@ -8,6 +8,7 @@ var HEIGHT = canvas.height;
 var CELL_SIZE = 20;
 var MAP_X;
 var MAP_Y;
+var MAP_TEXTURE;
 var map = [];
 
 var remoteMap = [];
@@ -255,7 +256,8 @@ function login(){
 			getMap();
 			drawMap();
 			$("#group-auth").hide();
-			$("#div-game").show();	
+			$("#div-game").show();
+			canvas.focus();
 			swal("Logged", "Welcome back " + login + ".", "success");		
 		}
 		console.log(data);
@@ -292,6 +294,7 @@ function register() {
 			$("#group-auth").hide();
 			$("#div-game").show();
 			login();
+			canvas.focus();
 		},
 		error :function(jqXHR, textStatus, errorThrown) {
 			swal("Register failed", "The username \"" + username + "\" is already taken.", "error");
@@ -345,6 +348,10 @@ $(function(){
         updatePipe(event.which || event.keyCode);
     });
 
-    canvas.focus();
+    /*var MAP_TEXTURE; = new Image();
+    var MAP_TEXTURE;.src = "food.png";
+    var MAP_TEXTURE;.onload = function () {
+        buildMap();
+    };*/
 
 });
