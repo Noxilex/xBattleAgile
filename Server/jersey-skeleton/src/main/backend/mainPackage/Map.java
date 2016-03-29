@@ -81,10 +81,10 @@ public class Map {
 	
 
 
-	private int[][] generateNewMap(int lenY, int lenX) {
+	private int[][] generateNewMap(int lenX, int lenY) {
 		int[][] iMap = new int[lenX][lenY];
-		for (int x=0; x<lenX; x+=2) {
-			for (int y=0; y<lenY; y+=2) {
+		for (int y=0; y<lenY; y+=2) {
+			for (int x=0; x<lenX; x+=2) {
 				int random = rand.nextInt(10);
 				if (random==8) {
 					random=0;
@@ -104,8 +104,8 @@ public class Map {
 */
 	private int[][] printField(int[][] iMap, int fieldId, int x, int y) {
 		if (fieldId<=hill1 || fieldId==water1) {
-			for (int cptX=x-2; cptX<x+2; cptX++) {
-				for (int cptY=y-2; cptY<y+2; cptY++) {
+			for (int cptY=y-2; cptY<y+2; cptY++) {
+				for (int cptX=x-2; cptX<x+2; cptX++) {
 					if (setOnMap(cptX, cptY, iMap)) {
 						iMap[cptX][cptY]=fieldId;					
 					}
@@ -137,8 +137,8 @@ public class Map {
 				miborder=border;
 				center=miborder;
 			}
-			for (int cptX=x-2; cptX<x+2; cptX++) {
-				for (int cptY=y-2; cptY<y+2; cptY++) {
+			for (int cptY=y-2; cptY<y+2; cptY++) {
+				for (int cptX=x-2; cptX<x+2; cptX++) {
 					if (setOnMap(cptX, cptY, iMap)) {
 						if (cptX==x-2 || cptY==y-2 || cptX==x+2 || cptY==y+2) {
 							iMap[cptX][cptY]=border;
@@ -175,8 +175,8 @@ public class Map {
 	 */
 	private Case[][] generateCaseMap(int[][] intMap) {
 		Case[][] cMap = new Case[intMap.length][intMap[0].length];
-		for (int x=0; x<intMap.length; x++) {
-			for (int y=0; y<intMap[0].length; y++) {
+		for (int y=0; y<intMap[0].length; y++) {
+			for (int x=0; x<intMap.length; x++) {
 				cMap[x][y] = new Case(new Coord(x, y), intMap[x][y]);
 			}
 		}
@@ -199,9 +199,9 @@ public class Map {
 	 * Only for the debug. Display the map in character.
 	 */
 	private void logDisplayMap(Case[][] map){
-		for (int x=0; x<map.length; x++) {
+		for (int y=0; y<map[0].length; y++) {
 			System.out.print("|");
-			for (int y=0; y<map[0].length; y++) {
+			for (int x=0; x<map.length; x++) {
 				int t = map[x][y].getFieldType();
 				String s;
 				switch (t) {
