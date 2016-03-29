@@ -18,10 +18,12 @@ import javax.ws.rs.core.MediaType;
 
 import java.util.List;
 
+
 @Path("/userdb")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserDBResource {
+	
 	private static UserDao dao = BDDFactory.getDbi().open(UserDao.class);
 	final static Logger logger = LoggerFactory.getLogger(UserDBResource.class);
 	private threadPower tpower = new threadPower("game");
@@ -86,7 +88,10 @@ public class UserDBResource {
 	@GET
 	@Path("/map/")
 	public Map getMap() {
+		//map.logDisplayMap(map.getCaseMap());
+		//System.out.println("");
 		return map;
+		
 	}
 
 	@GET
@@ -115,6 +120,7 @@ public class UserDBResource {
 			@QueryParam("y") int coordy, @QueryParam("sens") Integer sens,
 			@QueryParam("player") Integer player) {
 		Coord coord = new Coord(coordx, coordy);
+		System.out.println(""+coordx+"|"+coord+"|"+sens+"|"+player);
 		if (map.getCaseMap()[coord.x()][coord.y()].getOwner() == player) {
 
 			if (map.getCaseMap()[coord.x()][coord.y()].getPipes() == 2) {
@@ -140,7 +146,7 @@ public class UserDBResource {
 					map.getCaseMap()[coord.x()][coord.y()].setPipes(1);
 
 			} else {
-
+			
 				map.getCaseMap()[coord.x()][coord.y()].setPipes(sens);
 			}
 		}

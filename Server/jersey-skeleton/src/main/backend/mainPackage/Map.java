@@ -198,7 +198,7 @@ public class Map {
 	 * @param map
 	 * Only for the debug. Display the map in character.
 	 */
-	private void logDisplayMap(Case[][] map){
+	public void logDisplayMap(Case[][] map){
 		for (int y=0; y<map[0].length; y++) {
 			System.out.print("|");
 			for (int x=0; x<map.length; x++) {
