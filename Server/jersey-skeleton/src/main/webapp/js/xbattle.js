@@ -17,7 +17,7 @@ var lastCellUnderMouse;
 
 //Event on monsedown
 $(canvas).click(function(event){
-	lastCellUnderMouse.type = (lastCellUnderMouse.type+1)%8;
+	lastCellUnderMouse.player = 1;
 	drawMap();
 });
 
@@ -95,7 +95,7 @@ function Cell(x, y, type){
 	this.x = x;
 	this.y = y;
 	this.type = type;
-	this.player;
+	this.player = 0;
 	this.pipe = 5;
 }
 
@@ -160,6 +160,7 @@ function buildMapNew(remoteMap){
 function drawMap(){
 	for(j = 0 ; j < MAP_Y ; j++){
 		for(i = 0 ; i < MAP_X ; i++){
+			//Terrain
 			switch(map[j][i].type){
 				case 0:
 					ctx.fillStyle="#008000";
@@ -185,6 +186,18 @@ function drawMap(){
 				case 7:
 					ctx.fillStyle="#000099";
 					break;
+			}
+			//Player
+			switch(map[j][i].player){
+				case 0:
+					//ctx.fillStyle="#000099";
+				break;
+				case 1:
+					ctx.fillStyle="#FF0000";
+				break;
+				case 2:
+					ctx.fillStyle="#0000FF";
+				break;
 			}
 			ctx.fillRect(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
 
@@ -298,10 +311,30 @@ function printRemoteMap(){
 	}
 }
 
-function sendPipe(){
+//Sends a pipe to the remote server
 
+function sendPipe(x, y, sens, player){
+	var url = "v1/userdb/mapa/putaction?x="+x+"&y="+y+"&sens="+sens+"&player="+player;
+	$.ajax({
+   type: "PUT",
+   url: url,
+   success: function(response) {
+     console.log("Send pipe success");
+   }
+});
 }
-
+/*
+function deletePipe(){
+	var url = "/v1/userdb/mapa/putaction";
+	$.ajax({
+   url: url,
+   type: 'DELETE',
+   success: function(response) {
+     
+   }
+});
+}
+*/
 $(function(){
 
 	$(".authent-input").keydown(function(event){
