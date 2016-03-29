@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".PresActivity"></activity>
         <activity android:name=".TutoActivity"></activity>
+        <activity android:name=".MiniGameActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
