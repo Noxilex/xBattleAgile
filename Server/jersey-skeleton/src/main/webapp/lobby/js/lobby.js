@@ -4,6 +4,22 @@ var players = [	{name: "Toto", avatar: "red"},
 
 
 function update(){
+	$.get("v1/userdb/lobby/", function(data, status){
+		console.log(data);
+		console.log(status);
+		//console.log(typeof(data));
+	})
+	.done(function() {
+		console.log("done");
+    	//alert( "second success" );
+  	})
+	.fail(function() {
+		console.log("fail");
+  	});
+
+
+
+
 	var playersList = $(".queue_container .queue_line .queue_item");
 	for(var i = 0 ; i < 8 ; i++){
 		var playerItem = $(playersList[i]);
@@ -19,7 +35,7 @@ function update(){
 }
 
 function join(){
-	
+		
 }
 
 function leave(){
