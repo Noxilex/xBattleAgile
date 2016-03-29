@@ -26,21 +26,6 @@ function cellUnderMouse(event){
 	return map[Math.floor(mousePos.y/CELL_SIZE)][Math.floor(mousePos.x/CELL_SIZE)];
 }
 
-/************************* MAIN LOOP *************************/
-
-function mainUpdate(){
-	getMap();
-	drawMap();
-	console.log("Updating");
-}
-
-//Draws data from server
-function mainLoopDraw(){
-	setInterval(mainUpdate(),500);
-}
-
-/*************************************************************/
-
 function updatePipe(keycode){
 	var cell = lastCellUnderMouse;
 	var pipeNum = null;
@@ -316,13 +301,32 @@ function deletePipe(){
 }
 */
 
+function gameLoop(){
+
+}
+
+
+/************************* MAIN LOOP *************************/
+
+function mainUpdate(){
+	getMap();
+	drawMap();
+	console.log("Updating");
+}
+
+//Draws data from server
+function mainLoopDraw(){
+	setInterval(mainUpdate(),500);
+}
+
+/*************************************************************/
+
+
 function init(){
 	canvas = $("#gamepanel")[0];
 	ctx = canvas.getContext("2d");
 
-	getMap();
-	drawMap();
-	mainLoopDraw();
+	
 
 	//Event on monsedown
 	$(canvas).click(function(event){
@@ -349,4 +353,13 @@ function init(){
         var cell = updatePipe(event.which || event.keyCode);
 		sendPipe(cell.x,cell.y,cell.pipe,cell.player);
     });
+
+    getMap();
+	drawMap();
+
+	var interval = setInterval(mainUpdate, 1000);
+
+
+
+
 }
