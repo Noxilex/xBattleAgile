@@ -13,7 +13,7 @@ function update(){
     	//alert( "second success" );
   	})
 	.fail(function() {
-		swal("Loggin failed", "No match found between this username and password.", "error");
+		
   	});
 
 
