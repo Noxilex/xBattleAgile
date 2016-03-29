@@ -99,16 +99,11 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/editText"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="521dp"
-                android:layout_marginStart="521dp" />
+                android:id="@+id/keyPad" />
         </TableRow>
     </TableLayout>
 
