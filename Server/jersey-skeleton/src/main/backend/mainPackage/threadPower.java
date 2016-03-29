@@ -1,19 +1,21 @@
 package mainPackage;
 
+import fr.iutinfo.skeleton.api.UserDBResource;
+
 public class threadPower extends Thread {
 
 	private GameMecanics meca;
-
+	private boolean finish;
+	
 	public threadPower(String name) {
 		super(name);
+		this.finish = false;
 	}
 
 	public void run() {
 
 		while (!finish) {
-			//sleep du thread
-			tpower.start();
-			UserDBResources.map = meca.refreshMap(UserDBResources.map);
+			UserDBResource.map = meca.refreshMap(UserDBResource.map);
 			try {
 				this.sleep(500);
 			} catch (InterruptedException e) {

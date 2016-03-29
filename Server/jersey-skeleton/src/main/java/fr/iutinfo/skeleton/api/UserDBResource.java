@@ -2,9 +2,11 @@ package fr.iutinfo.skeleton.api;
 
 //import mainPackage.Map;
 
+import mainPackage.GameMecanics;
 import mainPackage.Lobby;
 import mainPackage.Map;
 import mainPackage.Player;
+import mainPackage.threadPower;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +25,9 @@ import java.util.List;
 public class UserDBResource {
 	private static UserDao dao = BDDFactory.getDbi().open(UserDao.class);
 	final static Logger logger = LoggerFactory.getLogger(UserDBResource.class);
-	private threadPower tpower = new threadPower();
+	private threadPower tpower = new threadPower("game");
 	public static Map map;
-	GameMecanics gameMeca = tpower.getGameMecanics();
+	GameMecanics gameMeca = new GameMecanics();
 	boolean finish = false;
 
 	Lobby lobby = new Lobby();
