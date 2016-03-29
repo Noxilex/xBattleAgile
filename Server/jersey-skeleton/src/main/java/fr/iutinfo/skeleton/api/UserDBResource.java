@@ -15,7 +15,6 @@ import utilities.Coord;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class UserDBResource {
 	private static UserDao dao = BDDFactory.getDbi().open(UserDao.class);
 	final static Logger logger = LoggerFactory.getLogger(UserDBResource.class);
 	private threadPower tpower = new threadPower("game");
-	public static Map map;
+	public static Map map = new Map();
 	GameMecanics gameMeca = new GameMecanics();
 	boolean finish = false;
 

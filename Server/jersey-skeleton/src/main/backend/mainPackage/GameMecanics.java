@@ -25,16 +25,25 @@ public class GameMecanics {
 		double tmp = 0;
 		for (int x=0; x<map.length; x++) {
 			for (int y=0; y<map[0].length; y++) {
-				
 				Case c 		= map[x][y];
-				Case left	= map[x-1][y];
-				Case right 	= map[x+1][y];
-				Case up 	= map[x][y-1];
-				Case down 	= map[x][y+1];
-
-				tmp = c.getLevel()*0.20;
-				
+				Case left = new Case();
+				Case right =  new Case();
+				Case up = new Case ();
+				Case down = new Case();
 				if (isAllowed(c, c.getPipes(), x, y)) {
+					if ( x != 0) {
+						left = map[x-1][y];
+					} if ( x != map.length-1) {
+						right = map[x+1][y];
+					} if (y != 0) {
+						up = map[x][y-1];
+					} if (y != map[0].length-1)  { 
+						down = map[x][y+1];
+					}
+				
+					tmp = c.getLevel()*0.20;
+				
+				
 					c.setLevel(tmp);
 					switch (c.getPipes()) {
 						case 1:

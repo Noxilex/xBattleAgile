@@ -9,6 +9,7 @@ public class threadPower extends Thread {
 	
 	public threadPower(String name) {
 		super(name);
+		this.meca = new GameMecanics();
 		this.finish = false;
 	}
 
