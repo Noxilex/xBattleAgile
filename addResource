@@ -1,5 +1,5 @@
 #!/bin/bash
 
-expr $# = 2 & cp $1 Server/jersey-skeleton/src/main/backend/Resources/$2 ; cp $1 Server/jersey-skeleton/src/main/resources/$2 ; cp $1 Android/xBattleCompanionApp/app/src/main/res/drawable/$2 ; rm $1
+expr $# = 2 & cp $1 Server/jersey-skeleton/src/main/backend/Resources/$2 ; cp $1 Server/jersey-skeleton/src/main/resources/$2 ; Server/jersey-skeleton/src/main/webapp/js/Resources/Textures/$2 ; rm $1
 
 
