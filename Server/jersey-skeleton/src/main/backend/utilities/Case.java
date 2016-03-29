@@ -9,11 +9,11 @@ package utilities;
  */
 public class Case {
 
-	private Coord coord;
+	public static Coord coord;
 	private int owner;
 	private int pipes;
-	private int level;
-	private int fieldType=0;
+	private double level;
+	private int fieldType;
 	private boolean pump;
 	
 	public Case(){}
@@ -49,9 +49,9 @@ public class Case {
 
 	/**
 	 * @return the type of the field.
-	 * 0 = plain ; 1 = sand 
+	 * 0 = PLAIN ; 1 = SAND 
 	 * 2 = hill 1; 3 = hill 2; 4 = hill 3
-	 * 5 = water1; 6 = water2; 7 = water3
+	 * 5 = WATER1; 6 = WATER2; 7 = WATER3
 	 */
 	public int getFieldType() {
 		return this.fieldType;
@@ -77,14 +77,20 @@ public class Case {
 	 * @param lvl
 	 * Set the player liquid level of the case.
 	 */
-	public void setLevel(int lvl) {
+	public void setLevel(double lvl) {
+		if (lvl>1) {
+			lvl=1;
+		}
+		if (lvl<0) {
+			lvl=0;
+		}
 		this.level = lvl;
 	}
 	
 	/**
 	 * @return get the player liquid level. 0-100
 	 */
-	public int getLevel() {
+	public double getLevel() {
 		return this.level;
 	}
 	
@@ -152,11 +158,11 @@ public class Case {
 		String s;
 		switch (fieldTypeId) {
 		case 0:
-			s = "Plain";
+			s = "PLAIN";
 			break;
 
 		case 1:
-			s = "Sand";
+			s = "SAND";
 			break;
 			
 		case 2:

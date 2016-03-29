@@ -25,6 +25,8 @@
     <string name="tuto_type4">Les mers (qu\'on voit danser...), à l\'instar des plaines ou des montagnes ne sont en soit pas franchissables. Cependant, vous pouver utiliser des ressources pour les drainer et les transformer en plaine. Ainsi la création de chemins inattendus est possible! Plus les mers sont hautes, plus il faudrait de ressources pour les changer en plaines.
 ( Vitesse de prise : 0.00 | Caractéristique : Vitesse de drain : 1.00, Quantité : 0.25 case/0.5 case/1 case)</string>
 
+
+    <string name="tuto_pipes_button">Lancer le tutoriel</string>
     <string name="tuto_pipes1">Cliquez sur une case puis sur une touche du pavé numérique pour placer un tuyau</string>
 
     <string name="action_settings">Settings</string>

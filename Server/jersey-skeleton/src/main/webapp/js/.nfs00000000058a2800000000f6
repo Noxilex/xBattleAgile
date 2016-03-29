@@ -5,9 +5,10 @@ var ctx = canvas.getContext("2d");
 var WIDTH = canvas.width;
 var HEIGHT = canvas.height;
 
-var CELL_SIZE = 30;
+var CELL_SIZE = 20;
 var MAP_X;
 var MAP_Y;
+var MAP_TEXTURE;
 var map = [];
 
 var remoteMap = [];
@@ -16,7 +17,10 @@ var lastCellUnderMouse;
 
 //Event on monsedown
 $(canvas).click(function(event){
-	lastCellUnderMouse.type = (lastCellUnderMouse.type+1)%8;
+	if(lastCellUnderMouse == 0)
+		lastCellUnderMouse.player = 1;
+	else
+		lastCellUnderMouse.level+=5;
 	drawMap();
 });
 
@@ -94,7 +98,7 @@ function Cell(x, y, type){
 	this.x = x;
 	this.y = y;
 	this.type = type;
-	this.player;
+	this.player = 0;
 	this.pipe = 5;
 }
 
@@ -129,6 +133,7 @@ function buildMapOld(){
 }
 */
 function buildMapNew(remoteMap){
+	console.log(remoteMap);
 	console.log("Building..");
 	console.log(remoteMap);
 	console.log("ymax:"+remoteMap.length);
@@ -158,9 +163,10 @@ function buildMapNew(remoteMap){
 function drawMap(){
 	for(j = 0 ; j < MAP_Y ; j++){
 		for(i = 0 ; i < MAP_X ; i++){
+			//Terrain
 			switch(map[j][i].type){
 				case 0:
-					ctx.fillStyle="#008000"; //Beige
+					ctx.fillStyle="#008000";
 					break;
 				case 1:
 					ctx.fillStyle="#FFFF99";
@@ -184,7 +190,43 @@ function drawMap(){
 					ctx.fillStyle="#000099";
 					break;
 			}
-			ctx.fillRect(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
+			//Drawing the floor before the player
+			ctx.fillRect(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);		
+		
+			//Player
+			switch(map[j][i].player){
+				case 0:
+					//ctx.fillStyle="#000099";
+				break;
+				case 1:
+					ctx.fillStyle="#FF0000";
+				break;
+				case 2:
+					ctx.fillStyle="#0000FF";
+				break;
+				case 3:
+					ctx.fillStyle="#0000FF";
+				break;
+				case 4:
+					ctx.fillStyle="#0000FF";
+				break;
+				case 5:
+					ctx.fillStyle="#0000FF";
+				break;
+				case 6:
+					ctx.fillStyle="#0000FF";
+				break;
+				case 7:
+					ctx.fillStyle="#0000FF";
+				break;
+				case 8:
+					ctx.fillStyle="#000000";
+				break;
+			}
+	
+			//TODO Modify Cell size
+			drawPlayer(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
+			//ctx.fillRect(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
 
 			var pipe = map[j][i].pipe;
 			if(pipe === 1 || pipe === 4 || pipe === 7){
@@ -220,6 +262,12 @@ function drawMap(){
 	}	
 }
 
+function drawPlayer(xRound, yRound, size, fillLvl){
+	var missing= 100-fillLvl;
+	var missingCell=missing/100*size;
+	ctx.fillRect(xRound+(missingCell/2), yRound+(missingCell/2), size-missingCell, size-missingCell);
+}
+
 /*********************************** Fin gestion Map **********************************/
 
 
@@ -241,7 +289,8 @@ function login(){
 			getMap();
 			drawMap();
 			$("#group-auth").hide();
-			$("#gamepanel").show();	
+			$("#div-game").show();
+			canvas.focus();
 			swal("Logged", "Welcome back " + login + ".", "success");		
 		}
 		console.log(data);
@@ -276,8 +325,9 @@ function register() {
 		success :function(data, textStatus, jqXHR) {
 			swal("Registered", "Thanks for registering \"" + username + "\".\nYou have been logged in.", "success");
 			$("#group-auth").hide();
-			$("#gamepanel").show();
+			$("#div-game").show();
 			login();
+			canvas.focus();
 		},
 		error :function(jqXHR, textStatus, errorThrown) {
 			swal("Register failed", "The username \"" + username + "\" is already taken.", "error");
@@ -294,6 +344,30 @@ function printRemoteMap(){
 	}
 }
 
+//Sends a pipe to the remote server
+
+function sendPipe(x, y, sens, player){
+	var url = "v1/userdb/mapa/putaction?x="+x+"&y="+y+"&sens="+sens+"&player="+player;
+	$.ajax({
+   type: "PUT",
+   url: url,
+   success: function(response) {
+     console.log("Send pipe success");
+   }
+});
+}
+/*
+function deletePipe(){
+	var url = "/v1/userdb/mapa/putaction";
+	$.ajax({
+   url: url,
+   type: 'DELETE',
+   success: function(response) {
+     
+   }
+});
+}
+*/
 $(function(){
 
 	$(".authent-input").keydown(function(event){
@@ -307,6 +381,10 @@ $(function(){
         updatePipe(event.which || event.keyCode);
     });
 
-    canvas.focus();
+    /*var MAP_TEXTURE; = new Image();
+    var MAP_TEXTURE;.src = "food.png";
+    var MAP_TEXTURE;.onload = function () {
+        buildMap();
+    };*/
 
 });

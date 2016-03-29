@@ -1,5 +1,6 @@
 package fr.univ_lille1.iut_info.bernardt.xbattlecompanionapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -21,14 +22,6 @@ public class TutoActivity extends AppCompatActivity {
 
     private int onglet_tuto;
 
-    private ImageView hillView;
-    private int[] hills={R.drawable.hill1,R.drawable.hill2,R.drawable.hill3};
-
-    private ImageView waterView;
-    private int[] waters={R.drawable.water1,R.drawable.water2,R.drawable.water3};
-
-    private int typeSelected = R.string.tuto_type1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,50 +35,6 @@ public class TutoActivity extends AppCompatActivity {
         addSwipeListener(R.id.layout_tuto1);
 
         onglet_tuto = 1;
-    }
-
-    public void launchTimer(){
-        final Handler handler = new Handler();
-        Runnable runnable = new Runnable() {
-            int i=0;
-            public void run() {
-                hillView.setImageResource(hills[i]);
-                waterView.setImageResource(waters[i]);
-                i++;
-                if(i>hills.length-1) {
-                    i=0;
-                }
-                handler.postDelayed(this, 1000);
-            }
-        };
-        handler.postDelayed(runnable, 0);
-    }
-
-    public void addSwipeListener(int idLayout){
-        findViewById(idLayout).setOnTouchListener(new OnSwipeTouchListener(TutoActivity.this) {
-            public void onSwipeRight() {
-                if (onglet_tuto > 1) {
-                    onglet_tuto--;
-                    changeTab(onglet_tuto);
-                } else {
-                    changeTab(3);
-                }
-            }
-
-            public void onSwipeLeft() {
-                if (onglet_tuto < 3) {
-                    onglet_tuto++;
-                    changeTab(onglet_tuto);
-                } else {
-                    changeTab(1);
-                }
-            }
-
-            public void onSwipeBottom() {
-                // changeContentView(R.layout.menu);
-                finish();
-            }
-        });
     }
 
     public void changeTab(int iTab){
@@ -121,6 +70,33 @@ public class TutoActivity extends AppCompatActivity {
         }
     }
 
+    public void addSwipeListener(int idLayout){
+        findViewById(idLayout).setOnTouchListener(new OnSwipeTouchListener(TutoActivity.this) {
+            public void onSwipeRight() {
+                if (onglet_tuto > 1) {
+                    onglet_tuto--;
+                    changeTab(onglet_tuto);
+                } else {
+                    changeTab(3);
+                }
+            }
+
+            public void onSwipeLeft() {
+                if (onglet_tuto < 3) {
+                    onglet_tuto++;
+                    changeTab(onglet_tuto);
+                } else {
+                    changeTab(1);
+                }
+            }
+
+            public void onSwipeBottom() {
+                // changeContentView(R.layout.menu);
+                finish();
+            }
+        });
+    }
+
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
@@ -134,9 +110,41 @@ public class TutoActivity extends AppCompatActivity {
         onglet_tuto = savedInstanceState.getInt("onglet_tuto");
         typeSelected = savedInstanceState.getInt("typeSelected");
         changeTab(onglet_tuto);
-        TextView type_text = (TextView) findViewById(R.id.type_text);
-        type_text.setText(typeSelected);
+        if(onglet_tuto == 1) {
+            TextView type_text = (TextView) findViewById(R.id.type_text);
+            type_text.setText(typeSelected);
+        }
     }
+
+    /*
+    CODE DU PREMIER ONGLET
+     */
+
+    private ImageView hillView;
+    private int[] hills={R.drawable.hill1,R.drawable.hill2,R.drawable.hill3};
+
+    private ImageView waterView;
+    private int[] waters={R.drawable.water1,R.drawable.water2,R.drawable.water3};
+
+    private int typeSelected = R.string.tuto_type1;
+
+    public void launchTimer(){
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            int i=0;
+            public void run() {
+                hillView.setImageResource(hills[i]);
+                waterView.setImageResource(waters[i]);
+                i++;
+                if(i>hills.length-1) {
+                    i=0;
+                }
+                handler.postDelayed(this, 1000);
+            }
+        };
+        handler.postDelayed(runnable, 0);
+    }
+
 
     public void onClick_Type(View view){
         TextView type_text = (TextView) findViewById(R.id.type_text);
@@ -159,5 +167,14 @@ public class TutoActivity extends AppCompatActivity {
                 typeSelected = R.string.tuto_type4;
                 break;
         }
+    }
+
+    /*
+    CODE DU DEUXIEME ONGLET
+     */
+
+    public void onClick_Tuto_Pipes(View view){
+        Intent i = new Intent(getApplicationContext(), MiniGameActivity.class);
+        startActivity(i);
     }
 }
