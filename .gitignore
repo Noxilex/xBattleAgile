@@ -5,4 +5,4 @@ Server/jersey-skeleton/src/main/backend/librairies/*
 Server/jersey-skeleton/src/main/backend/.classpath
 Server/jersey-skeleton/src/main/backend/.project
 Server/jersey-skeleton/src/main/backend/.settings
-.nfs
+.nfs*
