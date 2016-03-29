@@ -274,7 +274,7 @@ function register() {
 			swal("Registered", "Thanks for registering \"" + username + "\".\nYou have been logged in.", "success");
 			$("#group-auth").hide();
 			$("#gamepanel").show();
-			afficheUser(data);
+			login();
 		},
 		error :function(jqXHR, textStatus, errorThrown) {
 			swal("Register failed", "The username \"" + username + "\" is already taken.", "error");
