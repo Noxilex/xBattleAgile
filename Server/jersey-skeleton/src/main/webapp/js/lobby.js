@@ -36,7 +36,8 @@ function join(){
 }
 
 function leave(){
-
+	$("#lobby-page").hide();
+	$("#game-page").show();
 }
 
 $(function(){
