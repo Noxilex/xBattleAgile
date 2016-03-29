@@ -38,6 +38,7 @@ function join(){
 function leave(){
 	$("#lobby-page").hide();
 	$("#game-page").show();
+	init();
 }
 
 $(function(){

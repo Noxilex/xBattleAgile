@@ -12,6 +12,26 @@ var remoteMap = [];
 
 var lastCellUnderMouse;
 
+//Event on monsedown
+$(canvas).click(function(event){
+	lastCellUnderMouse.player = 1;
+	console.log(lastCellUnderMouse);
+		
+	if(lastCellUnderMouse.level<=95 && lastCellUnderMouse.player!=0){
+		lastCellUnderMouse.level+=5;
+	}
+	drawMap();
+});
+
+//Hover of the mouse
+$(canvas).mousemove(function(event){
+	lastCellUnderMouse = cellUnderMouse(event);
+	$("#coord").text('Mouse position: ' + lastCellUnderMouse.x + ', ' + lastCellUnderMouse.y);
+	drawMap();
+	ctx.fillStyle="rgba(200, 255, 255, 0.5)";
+	ctx.fillRect(lastCellUnderMouse.x*CELL_SIZE+1, lastCellUnderMouse.y*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
+});
+
 function getMousePos(event) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -294,35 +314,24 @@ function deletePipe(){
 });
 }
 */
-
-function init(){
-	canvas = $("#gamepanel")[0];
-	ctx = canvas.getContext("2d");
-	
-	//Event on monsedown
-	$(canvas).click(function(event){
-		lastCellUnderMouse.player = 1;
-		console.log(lastCellUnderMouse);
-		
-		if(lastCellUnderMouse.level<=95 && lastCellUnderMouse.player!=0){
-			lastCellUnderMouse.level+=5;
-		}
-		drawMap();
-	});
-
-	//Hover of the mouse
-	$(canvas).mousemove(function(event){
-		lastCellUnderMouse = cellUnderMouse(event);
-		$("#coord").text('Mouse position: ' + lastCellUnderMouse.x + ', ' + lastCellUnderMouse.y);
-		drawMap();
-		ctx.fillStyle="rgba(200, 255, 255, 0.5)";
-		ctx.fillRect(lastCellUnderMouse.x*CELL_SIZE+1, lastCellUnderMouse.y*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
-	});
+$(function(){
 
 	//Create a new pipe when a key is pressed
 	$(canvas).keydown(function(event){
         updatePipe(event.which || event.keyCode);
     });
+
+    /*var MAP_TEXTURE; = new Image();
+    var MAP_TEXTURE;.src = "food.png";
+    var MAP_TEXTURE;.onload = function () {
+        buildMap();
+    };*/
+
+});
+
+function init(){
+	canvas = $("#gamepanel")[0];
+	ctx = canvas.getContext("2d");
 
 	getMap();
 	drawMap();

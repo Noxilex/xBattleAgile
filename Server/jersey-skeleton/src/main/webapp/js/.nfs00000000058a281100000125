@@ -2,6 +2,9 @@
 var canvas;
 var ctx;
 
+var WIDTH = canvas.width;
+var HEIGHT = canvas.height;
+
 var CELL_SIZE = 20;
 var MAP_X;
 var MAP_Y;
@@ -11,6 +14,26 @@ var map = [];
 var remoteMap = [];
 
 var lastCellUnderMouse;
+
+//Event on monsedown
+$(canvas).click(function(event){
+	lastCellUnderMouse.player = 1;
+	console.log(lastCellUnderMouse);
+		
+	if(lastCellUnderMouse.level<=95 && lastCellUnderMouse.player!=0){
+		lastCellUnderMouse.level+=5;
+	}
+	drawMap();
+});
+
+//Hover of the mouse
+$(canvas).mousemove(function(event){
+	lastCellUnderMouse = cellUnderMouse(event);
+	$("#coord").text('Mouse position: ' + lastCellUnderMouse.x + ', ' + lastCellUnderMouse.y);
+	drawMap();
+	ctx.fillStyle="rgba(200, 255, 255, 0.5)";
+	ctx.fillRect(lastCellUnderMouse.x*CELL_SIZE+1, lastCellUnderMouse.y*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
+});
 
 function getMousePos(event) {
     var rect = canvas.getBoundingClientRect();
@@ -124,7 +147,6 @@ function buildMapNew(remoteMap){
 	canvas.height=MAP_Y*CELL_SIZE;
 	map = [];
 	for(j=0;j<MAP_Y;j++){
-		console.log(map);
 		var subMap = [];
 		for(i=0;i<MAP_X;i++){
 			subMap.push(new Cell(i, j, remoteMap[i].item[j].fieldType));
@@ -261,6 +283,65 @@ function reduce_cell(){
 	
 }
 
+
+function login(){
+	var login = $("#nickname-input").val();
+	var pwd = $("#password-input").val();
+	$.get("v1/userdb/auth/login?name="+login+"&mdp="+pwd, function(data, status){
+		if(status=="success"){
+			getMap();
+			drawMap();
+			$("#group-auth").hide();
+			$("#div-game").show();
+			canvas.focus();
+			swal("Logged", "Welcome back " + login + ".", "success");		
+		}
+		console.log(data);
+		console.log(status);
+		//console.log(typeof(data));
+	})
+	.done(function() {
+    	//alert( "second success" );
+  	})
+	.fail(function() {
+		swal("Loggin failed", "No match found between this username and password.", "error");
+  	});
+
+
+  	$("#authent-page").hide();
+  	$("#lobby-page").show();
+	//Serveur connection.
+}
+
+function register() {
+
+	var username = $("#nickname-input").val();
+	var pwd = $("#password-input").val();
+	var url = "v1/userdb/";
+
+	$.ajax({
+		type : 'POST',
+		contentType : 'application/json',
+		url : url,
+		dataType : "json",
+		data : JSON.stringify({
+			"name" : username,
+			"password" : pwd,
+			"id" : 0
+		}),
+		success :function(data, textStatus, jqXHR) {
+			swal("Registered", "Thanks for registering \"" + username + "\".\nYou have been logged in.", "success");
+			$("#group-auth").hide();
+			$("#div-game").show();
+			login();
+			canvas.focus();
+		},
+		error :function(jqXHR, textStatus, errorThrown) {
+			swal("Register failed", "The username \"" + username + "\" is already taken.", "error");
+		}
+	});
+}
+
 //DEBUG Function
 function printRemoteMap(){
 	for(i=0;i<remoteMap.length;i++){
@@ -294,36 +375,30 @@ function deletePipe(){
 });
 }
 */
-
-function init(){
-	canvas = $("#gamepanel")[0];
-	ctx = canvas.getContext("2d");
-	
-	//Event on monsedown
-	$(canvas).click(function(event){
-		lastCellUnderMouse.player = 1;
-		console.log(lastCellUnderMouse);
-		
-		if(lastCellUnderMouse.level<=95 && lastCellUnderMouse.player!=0){
-			lastCellUnderMouse.level+=5;
-		}
-		drawMap();
-	});
-
-	//Hover of the mouse
-	$(canvas).mousemove(function(event){
-		lastCellUnderMouse = cellUnderMouse(event);
-		$("#coord").text('Mouse position: ' + lastCellUnderMouse.x + ', ' + lastCellUnderMouse.y);
-		drawMap();
-		ctx.fillStyle="rgba(200, 255, 255, 0.5)";
-		ctx.fillRect(lastCellUnderMouse.x*CELL_SIZE+1, lastCellUnderMouse.y*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
-	});
+$(function(){
 
 	//Create a new pipe when a key is pressed
 	$(canvas).keydown(function(event){
         updatePipe(event.which || event.keyCode);
     });
 
+    /*var MAP_TEXTURE; = new Image();
+    var MAP_TEXTURE;.src = "food.png";
+    var MAP_TEXTURE;.onload = function () {
+        buildMap();
+    };*/
+
+});
+
+function init(){
+	canvas = $("#gamepanel")[0];
+	ctx = canvas.getContext("2d");
+
 	getMap();
 	drawMap();
+
+	MAP_X;
+	MAP_Y;
+	MAP_TEXTURE;
+	map = [];
 }

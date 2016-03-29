@@ -294,6 +294,20 @@ function deletePipe(){
 });
 }
 */
+$(function(){
+
+	//Create a new pipe when a key is pressed
+	$(canvas).keydown(function(event){
+        updatePipe(event.which || event.keyCode);
+    });
+
+    /*var MAP_TEXTURE; = new Image();
+    var MAP_TEXTURE;.src = "food.png";
+    var MAP_TEXTURE;.onload = function () {
+        buildMap();
+    };*/
+
+});
 
 function init(){
 	canvas = $("#gamepanel")[0];
@@ -318,11 +332,6 @@ function init(){
 		ctx.fillStyle="rgba(200, 255, 255, 0.5)";
 		ctx.fillRect(lastCellUnderMouse.x*CELL_SIZE+1, lastCellUnderMouse.y*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
 	});
-
-	//Create a new pipe when a key is pressed
-	$(canvas).keydown(function(event){
-        updatePipe(event.which || event.keyCode);
-    });
 
 	getMap();
 	drawMap();
