@@ -25,19 +25,21 @@ public class Map {
 	private Random rand = new Random();
 	private int[][] intMap;
 	private Case[][] caseMap;
-	FINAL private int PLAIN=0;
- 	FINAL private int SAND=1;
- 	FINAL private int HILL1=2;
- 	FINAL private int HILL2=3;
- 	FINAL private int HILL3=4;
- 	FINAL private int WATER1=5;
- 	FINAL private int WATER2=6;
- 	FINAL private int WATER3=7;
+	private Case[][] emptyMap;
+	private final int PLAIN=0;
+ 	private final int SAND=1;
+ 	private final int HILL1=2;
+ 	private final int HILL2=3;
+ 	private final int HILL3=4;
+ 	private final int WATER1=5;
+ 	private final int WATER2=6;
+ 	private final int WATER3=7;
 	
 	public Map() {
 		this.activeTexturePack = "Default";
-		this.intMap = generateNewMap(30, 20);
-		this.caseMap = generateCaseMap(intMap);
+//		this.intMap = generateNewMap(30, 20);
+//		this.caseMap = generateCaseMap(intMap);
+		this.caseMap = new Case[10][10];
 		logDisplayMap(caseMap);
 	}
 	
