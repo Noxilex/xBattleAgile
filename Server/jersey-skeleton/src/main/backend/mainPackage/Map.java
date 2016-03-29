@@ -25,7 +25,7 @@ public class Map {
 	private Random rand = new Random();
 	private int[][] intMap;
 	private Case[][] caseMap;
-	private Case[][] emptyMap;
+//	private Case[][] emptyMap;
 	private final int PLAIN=0;
  	private final int SAND=1;
  	private final int HILL1=2;

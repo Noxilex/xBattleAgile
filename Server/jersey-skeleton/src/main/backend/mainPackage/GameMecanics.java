@@ -5,20 +5,18 @@ import utilities.Case;
 public class GameMecanics {
 
 	private Case[][] map;
-	private Case[][] workMap;
 
 	public GameMecanics() {}
 
-	public Case[][] refreshMap(Case[][] map) {
+	public Map refreshMap(Map originMap) {
 
-		map=calculateEverything(map);
+		originMap.setCaseMap(calculateEverything(originMap.getCaseMap()));
 
-		return map;
+		return originMap;
 	}
 
-	private Case[][] calculateEverything(Case[][] map) {
-		this.map = map; 
-		this.workMap = map;
+	private Case[][] calculateEverything(Case[][] cMap) {
+		this.map = cMap;
 		levelManager();
 		return map;
 	}
