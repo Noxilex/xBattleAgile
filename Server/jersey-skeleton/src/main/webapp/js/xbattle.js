@@ -298,7 +298,10 @@ function deletePipe(){
 function init(){
 	canvas = $("#gamepanel")[0];
 	ctx = canvas.getContext("2d");
-	
+
+	getMap();
+	drawMap();
+
 	//Event on monsedown
 	$(canvas).click(function(event){
 		lastCellUnderMouse.player = 1;
@@ -323,7 +326,4 @@ function init(){
 	$(canvas).keydown(function(event){
         updatePipe(event.which || event.keyCode);
     });
-
-	getMap();
-	drawMap();
 }
