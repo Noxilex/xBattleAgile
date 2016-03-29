@@ -2,7 +2,6 @@ package fr.iutinfo.skeleton.api;
 
 //import mainPackage.Map;
 
-
 import mainPackage.Map;
 
 import org.slf4j.Logger;
@@ -81,17 +80,18 @@ public class UserDBResource {
 		return map;
 	}
 
-	/*@PUT
-	@Path("/map/putaction")
-	public Map putAction(@QueryParam("coord") Coord coord,
-			@QueryParam("sens") int sens, @QueryParam("player") int player) {
-
+	@PUT
+	@Path("/mapa/putaction")
+	public Map putAction( @QueryParam("x") int coordx,
+			@QueryParam("y") int coordy, @QueryParam("sens") Integer sens,
+			@QueryParam("player") Integer player) {
+		Coord coord = new Coord(coordx, coordy);
 		if (map.getCaseMap()[coord.x()][coord.y()].getOwner() == player) {
 
 			if (map.getCaseMap()[coord.x()][coord.y()].getPipes() == 2) {
 				if (sens == 6)
 					map.getCaseMap()[coord.x()][coord.y()].setPipes(3);
-				
+
 			} else if (map.getCaseMap()[coord.x()][coord.y()].getPipes() == 6) {
 				if (sens == 8)
 					map.getCaseMap()[coord.x()][coord.y()].setPipes(9);
@@ -120,9 +120,10 @@ public class UserDBResource {
 
 	@DELETE
 	@Path("/map/delaction")
-	public Map delAction(@QueryParam("coord") Coord coord,
+	public Map delAction(@QueryParam("x") int coordx,
+			@QueryParam("y") int coordy,
 			@QueryParam("sens") int sens, @QueryParam("player") int player) {
-
+Coord coord = new Coord(coordx,coordy);
 		if (map.getCaseMap()[coord.x()][coord.y()].getOwner() == player) {
 
 			if (map.getCaseMap()[coord.x()][coord.y()].getPipes() == 9) {
@@ -154,7 +155,7 @@ public class UserDBResource {
 			}
 		}
 		return map;
-	}*/
+	}
 
 	@GET
 	public List<User> getAllUsers() {
