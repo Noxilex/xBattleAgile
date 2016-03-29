@@ -20,7 +20,7 @@
 	    	</div>
 		</div>
 	<div id="div-game">
-	<h1>xBattle</h1>
+	<h1>Game</h1>
     	<canvas id="gamepanel" width="600" height="600" tabindex="1"></canvas>
 		<p id="coord"></p>
 	</div>

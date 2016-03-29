@@ -235,29 +235,29 @@ function drawMap(){
 			if(pipe === 1 || pipe === 4 || pipe === 7){
 				ctx.beginPath();
 			    ctx.moveTo(i*CELL_SIZE, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
-			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2)+3, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
-			    ctx.lineWidth = 5;
+			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2));
+			    ctx.lineWidth = 2;
 			    ctx.stroke();
 			}
 			if(pipe >= 7 && pipe <= 9){
 				ctx.beginPath();
 			    ctx.moveTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE);
-			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2)+3);
-			    ctx.lineWidth = 5;
+			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2));
+			    ctx.lineWidth = 2;
 			    ctx.stroke();
 			}
 			if(pipe === 3 || pipe === 6 || pipe === 9){
 				ctx.beginPath();
 			    ctx.moveTo((i+1)*CELL_SIZE, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
-			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2)-3, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
-			    ctx.lineWidth = 5;
+			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2));
+			    ctx.lineWidth = 2;
 			    ctx.stroke();
 			}
 			if(pipe >= 1 && pipe <= 3){
 				ctx.beginPath();
 			    ctx.moveTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), (j+1)*CELL_SIZE);
-			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2)-3);
-			    ctx.lineWidth = 5;
+			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2));
+			    ctx.lineWidth = 2;
 			    ctx.stroke();
 			}
 
