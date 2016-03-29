@@ -1,5 +1,6 @@
 package mainPackage;
 
+import utilities.Case;
 import fr.iutinfo.skeleton.api.UserDBResource;
 
 public class threadPower extends Thread {
@@ -9,6 +10,7 @@ public class threadPower extends Thread {
 	
 	public threadPower(String name) {
 		super(name);
+		this.meca = new GameMecanics();
 		this.finish = false;
 	}
 
@@ -16,6 +18,7 @@ public class threadPower extends Thread {
 
 		while (!finish) {
 			UserDBResource.map = meca.refreshMap(UserDBResource.map);
+			//UserDBResource.map.logDisplayMap(UserDBResource.map.getCaseMap());
 			try {
 				this.sleep(500);
 			} catch (InterruptedException e) {
