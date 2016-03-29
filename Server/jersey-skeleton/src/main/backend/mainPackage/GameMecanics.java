@@ -1,12 +1,14 @@
 package mainPackage;
 
+import utilities.Case;
+
 public class GameMecanics {
 
 	private Case[][] map;
 
 	public GameMecanics() {}
 
-	public Case[][] getNewMap(Case[][] map) {
+	public Case[][] getNewMap(Case[][] map) {
 
 		map=calculateEverything(map);
 
@@ -20,6 +22,6 @@ public class GameMecanics {
 	}
 
 	private void setDirections() {
-		
+
 	}
 }
