@@ -23,10 +23,15 @@ import java.util.List;
 public class UserDBResource {
 	private static UserDao dao = BDDFactory.getDbi().open(UserDao.class);
 	final static Logger logger = LoggerFactory.getLogger(UserDBResource.class);
-	Map map = new Map();
+	private threadPower tpower = new threadPower();
+	public static Map map;
+	GameMecanics gameMeca = tpower.getGameMecanics();
+	boolean finish = false;
+
 	Lobby lobby = new Lobby();
 
 	public UserDBResource() {
+		tpower.start();
 		try {
 			dao.createUserTable();
 			dao.insert(new User(0, "Margaret Thatcher"));
@@ -138,8 +143,8 @@ public class UserDBResource {
 				map.getCaseMap()[coord.x()][coord.y()].setPipes(sens);
 			}
 		}
-		
-		
+
+
 
 		return map;
 	}
