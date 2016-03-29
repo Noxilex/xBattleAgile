@@ -129,6 +129,7 @@ function buildMapOld(){
 }
 */
 function buildMapNew(remoteMap){
+	console.log(remoteMap);
 	console.log("Building..");
 	console.log(remoteMap);
 	console.log("ymax:"+remoteMap.length);
@@ -160,7 +161,7 @@ function drawMap(){
 		for(i = 0 ; i < MAP_X ; i++){
 			switch(map[j][i].type){
 				case 0:
-					ctx.fillStyle="#008000"; //Beige
+					ctx.fillStyle="#008000";
 					break;
 				case 1:
 					ctx.fillStyle="#FFFF99";
