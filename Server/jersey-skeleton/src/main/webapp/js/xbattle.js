@@ -315,10 +315,10 @@ $(function(){
         updatePipe(event.which || event.keyCode);
     });
 
-    var MAP_TEXTURE; = new Image();
+    /*var MAP_TEXTURE; = new Image();
     var MAP_TEXTURE;.src = "food.png";
     var MAP_TEXTURE;.onload = function () {
         buildMap();
-    };
+    };*/
 
 });
