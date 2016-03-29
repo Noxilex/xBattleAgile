@@ -39,7 +39,7 @@ public class Map {
 		this.activeTexturePack = "Default";
 		this.intMap = generateNewMap(30, 20);
 		this.caseMap = generateCaseMap(intMap);
-	//	this.caseMap = new Case[10][10];
+		//this.caseMap = new Case[30][20];
 		logDisplayMap(caseMap);
 	}
 	

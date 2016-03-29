@@ -13,7 +13,7 @@ public class Case {
 	private int owner;
 	private int pipes;
 	private int level;
-	private int fieldType;
+	private int fieldType=0;
 	private boolean pump;
 	
 	public Case(){}
