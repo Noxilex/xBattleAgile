@@ -1,6 +1,8 @@
 package fr.iutinfo.skeleton.api;
 
 //import mainPackage.Map;
+
+
 import mainPackage.Map;
 
 import org.slf4j.Logger;
@@ -79,7 +81,7 @@ public class UserDBResource {
 		return map;
 	}
 
-	@PUT
+	/*@PUT
 	@Path("/map/putaction")
 	public Map putAction(@QueryParam("coord") Coord coord,
 			@QueryParam("sens") int sens, @QueryParam("player") int player) {
@@ -152,7 +154,7 @@ public class UserDBResource {
 			}
 		}
 		return map;
-	}
+	}*/
 
 	@GET
 	public List<User> getAllUsers() {
