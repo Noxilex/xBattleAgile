@@ -46,7 +46,6 @@ function register() {
 			$("#group-auth").hide();
 			$("#div-game").show();
 			login();
-			canvas.focus();
 		},
 		error :function(jqXHR, textStatus, errorThrown) {
 			swal("Register failed", "The username \"" + username + "\" is already taken.", "error");

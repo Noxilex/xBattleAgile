@@ -124,7 +124,6 @@ function buildMapNew(remoteMap){
 	canvas.height=MAP_Y*CELL_SIZE;
 	map = [];
 	for(j=0;j<MAP_Y;j++){
-		console.log(map);
 		var subMap = [];
 		for(i=0;i<MAP_X;i++){
 			subMap.push(new Cell(i, j, remoteMap[i].item[j].fieldType));
