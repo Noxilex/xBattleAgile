@@ -14,6 +14,7 @@ public class Case {
 	private int pipes;
 	private int level;
 	private int fieldType;
+	private boolean pump;
 	
 	public Case(){}
 
@@ -36,7 +37,15 @@ public class Case {
 			this.level = 0;
 			break;
 		}
+	}
+
+	public boolean getPump() {
+		return this.pump;
 	}	
+
+	public void setPump(boolean p) {
+		 this.pump = p;
+	}
 
 	/**
 	 * @return the type of the field.

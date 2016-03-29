@@ -25,14 +25,14 @@ public class Map {
 	private Random rand = new Random();
 	private int[][] intMap;
 	private Case[][] caseMap;
-	private int plain=0;
- 	private int sand=1;
- 	private int hill1=2;
- 	private int hill2=3;
- 	private int hill3=4;
- 	private int water1=5;
- 	private int water2=6;
- 	private int water3=7;
+	FINAL private int PLAIN=0;
+ 	FINAL private int SAND=1;
+ 	FINAL private int HILL1=2;
+ 	FINAL private int HILL2=3;
+ 	FINAL private int HILL3=4;
+ 	FINAL private int WATER1=5;
+ 	FINAL private int WATER2=6;
+ 	FINAL private int WATER3=7;
 	
 	public Map() {
 		this.activeTexturePack = "Default";
@@ -69,16 +69,13 @@ public class Map {
 	public void setActiveTexturePack(String texturePackName) {
 		this.activeTexturePack = texturePackName;
 	}
-	
+
 	/**
 	 * 
 	 * @param lenX
 	 * @param lenY
 	 * @return the fieldTypeId array version of the map 
 	 */
-	
-
-
 	private int[][] generateNewMap(int lenX, int lenY) {
 		int[][] iMap = new int[lenX][lenY];
 		for (int y=0; y<lenY; y+=2) {
@@ -176,6 +173,9 @@ public class Map {
 		for (int y=0; y<intMap[0].length; y++) {
 			for (int x=0; x<intMap.length; x++) {
 				cMap[x][y] = new Case(new Coord(x, y), intMap[x][y]);
+				if (rand.nextInt(10)==5) {
+					cMap[x][y].setPump(true);
+				}
 			}
 		}
 		return cMap;
