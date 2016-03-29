@@ -40,50 +40,50 @@ public class GameMecanics {
 					c.setLevel(tmp);
 					switch (c.getPipes()) {
 						case 1:
-							left.setLevel(left.getLevel()+=tmp/2);
+							left.setLevel(left.getLevel()+tmp/2);
 							left.setOwner(c.getOwner());
 
-							down.setLevel(down.getLevel()+=tmp/2);
+							down.setLevel(down.getLevel()+tmp/2);
 							down.setOwner(c.getOwner());
 						break;
 						case 2:
-							down.setLevel(down.getLevel()+=tmp);
+							down.setLevel(down.getLevel()+tmp);
 							down.setOwner(c.getOwner());
 						break;
 						case 3:
-							down.setLevel(down.getLevel()+=tmp/2);
+							down.setLevel(down.getLevel()+tmp/2);
 							down.setOwner(c.getOwner());
 							
-							right.setLevel(right.getLevel()+=tmp/2);						
+							right.setLevel(right.getLevel()+tmp/2);						
 							right.setOwner(c.getOwner());
 						break;
 						case 4:
-							left.setLevel(left.getLevel()+=tmp);
+							left.setLevel(left.getLevel()+tmp);
 							left.setOwner(c.getOwner());
 						break;
 						case 5:
 							//neutral pipe
 						break;
 						case 6:
-							right.setLevel(right.getLevel()+=tmp);						
+							right.setLevel(right.getLevel()+tmp);						
 							right.setOwner(c.getOwner());
 						break;
 						case 7:
-							left.setLevel(left.getLevel()+=tmp/2);
+							left.setLevel(left.getLevel()+tmp/2);
 							left.setOwner(c.getOwner());
 
-							up.setLevel(up.getLevel()+=tmp/2);
+							up.setLevel(up.getLevel()+tmp/2);
 							up.setOwner(c.getOwner());
 						break;
 						case 8:
-							up.setLevel(up.getLevel()+=tmp);
+							up.setLevel(up.getLevel()+tmp);
 							up.setOwner(c.getOwner());
 						break;
 						case 9:
-							up.setLevel(up.getLevel()+=tmp/2);
+							up.setLevel(up.getLevel()+tmp/2);
 							up.setOwner(c.getOwner());
 
-							right.setLevel(right.getLevel()+=tmp/2);						
+							right.setLevel(right.getLevel()+tmp/2);						
 							right.setOwner(c.getOwner());
 						break;
 						default:
