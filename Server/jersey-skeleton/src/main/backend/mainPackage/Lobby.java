@@ -18,6 +18,6 @@ public class Lobby {
 	public ArrayList<Player> removePlayerFromList(Player p) {
 		listPlayers.remove(p);
 		return listPlayers;
-	}	
+	}
 
 }
