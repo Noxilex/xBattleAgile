@@ -294,10 +294,6 @@ function printRemoteMap(){
 	}
 }
 
-function sendPipe(){
-
-}
-
 $(function(){
 
 	$(".authent-input").keydown(function(event){

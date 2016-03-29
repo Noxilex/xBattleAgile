@@ -5,7 +5,7 @@ var ctx = canvas.getContext("2d");
 var WIDTH = canvas.width;
 var HEIGHT = canvas.height;
 
-var CELL_SIZE = 20;
+var CELL_SIZE = 30;
 var MAP_X;
 var MAP_Y;
 var map = [];
@@ -241,7 +241,7 @@ function login(){
 			getMap();
 			drawMap();
 			$("#group-auth").hide();
-			$("#div-game").show();	
+			$("#gamepanel").show();	
 			swal("Logged", "Welcome back " + login + ".", "success");		
 		}
 		console.log(data);
@@ -276,7 +276,7 @@ function register() {
 		success :function(data, textStatus, jqXHR) {
 			swal("Registered", "Thanks for registering \"" + username + "\".\nYou have been logged in.", "success");
 			$("#group-auth").hide();
-			$("#div-game").show();
+			$("#gamepanel").show();
 			login();
 		},
 		error :function(jqXHR, textStatus, errorThrown) {
@@ -285,17 +285,12 @@ function register() {
 	});
 }
 
-//DEBUG Function
 function printRemoteMap(){
 	for(i=0;i<remoteMap.length;i++){
 		for(j=0;j<remoteMap[0].item.length;j++){
 			console.log(remoteMap[i].item[j]);
 		}
 	}
-}
-
-function sendPipe(){
-
 }
 
 $(function(){
@@ -306,7 +301,6 @@ $(function(){
         }
     });
 
-	//Create a new pipe when a key is pressed
 	$(canvas).keydown(function(event){
         updatePipe(event.which || event.keyCode);
     });
