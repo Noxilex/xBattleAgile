@@ -1,6 +1,6 @@
 //Initializing
-var canvas;
-var ctx;
+var canvas = $("#gamepanel")[0];
+var ctx = canvas.getContext("2d");
 
 var WIDTH = canvas.width;
 var HEIGHT = canvas.height;
@@ -377,6 +377,12 @@ function deletePipe(){
 */
 $(function(){
 
+	$(".authent-input").keydown(function(event){
+        if((event.which || event.keyCode) === 13){
+            login();
+        }
+    });
+
 	//Create a new pipe when a key is pressed
 	$(canvas).keydown(function(event){
         updatePipe(event.which || event.keyCode);
@@ -389,16 +395,3 @@ $(function(){
     };*/
 
 });
-
-function init(){
-	canvas = $("#gamepanel")[0];
-	ctx = canvas.getContext("2d");
-
-	getMap();
-	drawMap();
-
-	MAP_X;
-	MAP_Y;
-	MAP_TEXTURE;
-	map = [];
-}

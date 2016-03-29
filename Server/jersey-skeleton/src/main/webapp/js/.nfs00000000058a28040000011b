@@ -391,14 +391,6 @@ $(function(){
 });
 
 function init(){
-	canvas = $("#gamepanel")[0];
-	ctx = canvas.getContext("2d");
-
-	getMap();
-	drawMap();
-
-	MAP_X;
-	MAP_Y;
-	MAP_TEXTURE;
-	map = [];
+	var canvas = $("#gamepanel")[0];
+	var ctx = canvas.getContext("2d");
 }
