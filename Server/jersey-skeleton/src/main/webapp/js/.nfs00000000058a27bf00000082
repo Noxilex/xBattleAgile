@@ -5,10 +5,9 @@ var ctx = canvas.getContext("2d");
 var WIDTH = canvas.width;
 var HEIGHT = canvas.height;
 
-var CELL_SIZE = 20;
+var CELL_SIZE = 30;
 var MAP_X;
 var MAP_Y;
-var MAP_TEXTURE;
 var map = [];
 
 var remoteMap = [];
@@ -130,7 +129,6 @@ function buildMapOld(){
 }
 */
 function buildMapNew(remoteMap){
-	console.log(remoteMap);
 	console.log("Building..");
 	console.log(remoteMap);
 	console.log("ymax:"+remoteMap.length);
@@ -162,7 +160,7 @@ function drawMap(){
 		for(i = 0 ; i < MAP_X ; i++){
 			switch(map[j][i].type){
 				case 0:
-					ctx.fillStyle="#008000";
+					ctx.fillStyle="#008000"; //Beige
 					break;
 				case 1:
 					ctx.fillStyle="#FFFF99";
@@ -243,8 +241,7 @@ function login(){
 			getMap();
 			drawMap();
 			$("#group-auth").hide();
-			$("#div-game").show();
-			canvas.focus();
+			$("#gamepanel").show();	
 			swal("Logged", "Welcome back " + login + ".", "success");		
 		}
 		console.log(data);
@@ -279,9 +276,8 @@ function register() {
 		success :function(data, textStatus, jqXHR) {
 			swal("Registered", "Thanks for registering \"" + username + "\".\nYou have been logged in.", "success");
 			$("#group-auth").hide();
-			$("#div-game").show();
+			$("#gamepanel").show();
 			login();
-			canvas.focus();
 		},
 		error :function(jqXHR, textStatus, errorThrown) {
 			swal("Register failed", "The username \"" + username + "\" is already taken.", "error");
@@ -289,17 +285,12 @@ function register() {
 	});
 }
 
-//DEBUG Function
 function printRemoteMap(){
 	for(i=0;i<remoteMap.length;i++){
 		for(j=0;j<remoteMap[0].item.length;j++){
 			console.log(remoteMap[i].item[j]);
 		}
 	}
-}
-
-function sendPipe(){
-
 }
 
 $(function(){
@@ -310,15 +301,10 @@ $(function(){
         }
     });
 
-	//Create a new pipe when a key is pressed
 	$(canvas).keydown(function(event){
         updatePipe(event.which || event.keyCode);
     });
 
-    var MAP_TEXTURE; = new Image();
-    var MAP_TEXTURE;.src = "food.png";
-    var MAP_TEXTURE;.onload = function () {
-        buildMap();
-    };
+    canvas.focus();
 
 });

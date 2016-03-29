@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: jersey-skeleton
+Bundle-SymbolicName: jersey-skeleton
+Bundle-Version: 1.0.0.qualifier
+Export-Package: Resources.Textures.Maps.Default,
+ Resources.Textures.Players.Default,
+ fr.iutinfo.skeleton.api,
+ fr.iutinfo.skeleton.auth,
+ fr.iutinfo.skeleton.utils,
+ fr.iutinfo.skeleton.web,
+ librairies,
+ mainPackage,
+ sessionPackage,
+ utilities,
+ utils

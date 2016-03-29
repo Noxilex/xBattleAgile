@@ -2,14 +2,14 @@ package fr.iutinfo.skeleton.api;
 
 //import mainPackage.Map;
 
+import mainPackage.Lobby;
 import mainPackage.Map;
+import mainPackage.Player;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import utilities.Coord;
-
-
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -24,6 +24,7 @@ public class UserDBResource {
 	private static UserDao dao = BDDFactory.getDbi().open(UserDao.class);
 	final static Logger logger = LoggerFactory.getLogger(UserDBResource.class);
 	Map map = new Map();
+	Lobby lobby = new Lobby();
 
 	public UserDBResource() {
 		try {
@@ -77,14 +78,34 @@ public class UserDBResource {
 
 	// TODO Must add some parameters
 	@GET
-	@Path("/map")
+	@Path("/map/")
 	public Map getMap() {
 		return map;
 	}
 
+	@GET
+	@Path("/lobby/")
+	public Lobby getlobby() {
+		return lobby;
+	}
+	
+	@PUT
+	@Path("/lobby/adduser")
+	public Lobby addtolobby(@QueryParam("pseudo") String pseudo,@QueryParam("id") int gameId,@QueryParam("skin") String skinImg) {
+		lobby.addPlayer(new Player(pseudo, gameId, skinImg));
+		
+		return lobby;
+	}
+	@DELETE
+	@Path("/lobby/deluser")
+	public Lobby deltolobby(@QueryParam("pseudo") String pseudo,@QueryParam("id") int gameId,@QueryParam("skin") String skinImg) {
+		lobby.removePlayerFromList(new Player(pseudo, gameId, skinImg));
+		
+		return lobby;
+	}
 	@PUT
 	@Path("/mapa/putaction")
-	public Map putAction( @QueryParam("x") int coordx,
+	public Map putAction(@QueryParam("x") int coordx,
 			@QueryParam("y") int coordy, @QueryParam("sens") Integer sens,
 			@QueryParam("player") Integer player) {
 		Coord coord = new Coord(coordx, coordy);
@@ -123,9 +144,9 @@ public class UserDBResource {
 	@DELETE
 	@Path("/map/delaction")
 	public Map delAction(@QueryParam("x") int coordx,
-			@QueryParam("y") int coordy,
-			@QueryParam("sens") int sens, @QueryParam("player") int player) {
-Coord coord = new Coord(coordx,coordy);
+			@QueryParam("y") int coordy, @QueryParam("sens") int sens,
+			@QueryParam("player") int player) {
+		Coord coord = new Coord(coordx, coordy);
 		if (map.getCaseMap()[coord.x()][coord.y()].getOwner() == player) {
 
 			if (map.getCaseMap()[coord.x()][coord.y()].getPipes() == 9) {
