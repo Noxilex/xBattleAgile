@@ -5,7 +5,7 @@ var ctx = canvas.getContext("2d");
 var WIDTH = canvas.width;
 var HEIGHT = canvas.height;
 
-var CELL_SIZE = 40;
+var CELL_SIZE = 30;
 var MAP_X;
 var MAP_Y;
 var map = [];
@@ -132,8 +132,8 @@ function buildMapNew(remoteMap){
 	console.log("Building..");
 	console.log("ymax:"+remoteMap.length);
 	console.log("xmax:"+remoteMap[0].item.length);
-	MAP_X=remoteMap.length;
-	MAP_Y=remoteMap[0].item.length;
+	MAP_Y=remoteMap.length;
+	MAP_X=remoteMap[0].item.length;
 	canvas.width=MAP_X*CELL_SIZE;
 	canvas.height=MAP_Y*CELL_SIZE;
 	map = [];

@@ -131,6 +131,7 @@ function buildMapOld(){
 function buildMapNew(remoteMap){
 	console.log(remoteMap);
 	console.log("Building..");
+	console.log(remoteMap);
 	console.log("ymax:"+remoteMap.length);
 	console.log("xmax:"+remoteMap[0].item.length);
 	MAP_X=remoteMap.length;

@@ -5,17 +5,14 @@ var ctx = canvas.getContext("2d");
 var WIDTH = canvas.width;
 var HEIGHT = canvas.height;
 
-var CELL_SIZE = 40;
-var MAP_X = 15;
-var MAP_Y = 15;
+var CELL_SIZE = 30;
+var MAP_X;
+var MAP_Y;
+var map = [];
 
-var map;
+var remoteMap = [];
 
 var lastCellUnderMouse;
-
-buildMap();
-drawMap();
-
 
 //Event on monsedown
 $(canvas).click(function(event){
@@ -32,19 +29,6 @@ $(canvas).mousemove(function(event){
 	ctx.fillRect(lastCellUnderMouse.x*CELL_SIZE+1, lastCellUnderMouse.y*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
 });
 
-function buildMap(){
-	map = [];
-	for(var j = 0 ; j < MAP_Y ; j++){
-		var subMap = [];
-		for(var i = 0 ; i < MAP_X ; i++){
-			subMap.push(new Cell(i, j, Math.floor(Math.random()*5)));
-		}
-		map.push(subMap);
-	}
-}
-
-
-
 function getMousePos(event) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -57,70 +41,6 @@ function getMousePos(event) {
 function cellUnderMouse(event){
 	var mousePos = getMousePos(event);
 	return map[Math.floor(mousePos.y/CELL_SIZE)][Math.floor(mousePos.x/CELL_SIZE)];
-}
-
-
-/*
-0: land
-1: water
-2: deep-water
-3: mountain
-4: high-mountain
-*/
-function drawMap(){
-	for(j = 0 ; j < MAP_Y ; j++){
-		for(i = 0 ; i < MAP_X ; i++){
-			switch(map[j][i].type){
-				case 0:
-					ctx.fillStyle="#F6E3CE"; //Beige
-					break;
-				case 1:
-					ctx.fillStyle="#6666FF";
-					break;
-				case 2:
-					ctx.fillStyle="#6666AA";
-					break;
-				case 3:
-					ctx.fillStyle="#D7A25E";
-					break;
-				case 4:
-					ctx.fillStyle="#B78B51";
-					break;
-			}
-			ctx.fillRect(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
-
-			var pipe = map[j][i].pipe;
-			if(pipe === 1 || pipe === 4 || pipe === 7){
-				ctx.beginPath();
-			    ctx.moveTo(i*CELL_SIZE, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
-			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2)+3, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
-			    ctx.lineWidth = 5;
-			    ctx.stroke();
-			}
-			if(pipe >= 7 && pipe <= 9){
-				ctx.beginPath();
-			    ctx.moveTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE);
-			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2)+3);
-			    ctx.lineWidth = 5;
-			    ctx.stroke();
-			}
-			if(pipe === 3 || pipe === 6 || pipe === 9){
-				ctx.beginPath();
-			    ctx.moveTo((i+1)*CELL_SIZE, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
-			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2)-3, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
-			    ctx.lineWidth = 5;
-			    ctx.stroke();
-			}
-			if(pipe >= 1 && pipe <= 3){
-				ctx.beginPath();
-			    ctx.moveTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), (j+1)*CELL_SIZE);
-			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2)-3);
-			    ctx.lineWidth = 5;
-			    ctx.stroke();
-			}
-
-		}
-	}	
 }
 
 
@@ -178,6 +98,128 @@ function Cell(x, y, type){
 	this.pipe = 5;
 }
 
+/****************************** Début gestion Map **********************************/
+
+function getMap(){
+	var url = "v1/userdb/map";
+	
+	$.getJSON(url, function(result){
+        $.each(result, function(i, field){
+            console.log("i:"+i+ " field:" + field);
+			if(i=="caseMap"){
+				remoteMap = field;
+				buildMapNew(remoteMap);
+				//printRemoteMap();
+				//console.log("inside get:"+remoteMap);
+			}
+
+        });
+    });
+}
+/*
+function buildMapOld(){
+	map = [];
+	for(var j = 0 ; j < MAP_Y ; j++){
+		var subMap = [];
+		for(var i = 0 ; i < MAP_X ; i++){
+			subMap.push(new Cell(i, j, Math.floor(Math.random()*5)));
+		}
+		map.push(subMap);
+	}
+}
+*/
+function buildMapNew(remoteMap){
+	console.log("Building..");
+	console.log("ymax:"+remoteMap.length);
+	console.log("xmax:"+remoteMap[0].item.length);
+	MAP_X=remoteMap.length;
+	MAP_Y=remoteMap[0].item.length;
+	canvas.width=MAP_X*CELL_SIZE;
+	canvas.height=MAP_Y*CELL_SIZE;
+	map = [];
+	for(j=0;j<MAP_Y;j++){
+		var subMap = [];
+		for(i=0;i<MAP_X;i++){
+			subMap.push(new Cell(i, j, remoteMap[i].item[j].fieldType));
+		}
+		map.push(subMap);
+	}
+	console.log("Building finished");
+}
+
+/*
+0: land
+1: water
+2: deep-water
+3: mountain
+4: high-mountain
+*/
+function drawMap(){
+	for(j = 0 ; j < MAP_Y ; j++){
+		for(i = 0 ; i < MAP_X ; i++){
+			switch(map[j][i].type){
+				case 0:
+					ctx.fillStyle="#008000"; //Beige
+					break;
+				case 1:
+					ctx.fillStyle="#FFFF99";
+					break;
+				case 2:
+					ctx.fillStyle="#CC9900";
+					break;
+				case 3:
+					ctx.fillStyle="#996600";
+					break;
+				case 4:
+					ctx.fillStyle="#660000";
+					break;
+				case 5:
+					ctx.fillStyle="#66CCFF";
+					break;
+				case 6:
+					ctx.fillStyle="#3366FF";
+					break;
+				case 7:
+					ctx.fillStyle="#000099";
+					break;
+			}
+			ctx.fillRect(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
+
+			var pipe = map[j][i].pipe;
+			if(pipe === 1 || pipe === 4 || pipe === 7){
+				ctx.beginPath();
+			    ctx.moveTo(i*CELL_SIZE, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
+			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2)+3, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
+			    ctx.lineWidth = 5;
+			    ctx.stroke();
+			}
+			if(pipe >= 7 && pipe <= 9){
+				ctx.beginPath();
+			    ctx.moveTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE);
+			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2)+3);
+			    ctx.lineWidth = 5;
+			    ctx.stroke();
+			}
+			if(pipe === 3 || pipe === 6 || pipe === 9){
+				ctx.beginPath();
+			    ctx.moveTo((i+1)*CELL_SIZE, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
+			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2)-3, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
+			    ctx.lineWidth = 5;
+			    ctx.stroke();
+			}
+			if(pipe >= 1 && pipe <= 3){
+				ctx.beginPath();
+			    ctx.moveTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), (j+1)*CELL_SIZE);
+			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2)-3);
+			    ctx.lineWidth = 5;
+			    ctx.stroke();
+			}
+
+		}
+	}	
+}
+
+/*********************************** Fin gestion Map **********************************/
 
 
 //Makes one cell flowing to another
@@ -195,9 +237,11 @@ function login(){
 	var pwd = $("#password-input").val();
 	$.get("v1/userdb/auth/login?name="+login+"&mdp="+pwd, function(data, status){
 		if(status=="success"){
-			swal("Logged", "Welcome back " + login + ".", "success");
+			getMap();
+			drawMap();
 			$("#group-auth").hide();
-			$("#gamepanel").show();
+			$("#gamepanel").show();	
+			swal("Logged", "Welcome back " + login + ".", "success");		
 		}
 		console.log(data);
 		console.log(status);
@@ -207,7 +251,7 @@ function login(){
     	//alert( "second success" );
   	})
 	.fail(function() {
-    	swal("Failed to log in");
+		swal("Loggin failed", "No match found between this username and password.", "error");
   	});
 	//Serveur connection.
 }
@@ -232,7 +276,7 @@ function register() {
 			swal("Registered", "Thanks for registering \"" + username + "\".\nYou have been logged in.", "success");
 			$("#group-auth").hide();
 			$("#gamepanel").show();
-			afficheUser(data);
+			login();
 		},
 		error :function(jqXHR, textStatus, errorThrown) {
 			swal("Register failed", "The username \"" + username + "\" is already taken.", "error");
@@ -240,16 +284,24 @@ function register() {
 	});
 }
 
-function getMap(){
-	var url = "v1/map";
-
-	$.getJSON(url,data,success(data,status,xhr));
+function printRemoteMap(){
+	for(i=0;i<remoteMap.length;i++){
+		for(j=0;j<remoteMap[0].item.length;j++){
+			console.log(remoteMap[i].item[j]);
+		}
+	}
 }
 
 $(function(){
+
+	$(".authent-input").keydown(function(event){
+        if((event.which || event.keyCode) === 13){
+            login();
+        }
+    });
+
 	$(canvas).keydown(function(event){
-        var pressed = event.which || event.keyCode;
-        updatePipe(pressed);
+        updatePipe(event.which || event.keyCode);
     });
 
     canvas.focus();

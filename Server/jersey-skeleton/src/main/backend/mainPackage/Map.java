@@ -25,19 +25,21 @@ public class Map {
 	private Random rand = new Random();
 	private int[][] intMap;
 	private Case[][] caseMap;
-	private int plain=0;
- 	private int sand=1;
- 	private int hill1=2;
- 	private int hill2=3;
- 	private int hill3=4;
- 	private int water1=5;
- 	private int water2=6;
- 	private int water3=7;
+	private Case[][] emptyMap;
+	private final int PLAIN=0;
+ 	private final int SAND=1;
+ 	private final int HILL1=2;
+ 	private final int HILL2=3;
+ 	private final int HILL3=4;
+ 	private final int WATER1=5;
+ 	private final int WATER2=6;
+ 	private final int WATER3=7;
 	
 	public Map() {
 		this.activeTexturePack = "Default";
 		this.intMap = generateNewMap(30, 20);
 		this.caseMap = generateCaseMap(intMap);
+		//this.caseMap = new Case[30][20];
 		logDisplayMap(caseMap);
 	}
 	
@@ -69,16 +71,13 @@ public class Map {
 	public void setActiveTexturePack(String texturePackName) {
 		this.activeTexturePack = texturePackName;
 	}
-	
+
 	/**
 	 * 
 	 * @param lenX
 	 * @param lenY
 	 * @return the fieldTypeId array version of the map 
 	 */
-	
-
-
 	private int[][] generateNewMap(int lenX, int lenY) {
 		int[][] iMap = new int[lenX][lenY];
 		for (int y=0; y<lenY; y+=2) {
@@ -96,12 +95,12 @@ public class Map {
 	}
 /**
 * @return the type of the field.
-* 0 = plain ; 1 = sand 
+* 0 = PLAIN ; 1 = SAND 
 * 2 = hill 1; 3 = hill 2; 4 = hill 3
-* 5 = water1; 6 = water2; 7 = water3
+* 5 = WATER1; 6 = WATER2; 7 = WATER3
 */
 	private int[][] printField(int[][] iMap, int fieldId, int x, int y) {
-		if (fieldId<=hill1 || fieldId==water1) {
+		if (fieldId<=HILL1 || fieldId==WATER1) {
 			for (int cptY=y-2; cptY<y+2; cptY++) {
 				for (int cptX=x-2; cptX<x+2; cptX++) {
 					if (setOnMap(cptX, cptY, iMap)) {
@@ -114,22 +113,22 @@ public class Map {
 			int border;
 			int miborder;
 			int center;
-			if (fieldId==hill2) {
+			if (fieldId==HILL2) {
 				border=defaut;
-				miborder=hill1;
-				center=hill2;
-			} else if (fieldId==hill3) {
-				border=hill1;
-				miborder=hill2;
-				center=hill3;
-			} else if (fieldId==water2) {
+				miborder=HILL1;
+				center=HILL2;
+			} else if (fieldId==HILL3) {
+				border=HILL1;
+				miborder=HILL2;
+				center=HILL3;
+			} else if (fieldId==WATER2) {
 				border=defaut;
-				miborder=water1;
-				center=water2;	
-			} else if (fieldId==water3) {
-				border=water1;
-				miborder=water2;
-				center=water3;
+				miborder=WATER1;
+				center=WATER2;	
+			} else if (fieldId==WATER3) {
+				border=WATER1;
+				miborder=WATER2;
+				center=WATER3;
 			} else {
 				border=defaut;
 				miborder=border;
@@ -176,6 +175,9 @@ public class Map {
 		for (int y=0; y<intMap[0].length; y++) {
 			for (int x=0; x<intMap.length; x++) {
 				cMap[x][y] = new Case(new Coord(x, y), intMap[x][y]);
+				if (rand.nextInt(10)==5) {
+					cMap[x][y].setPump(true);
+				}
 			}
 		}
 		return cMap;
