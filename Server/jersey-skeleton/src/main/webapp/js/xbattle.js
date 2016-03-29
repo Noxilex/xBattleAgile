@@ -306,6 +306,10 @@ function login(){
 	.fail(function() {
 		swal("Loggin failed", "No match found between this username and password.", "error");
   	});
+
+
+  	$("#authent-page").hide();
+  	$("#lobby-page").show();
 	//Serveur connection.
 }
 

@@ -39,12 +39,6 @@ public class Map {
 		this.activeTexturePack = "Default";
 		this.intMap = generateNewMap(30, 20);
 		this.caseMap = generateCaseMap(intMap);
-		int spawnOneX = rand.nextInt(intMap.length);
-		int spawnOneY = rand.nextInt(intMap[0].length);
-		caseMap[spawnOneX][spawnOneY].setOwner(1);
-		int spawnTwoX = rand.nextInt(intMap.length);
-		int spawnTwoY = rand.nextInt(intMap[0].length);
-		caseMap[spawnTwoX][spawnTwoY].setOwner(2);
 		//this.caseMap = new Case[30][20];
 		logDisplayMap(caseMap);
 	}

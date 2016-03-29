@@ -1,32 +1,43 @@
+var players = [	{name: "Toto", avatar: "red"},
+				{name: "Tata", avatar: "blue"},
+				{name: "Titi", avatar: "green"}];
 
-var players=[];
-var table = $('#lobby');
-var nbLigne = players.length;
-update();
-
-// génération des cellules de la table à l'image de l'exemple
-
-function addPlayer(pname){
-	players.push(pname);
-	update();
-}
 
 function update(){
-	table.html("");
-	var header = $('<tr></tr>');
-	header.append('<th>Nom</th>');
-	table.append(header);
-	for (p in players) {
-  		table.append("<tr><td>"+players[p]+"</td></tr>");
+
+	$.get("v1/userdb/lobby/", function(data, status){
+		console.log(data);
+		console.log(status);
+		//console.log(typeof(data));
+	})
+	.done(function() {
+		console.log("done");
+    	//alert( "second success" );
+  	})
+	.fail(function() {
+		console.log("fail");
+  	});
+
+	var playersList = $(".queue_container .queue_line .queue_item");
+	for(var i = 0 ; i < 8 ; i++){
+		var playerItem = $(playersList[i]);
+		if(players[i]){
+			playerItem.children(".queue_name").text(players[i].name);
+			playerItem.children(".queue_avatar").css("background-color", players[i].avatar);
+		}else{
+			playerItem.children(".queue_name").text("Empty");
+			playerItem.children(".queue_avatar").css("background-color", "LightGray");
+		}
 	}
 }
 
-function removeUser(){
-players.splice(players.indexOf("undefined"));
-update();
+function join(){
+		
 }
 
-function clearLobby(){
-	players=[];
-	update();
+function leave(){
+
 }
+
+$(function(){
+})
