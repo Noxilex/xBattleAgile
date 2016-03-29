@@ -78,7 +78,7 @@
 	display:block;
 	height:auto;
 	padding: 10px;
-	border: 1px solid red;
+	/*border: 1px solid red;*/
 }
 
 .queue_container .queue_line{
@@ -86,7 +86,7 @@
 	position:relative;
 	width: 580px;
 	height: auto;
-	border: 1px solid black;
+	/*border: 1px solid black;*/
 	margin: 10px;
 
 
@@ -103,7 +103,7 @@
 
 	display: inline-block;
 	margin: 10px;
-	border:1px solid green;
+	/*border:1px solid green;*/
 
 	width: 120px;
 	height: 120px;
@@ -111,6 +111,7 @@
 
 .queue_container .queue_line .queue_item .queue_avatar{
 	background-color: gray;
+	border: 1px solid black;
 	margin: auto;
 	width: 100px;
 	height: 100px;
@@ -131,7 +132,7 @@
 	position: relative;
 	text-align: center;
 	
-	border: 1px solid blue;
+	/*border: 1px solid blue;*/
 
 	left: 50%;
 	transform: translateX(-50%);
