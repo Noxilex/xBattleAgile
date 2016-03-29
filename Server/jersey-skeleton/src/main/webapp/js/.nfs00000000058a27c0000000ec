@@ -18,11 +18,6 @@ var lastCellUnderMouse;
 //Event on monsedown
 $(canvas).click(function(event){
 	lastCellUnderMouse.player = 1;
-	console.log(lastCellUnderMouse);
-		
-	if(lastCellUnderMouse.level<=95 && lastCellUnderMouse.player!=0){
-		lastCellUnderMouse.level+=5;
-	}
 	drawMap();
 });
 
@@ -102,7 +97,6 @@ function Cell(x, y, type){
 	this.type = type;
 	this.player = 0;
 	this.pipe = 5;
-	this.level = 0;
 }
 
 /****************************** Début gestion Map **********************************/
@@ -193,9 +187,6 @@ function drawMap(){
 					ctx.fillStyle="#000099";
 					break;
 			}
-			//Drawing the floor before the player
-			ctx.fillRect(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);		
-		
 			//Player
 			switch(map[j][i].player){
 				case 0:
@@ -207,29 +198,8 @@ function drawMap(){
 				case 2:
 					ctx.fillStyle="#0000FF";
 				break;
-				case 3:
-					ctx.fillStyle="#0000FF";
-				break;
-				case 4:
-					ctx.fillStyle="#0000FF";
-				break;
-				case 5:
-					ctx.fillStyle="#0000FF";
-				break;
-				case 6:
-					ctx.fillStyle="#0000FF";
-				break;
-				case 7:
-					ctx.fillStyle="#0000FF";
-				break;
-				case 8:
-					ctx.fillStyle="#000000";
-				break;
 			}
-	
-			//TODO Modify Cell size
-			drawPlayer(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, map[j][i].level);
-			//ctx.fillRect(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
+			ctx.fillRect(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
 
 			var pipe = map[j][i].pipe;
 			if(pipe === 1 || pipe === 4 || pipe === 7){
@@ -263,12 +233,6 @@ function drawMap(){
 
 		}
 	}	
-}
-
-function drawPlayer(xRound, yRound, size, fillLvl){
-	var missing= 100-fillLvl;
-	var missingCell=missing/100*size;
-	ctx.fillRect(xRound+(missingCell/2), yRound+(missingCell/2), size-missingCell, size-missingCell);
 }
 
 /*********************************** Fin gestion Map **********************************/
