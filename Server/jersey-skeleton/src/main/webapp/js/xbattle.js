@@ -26,59 +26,76 @@ function cellUnderMouse(event){
 	return map[Math.floor(mousePos.y/CELL_SIZE)][Math.floor(mousePos.x/CELL_SIZE)];
 }
 
+/************************* MAIN LOOP *************************/
+
+function mainUpdate(){
+	getMap();
+	drawMap();
+	console.log("Updating");
+}
+
+//Draws data from server
+function mainLoopDraw(){
+	setInterval(mainUpdate(),500);
+}
+
+/*************************************************************/
 
 function updatePipe(keycode){
 	var cell = lastCellUnderMouse;
+	var pipeNum = null;
 	switch(keycode){
 		case 97:
 		case 87:
-			cell.pipe = 1;
+			pipeNum = 1;
 			break;
 		case 98:
 		case 88:
-			cell.pipe = 2;
+			pipeNum = 2;
 			break;
 		case 99:
 		case 67:
-			cell.pipe = 3;
+			pipeNum = 3;
 			break;
 		case 100:
 		case 81:
-			cell.pipe = 4;
+			pipeNum = 4;
 			break;
 		case 101:
 		case 83:
-			cell.pipe = 5;
+			pipeNum = 5;
 			break;
 		case 102:
 		case 68:
-			cell.pipe = 6;
+			pipeNum = 6;
 			break;
 		case 103:
 		case 65:
-			cell.pipe = 7;
+			pipeNum = 7;
 			break;
 		case 104:
 		case 90:
-			cell.pipe = 8;
+			pipeNum = 8;
 			break;;
 		case 105:
 		case 69:
-			cell.pipe = 9;
+			pipeNum = 9;
 			break;
 	}
+	cell.pipe = pipeNum;
 
 	drawMap();
     $("#coord").text("Pipe : " + cell.pipe);
+	return cell;
 
 }
 
-function Cell(x, y, type){
+function Cell(x, y, type, pipe=5){
 	this.x = x;
 	this.y = y;
 	this.type = type;
 	this.player = 0;
-	this.pipe = 5;
+	this.pipe = pipe;
 	this.level = 0;
 }
 
@@ -126,7 +143,7 @@ function buildMapNew(remoteMap){
 	for(j=0;j<MAP_Y;j++){
 		var subMap = [];
 		for(i=0;i<MAP_X;i++){
-			subMap.push(new Cell(i, j, remoteMap[i].item[j].fieldType));
+			subMap.push(new Cell(i, j, remoteMap[i].item[j].fieldType, remoteMap[i].item[j].pipes));
 		}
 		map.push(subMap);
 	}
@@ -277,8 +294,12 @@ function sendPipe(x, y, sens, player){
    type: "PUT",
    url: url,
    success: function(response) {
+	console.log(response);
      console.log("Send pipe success");
-   }
+   },
+	error: function(response){
+		console.log("Send pipe error");
+	}
 });
 }
 /*
@@ -300,6 +321,7 @@ function init(){
 
 	getMap();
 	drawMap();
+	mainLoopDraw();
 
 	//Event on monsedown
 	$(canvas).click(function(event){
@@ -323,6 +345,7 @@ function init(){
 
 	//Create a new pipe when a key is pressed
 	$(canvas).keydown(function(event){
-        updatePipe(event.which || event.keyCode);
+        var cell = updatePipe(event.which || event.keyCode);
+		sendPipe(cell.x,cell.y,cell.pipe,cell.player);
     });
 }
