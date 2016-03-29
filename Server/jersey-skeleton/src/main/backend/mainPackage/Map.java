@@ -95,12 +95,12 @@ public class Map {
 	}
 /**
 * @return the type of the field.
-* 0 = plain ; 1 = sand 
+* 0 = PLAIN ; 1 = SAND 
 * 2 = hill 1; 3 = hill 2; 4 = hill 3
-* 5 = water1; 6 = water2; 7 = water3
+* 5 = WATER1; 6 = WATER2; 7 = WATER3
 */
 	private int[][] printField(int[][] iMap, int fieldId, int x, int y) {
-		if (fieldId<=hill1 || fieldId==water1) {
+		if (fieldId<=HILL1 || fieldId==WATER1) {
 			for (int cptY=y-2; cptY<y+2; cptY++) {
 				for (int cptX=x-2; cptX<x+2; cptX++) {
 					if (setOnMap(cptX, cptY, iMap)) {
@@ -113,22 +113,22 @@ public class Map {
 			int border;
 			int miborder;
 			int center;
-			if (fieldId==hill2) {
+			if (fieldId==HILL2) {
 				border=defaut;
-				miborder=hill1;
-				center=hill2;
-			} else if (fieldId==hill3) {
-				border=hill1;
-				miborder=hill2;
-				center=hill3;
-			} else if (fieldId==water2) {
+				miborder=HILL1;
+				center=HILL2;
+			} else if (fieldId==HILL3) {
+				border=HILL1;
+				miborder=HILL2;
+				center=HILL3;
+			} else if (fieldId==WATER2) {
 				border=defaut;
-				miborder=water1;
-				center=water2;	
-			} else if (fieldId==water3) {
-				border=water1;
-				miborder=water2;
-				center=water3;
+				miborder=WATER1;
+				center=WATER2;	
+			} else if (fieldId==WATER3) {
+				border=WATER1;
+				miborder=WATER2;
+				center=WATER3;
 			} else {
 				border=defaut;
 				miborder=border;
