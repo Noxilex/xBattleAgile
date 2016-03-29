@@ -295,8 +295,27 @@ function printRemoteMap(){
 	}
 }
 
+//Sends a pipe to the remote server
 function sendPipe(){
+	var url = "/v1/userdb/mapa/putaction?x="++"&y="++"&sens="++"&player=";
+	$.ajax({
+   url: url,
+   type: 'PUT',
+   success: function(response) {
+     
+   }
+});
+}
 
+function deletePipe(){
+	var url = "/v1/userdb/mapa/putaction";
+	$.ajax({
+   url: url,
+   type: 'DELETE',
+   success: function(response) {
+     
+   }
+});
 }
 
 $(function(){
