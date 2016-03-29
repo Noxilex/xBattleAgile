@@ -61,7 +61,7 @@ public class Map {
 	public String getActiveTexturePack() {
 		return activeTexturePack;
 	}
-	
+
 	/**
 	 * Set the new name of the active texture pack
 	 * @param texturePackName
@@ -79,7 +79,7 @@ public class Map {
 	
 
 
-	private int[][] generateNewMap(int lenX, int lenY) {
+	private int[][] generateNewMap(int lenY, int lenX) {
 		int[][] iMap = new int[lenX][lenY];
 		for (int x=0; x<lenX; x+=2) {
 			for (int y=0; y<lenY; y+=2) {
