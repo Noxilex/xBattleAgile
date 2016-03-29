@@ -3,13 +3,15 @@ package mainPackage;
 import java.util.ArrayList;
 
 public class Lobby {
-	
+
 	private ArrayList<Player> listPlayers = new ArrayList<Player>();
 
-	public Lobby() {}
+	public Lobby() {
+	}
 
 	public ArrayList<Player> addPlayer(Player p) {
-		listPlayers.add(p);
+		if (listPlayers.size() < 8)
+			listPlayers.add(p);
 		return listPlayers;
 	}
 
