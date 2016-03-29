@@ -36,7 +36,9 @@ public class Map {
 	
 	public Map() {
 		this.activeTexturePack = "Default";
-		this.intMap = generateNewMap(30, 20);
+		this.intMap = generateNewMap(20, 30);
+		System.out.println(intMap.length);
+		System.out.println(intMap[0].length);
 		this.caseMap = generateCaseMap(intMap);
 		logDisplayMap(caseMap);
 	}
