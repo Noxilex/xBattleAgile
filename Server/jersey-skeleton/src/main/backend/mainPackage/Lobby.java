@@ -1,5 +1,7 @@
 package mainPackage;
 
+import java.util.ArrayList;
+
 public class Lobby {
 	
 	private ArrayList<Player> listPlayers = new ArrayList<Player>();
