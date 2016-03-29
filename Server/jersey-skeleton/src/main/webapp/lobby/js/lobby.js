@@ -10,10 +10,11 @@ function update(){
 		//console.log(typeof(data));
 	})
 	.done(function() {
+		console.log("done");
     	//alert( "second success" );
   	})
 	.fail(function() {
-		
+		console.log("fail");
   	});
 
 
