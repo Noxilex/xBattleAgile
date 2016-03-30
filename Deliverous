@@ -3,4 +3,4 @@ java:
   ports:
   - ip:  5.135.83.124 
     container_port: 8080
-    host_port: 80
+    host_port: 8080
