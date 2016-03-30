@@ -60,12 +60,16 @@ public class MiniGameActivity extends AppCompatActivity {
     private Cell[][] gridPipes;
     private Coord selectedCell;
 
-    private Handler handler = new Handler();
+    private Handler[] handler = new Handler[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.minigame);
+
+        for(int i=0; i < 4; i++){
+            handler[i] = new Handler();
+        }
 
         gridPipes = new Cell[2][2];
         gridPipes[0][0] = new Cell(R.id.cell1, 0);
@@ -80,14 +84,63 @@ public class MiniGameActivity extends AppCompatActivity {
         keyPad.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
                 if(!s.toString().isEmpty()) {
-                    System.out.println(s.toString());
-                    if(gridPipes[selectedCell.x][selectedCell.y].direction == 5) {
-                        if (s.toString().equals("6")) {
-                            fromC1toC2(new Coord(0, 0), new Coord(1, 0));
-                        }
-                        keyPad.setText("");
+                    if(gridPipes[selectedCell.x][selectedCell.y].direction != 5) {
+                        handler[selectedCell.x + selectedCell.y * 2] = new Handler();
                     }
+
+                    if (s.toString().equals("1")) {
+                        gridPipes[selectedCell.x][selectedCell.y].direction = 1;
+                        if(selectedCell.x == 1 && selectedCell.y == 0)
+                            fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x - 1, selectedCell.y));
+                            fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x, selectedCell.y + 1));
+                    } else
+                    if (s.toString().equals("2")) {
+                        gridPipes[selectedCell.x][selectedCell.y].direction = 2;
+                        if(selectedCell.y == 0)
+                            fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x, selectedCell.y + 1));
+                    } else
+                    if (s.toString().equals("3")) {
+                        gridPipes[selectedCell.x][selectedCell.y].direction = 3;
+                        if(selectedCell.x == 0 && selectedCell.y == 0) {
+                            fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x + 1, selectedCell.y));
+                            fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x, selectedCell.y + 1));
+                        }
+                    } else
+                    if (s.toString().equals("4")) {
+                        gridPipes[selectedCell.x][selectedCell.y].direction = 4;
+                        if(selectedCell.x == 1)
+                            fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x - 1, selectedCell.y));
+                    } else
+                    if (s.toString().equals("5")) {
+                        gridPipes[selectedCell.x][selectedCell.y].direction = 5;
+                        handler[selectedCell.x + selectedCell.y * 2].removeCallbacksAndMessages(null);
+                    } else
+                    if (s.toString().equals("6")) {
+                        gridPipes[selectedCell.x][selectedCell.y].direction = 6;
+                        if(selectedCell.x == 0)
+                            fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x + 1, selectedCell.y));
+                    } else
+                    if (s.toString().equals("7")) {
+                        gridPipes[selectedCell.x][selectedCell.y].direction = 7;
+                        if(selectedCell.x == 1 && selectedCell.y == 1){
+                            fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x - 1, selectedCell.y));
+                            fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x, selectedCell.y - 1));
+                        }
+                    } else
+                    if (s.toString().equals("8")) {
+                        gridPipes[selectedCell.x][selectedCell.y].direction = 8;
+                        if(selectedCell.y == 1)
+                            fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x, selectedCell.y - 1));
+                    } else
+                    if (s.toString().equals("9")) {
+                        gridPipes[selectedCell.x][selectedCell.y].direction = 9;
+                        if(selectedCell.x == 0 && selectedCell.y == 1)
+                            fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x + 1, selectedCell.y));
+                            fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x, selectedCell.y - 1));
+                    }
+                    keyPad.setText("");
                 }
             }
 
@@ -114,10 +167,10 @@ public class MiniGameActivity extends AppCompatActivity {
                     drawCell(c1.x, c1.y);
                     drawCell(c2.x, c2.y);
                 }
-                handler.postDelayed(this, 100);
+                handler[c1.x + c1.y * 2].postDelayed(this, 100);
             }
         };
-        handler.postDelayed(runnable, 0);
+        handler[c1.x + c1.y * 2].postDelayed(runnable, 0);
     }
 
     public void launchTimer(int xCel, int yCel, int valuePerTick){
@@ -156,6 +209,44 @@ public class MiniGameActivity extends AppCompatActivity {
         canvas.drawRect(coord, coord, size, size, paint);
         Drawable d = new BitmapDrawable(getResources(), bg);
 
+        Paint paintPipe = new Paint();
+        paintPipe.setColor(Color.parseColor("#000000"));
+        Bitmap bitmapPipe = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+        Canvas canvasPipe = new Canvas(bitmapPipe);
+        switch (gridPipes[x][y].direction){
+            case 1:
+                canvasPipe.drawRect(0, 45, 50, 55, paintPipe);
+                canvasPipe.drawRect(45, 50, 55, 100, paintPipe);
+                break;
+            case 2:
+                canvasPipe.drawRect(45, 50, 55, 100, paintPipe);
+                break;
+            case 3:
+                canvasPipe.drawRect(45, 50, 55, 100, paintPipe);
+                canvasPipe.drawRect(50, 45, 100, 55, paintPipe);
+                break;
+            case 4:
+                canvasPipe.drawRect(0, 45, 50, 55, paintPipe);
+                break;
+            case 5:
+
+                break;
+            case 6:
+                canvasPipe.drawRect(50, 45, 100, 55, paintPipe);
+                break;
+            case 7:
+                canvasPipe.drawRect(45, 0, 55, 50, paintPipe);
+                canvasPipe.drawRect(0, 45, 50, 55, paintPipe);
+                break;
+            case 8:
+                canvasPipe.drawRect(45, 0, 55, 50, paintPipe);
+                break;
+            case 9:
+                canvasPipe.drawRect(45, 0, 55, 50, paintPipe);
+                canvasPipe.drawRect(50, 45, 100, 55, paintPipe);
+                break;
+        }
+        Drawable dPipe = new BitmapDrawable(getResources(), bitmapPipe);
 
         if(x == 0 && y == 0) {
             drawableList.add(r.getDrawable(R.drawable.plain));
@@ -163,6 +254,7 @@ public class MiniGameActivity extends AppCompatActivity {
                 drawableList.add(d);
             }
             drawableList.add(r.getDrawable(R.drawable.pump));
+            drawableList.add(dPipe);
             if(x == selectedCell.x && y == selectedCell.y) {
                 drawableList.add(r.getDrawable(R.drawable.frame));
             }
@@ -174,11 +266,11 @@ public class MiniGameActivity extends AppCompatActivity {
             if(q > 0) {
                 drawableList.add(d);
             }
+            drawableList.add(dPipe);
             if(x == selectedCell.x && y == selectedCell.y) {
                 drawableList.add(r.getDrawable(R.drawable.frame));
             }
         }
-
 
         layers = new Drawable[drawableList.size()];
         int idx = 0;
