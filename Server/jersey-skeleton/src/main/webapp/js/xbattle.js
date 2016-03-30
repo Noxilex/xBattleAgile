@@ -7,6 +7,7 @@ var MAP_X;
 var MAP_Y;
 var MAP_TEXTURE;
 var map = [];
+var saveMap;
 
 var remoteMap = [];
 
@@ -91,7 +92,7 @@ function getMap(){
 	
 	$.getJSON(url, function(result){
         $.each(result, function(i, field){
-            console.log("i:"+i+ " field:" + field);
+            //console.log("i:"+i+ " field:" + field);
 			if(i=="caseMap"){
 				remoteMap = field;
 				buildMapNew(remoteMap);
@@ -115,25 +116,27 @@ function buildMapOld(){
 }
 */
 function buildMapNew(remoteMap){
-	console.log(remoteMap);
-	console.log("Building..");
-	console.log(remoteMap);
-	console.log("ymax:"+remoteMap[0].item.length);
-	console.log("xmax:"+remoteMap.length);
+	saveMap=map;
+	//console.log(remoteMap);
+	//console.log("Building..");
+	//console.log(remoteMap);
+	//console.log("ymax:"+remoteMap[0].item.length);
+	//console.log("xmax:"+remoteMap.length);
 	MAP_X=remoteMap.length;
 	MAP_Y=remoteMap[0].item.length;
 	canvas.width=MAP_X*CELL_SIZE;
 	canvas.height=MAP_Y*CELL_SIZE;
-	map = [];
+	var mapTmp = [];
 	for(j=0;j<MAP_Y;j++){
-		console.log(map);
+		//console.log(map);
 		var subMap = [];
 		for(i=0;i<MAP_X;i++){
 			subMap.push(new Cell(i, j, remoteMap[i].item[j].fieldType, remoteMap[i].item[j].level, remoteMap[i].item[j].pipes));
 		}
-		map.push(subMap);
+		mapTmp.push(subMap);
 	}
-	console.log("Building finished");
+	map = mapTmp;
+	//console.log("Building finished");
 }
 
 /*
@@ -144,6 +147,8 @@ function buildMapNew(remoteMap){
 4: high-mountain
 */
 function drawMap(){
+	//if(map==null)
+	//	map = saveMap;
 	for(j = 0 ; j < MAP_Y ; j++){
 		for(i = 0 ; i < MAP_X ; i++){
 			//Terrain
@@ -182,34 +187,39 @@ function drawMap(){
 					//ctx.fillStyle="#000099";
 				break;
 				case 1:
-					ctx.fillStyle="#FF0000";
+					ctx.fillStyle="#F00000";
 				break;
 				case 2:
-					ctx.fillStyle="#0000FF";
+					ctx.fillStyle="#0F0000";
 				break;
 				case 3:
-					ctx.fillStyle="#0000FF";
+					ctx.fillStyle="#00F000";
 				break;
 				case 4:
-					ctx.fillStyle="#0000FF";
+					ctx.fillStyle="#000F00";
 				break;
 				case 5:
-					ctx.fillStyle="#0000FF";
+					ctx.fillStyle="#0000F0";
 				break;
 				case 6:
-					ctx.fillStyle="#0000FF";
+					ctx.fillStyle="#00000F";
 				break;
 				case 7:
-					ctx.fillStyle="#0000FF";
-				break;
-				case 8:
-					ctx.fillStyle="#000000";
+					ctx.fillStyle="#FFFFFF";
 				break;
 			}
 	
 			//TODO Modify Cell size
 			drawPlayer(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, map[j][i].level);
 			//ctx.fillRect(i*CELL_SIZE+1, j*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
+			
+			
+			if(lastCellUnderMouse!=null){
+				ctx.fillStyle="rgba(200, 255, 255, 0.5)";
+				ctx.fillRect(lastCellUnderMouse.x*CELL_SIZE+1, lastCellUnderMouse.y*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
+			}
+
+			ctx.fillStyle="#000000";
 
 			var pipe = map[j][i].pipe;
 			if(pipe === 1 || pipe === 4 || pipe === 7){
@@ -267,7 +277,7 @@ function reduce_cell(){
 function printRemoteMap(){
 	for(i=0;i<remoteMap.length;i++){
 		for(j=0;j<remoteMap[0].item.length;j++){
-			console.log(remoteMap[i].item[j]);
+			//console.log(remoteMap[i].item[j]);
 		}
 	}
 }
@@ -280,11 +290,11 @@ function sendPipe(x, y, sens, player){
    type: "PUT",
    url: url,
    success: function(response) {
-	console.log(response);
-     console.log("Send pipe success");
+	//console.log(response);
+     //console.log("Send pipe success");
    },
 	error: function(response){
-		console.log("Send pipe error");
+		//console.log("Send pipe error");
 	}
 });
 }
@@ -301,22 +311,14 @@ function deletePipe(){
 }
 */
 
-function gameLoop(){
-
-}
-
 
 /************************* MAIN LOOP *************************/
 
 function mainUpdate(){
-	getMap();
-	drawMap();
-	console.log("Updating");
-}
-
-//Draws data from server
-function mainLoopDraw(){
-	setInterval(mainUpdate(),500);
+	getMap();	
+	//setTimeout(drawMap ,10);
+	//drawMap();
+	//console.log("Updating");
 }
 
 /*************************************************************/
@@ -330,22 +332,22 @@ function init(){
 
 	//Event on monsedown
 	$(canvas).click(function(event){
-		lastCellUnderMouse.player = 1;
-		console.log(lastCellUnderMouse);
+		//lastCellUnderMouse.player = 1;
+		//console.log(lastCellUnderMouse);
 		
-		if(lastCellUnderMouse.level<=95 && lastCellUnderMouse.player!=0){
-			lastCellUnderMouse.level+=5;
-		}
-		drawMap();
+		//if(lastCellUnderMouse.level<=95 && lastCellUnderMouse.player!=0){
+		//	lastCellUnderMouse.level+=5;
+		//}
+		//drawMap();
 	});
 
 	//Hover of the mouse
 	$(canvas).mousemove(function(event){
 		lastCellUnderMouse = cellUnderMouse(event);
 		$("#coord").text('Mouse position: ' + lastCellUnderMouse.x + ', ' + lastCellUnderMouse.y);
-		drawMap();
-		ctx.fillStyle="rgba(200, 255, 255, 0.5)";
-		ctx.fillRect(lastCellUnderMouse.x*CELL_SIZE+1, lastCellUnderMouse.y*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
+		//drawMap();
+		//ctx.fillStyle="rgba(200, 255, 255, 0.5)";
+		//ctx.fillRect(lastCellUnderMouse.x*CELL_SIZE+1, lastCellUnderMouse.y*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
 	});
 
 	//Create a new pipe when a key is pressed
@@ -356,8 +358,8 @@ function init(){
 
     getMap();
 	drawMap();
-
-	var interval = setInterval(mainUpdate, 1000);
+	var refresh = setInterval(drawMap, 1);
+	var interval = setInterval(getMap, 500);
 
 
 

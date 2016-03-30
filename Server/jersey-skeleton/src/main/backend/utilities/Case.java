@@ -13,10 +13,13 @@ public class Case {
 	private int owner;
 	private int pipes;
 	private int level;
-	private int fieldType;
+	private int fieldType=1;
 	private boolean pump;
 	
-	public Case(){}
+	public Case(){
+		level=0;
+		fieldType=1;
+	}
 
 	public Case(Coord coord, int fieldType) {
 		this.coord = coord;
