@@ -24,13 +24,13 @@ public class AuthFilter implements ContainerRequestFilter {
         String auth = containerRequest.getHeaderString(HttpHeaders.AUTHORIZATION);
         String scheme = containerRequest.getUriInfo().getRequestUri().getScheme();
         String uriAuth = containerRequest.getUriInfo().getRequestUri().getUserInfo();
-        logger.debug("uriAuth : " + uriAuth);
-        logger.debug("auth : " + auth);
+        //logger.debug("uriAuth : " + uriAuth);
+        //logger.debug("auth : " + auth);
 
         if (auth != null) {
             String[] loginPassword = BasicAuth.decode(auth);
-            logger.debug("login : " + loginPassword[0]);
-            logger.debug("password : " + loginPassword[1]);
+          //  logger.debug("login : " + loginPassword[0]);
+           // logger.debug("password : " + loginPassword[1]);
             if (loginPassword == null || loginPassword.length != 2) {
                 throw new WebApplicationException(Status.NOT_ACCEPTABLE);
             }
