@@ -168,8 +168,9 @@ public class MiniGameActivity extends AppCompatActivity {
         Runnable runnable = new Runnable() {
             public void run() {
                 if (gridPipes[c1.x][c1.y].quantity > 0 && gridPipes[c2.x][c2.y].quantity < 100){
-                    gridPipes[c1.x][c1.y].quantity += -1;
-                    gridPipes[c2.x][c2.y].quantity += 1;
+                    gridPipes[c1.x][c1.y].quantity += -2;
+                    gridPipes[c2.x][c2.y].quantity += 2;
+
                     drawCell(c1.x, c1.y);
                     drawCell(c2.x, c2.y);
                 }
