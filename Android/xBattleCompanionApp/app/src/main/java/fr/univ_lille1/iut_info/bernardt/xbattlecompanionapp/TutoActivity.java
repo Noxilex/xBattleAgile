@@ -58,14 +58,17 @@ public class TutoActivity extends AppCompatActivity {
 
     public void onClick_Title(View view){
         switch(view.getId()){
-            case R.id.pres_title1:
+            case R.id.tuto_title1:
                 changeTab(1);
                 break;
-            case R.id.pres_title2:
+            case R.id.tuto_title2:
                 changeTab(2);
                 break;
-            case R.id.pres_title3:
-                changeTab(3);
+            case R.id.tuto_title3:
+                changeTab(1);
+                break;
+            case R.id.tuto_title4:
+                changeTab(2);
                 break;
         }
     }

@@ -87,8 +87,8 @@
             android:layout_marginBottom="36dp"
             android:layout_alignRight="@+id/button2"
             android:layout_alignEnd="@+id/button2"
-            android:background="@color/Color4"
-            android:textColor="@color/Color3"
+            android:background="#b4b4b4"
+            android:textColor="#474747"
             android:textSize="25dp"
             android:layout_weight="0.5" />
 
