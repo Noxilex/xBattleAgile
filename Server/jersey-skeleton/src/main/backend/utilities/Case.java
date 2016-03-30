@@ -12,7 +12,7 @@ public class Case {
 	public static Coord coord;
 	private int owner;
 	private int pipes;
-	private double level;
+	private int level;
 	private int fieldType;
 	private boolean pump;
 	
@@ -77,9 +77,9 @@ public class Case {
 	 * @param lvl
 	 * Set the player liquid level of the case.
 	 */
-	public void setLevel(double lvl) {
-		if (lvl>1) {
-			lvl=1;
+	public void setLevel(int lvl) {
+		if (lvl>100) {
+			lvl=100;
 		}
 		if (lvl<0) {
 			lvl=0;
@@ -90,7 +90,7 @@ public class Case {
 	/**
 	 * @return get the player liquid level. 0-100
 	 */
-	public double getLevel() {
+	public int getLevel() {
 		return this.level;
 	}
 	
