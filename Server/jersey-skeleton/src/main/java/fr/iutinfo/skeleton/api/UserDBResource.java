@@ -2,6 +2,20 @@ package fr.iutinfo.skeleton.api;
 
 //import mainPackage.Map;
 
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
+
 import mainPackage.GameMecanics;
 import mainPackage.Lobby;
 import mainPackage.Map;
@@ -13,11 +27,6 @@ import org.slf4j.LoggerFactory;
 
 import utilities.Coord;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-
-import java.util.List;
-
 
 @Path("/userdb")
 @Produces(MediaType.APPLICATION_JSON)
@@ -26,7 +35,7 @@ public class UserDBResource {
 	
 	private static UserDao dao = BDDFactory.getDbi().open(UserDao.class);
 	final static Logger logger = LoggerFactory.getLogger(UserDBResource.class);
-	private threadPower tpower = new threadPower("game");
+	private Thread tpower = new threadPower("game");
 	public static Map map = new Map();
 	GameMecanics gameMeca = new GameMecanics();
 	boolean finish = false;
@@ -39,7 +48,7 @@ public class UserDBResource {
 			dao.createUserTable();
 			dao.insert(new User(0, "Margaret Thatcher"));
 		} catch (Exception e) {
-			System.out.println("Table déjà là !");
+			//System.out.println("Table déjà là !");
 		}
 	}
 
@@ -104,7 +113,7 @@ public class UserDBResource {
 	@Path("/lobby/adduser")
 	public Lobby addtolobby(@QueryParam("pseudo") String pseudo,@QueryParam("id") int gameId,@QueryParam("skin") String skinImg) {
 		lobby.addPlayer(new Player(pseudo, gameId, skinImg));
-		
+		System.out.println(lobby.getListPlayer());
 		return lobby;
 	}
 	@DELETE
