@@ -24,6 +24,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by mager on 25/03/2016.
  */
@@ -58,6 +60,8 @@ public class MiniGameActivity extends AppCompatActivity {
     private Cell[][] gridPipes;
     private Coord selectedCell;
 
+    private Handler handler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,11 +82,12 @@ public class MiniGameActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(!s.toString().isEmpty()) {
                     System.out.println(s.toString());
-                    if(s.toString().equals("6")) {
-                        launchTimer(1, 0, 1);
-                        launchTimer(0, 0, -1);
+                    if(gridPipes[selectedCell.x][selectedCell.y].direction == 5) {
+                        if (s.toString().equals("6")) {
+                            fromC1toC2(new Coord(0, 0), new Coord(1, 0));
+                        }
+                        keyPad.setText("");
                     }
-                    keyPad.setText("");
                 }
             }
 
@@ -100,23 +105,36 @@ public class MiniGameActivity extends AppCompatActivity {
         addSwipeListener(R.id.layout_minigame);
     }
 
-    public void launchTimer(int xCel, int yCel, int valuePerTick){
-        final int x = xCel;
-        final int y = yCel;
-        final int value = valuePerTick;
-        final Handler handler = new Handler();
+    public void fromC1toC2(final Coord c1, final Coord c2){
         Runnable runnable = new Runnable() {
             public void run() {
-                if (gridPipes[x][y].quantity < 100){
-                    if(x == 1 && y == 0)
-                        System.out.println(gridPipes[1][0].quantity);
-                    gridPipes[x][y].quantity += value;
-                    drawCell(x, y);
+                if (gridPipes[c1.x][c1.y].quantity > 0 && gridPipes[c2.x][c2.y].quantity < 100){
+                    gridPipes[c1.x][c1.y].quantity += -1;
+                    gridPipes[c2.x][c2.y].quantity += 1;
+                    drawCell(c1.x, c1.y);
+                    drawCell(c2.x, c2.y);
                 }
                 handler.postDelayed(this, 100);
             }
         };
         handler.postDelayed(runnable, 0);
+    }
+
+    public void launchTimer(int xCel, int yCel, int valuePerTick){
+        final int x = xCel;
+        final int y = yCel;
+        final int value = valuePerTick;
+        final Handler handlerPump = new Handler();
+        Runnable runnable = new Runnable() {
+            public void run() {
+                if (gridPipes[x][y].quantity < 100){
+                    gridPipes[x][y].quantity += value;
+                    drawCell(x, y);
+                }
+                handlerPump.postDelayed(this, 100);
+            }
+        };
+        handlerPump.postDelayed(runnable, 0);
     }
 
     public void drawCell(int x, int y){
@@ -126,81 +144,51 @@ public class MiniGameActivity extends AppCompatActivity {
 
         Resources r = getResources();
         Drawable[] layers;
-        if(q > 0) {
-            Paint paint = new Paint();
-            paint.setColor(Color.parseColor("#CD5C5C"));
-            if(q == 100){
-                paint.setColor(Color.parseColor("#5C5CCD"));
-            }
-            Bitmap bg = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bg);
-            canvas.drawRect(coord, coord, size, size, paint);
-            Drawable d = new BitmapDrawable(getResources(), bg);
+        ArrayList<Drawable> drawableList = new ArrayList<Drawable>();
 
-            if(x == 0 && y == 0) {
-                if(x != selectedCell.x || y != selectedCell.y) {
-                    layers = new Drawable[3];
-                    layers[0] = r.getDrawable(R.drawable.plain);
-                    layers[1] = d;
-                    layers[2] = r.getDrawable(R.drawable.pump);
-                } else {
-                    layers = new Drawable[4];
-                    layers[0] = r.getDrawable(R.drawable.plain);
-                    layers[1] = d;
-                    layers[2] = r.getDrawable(R.drawable.pump);
-                    layers[3] = r.getDrawable(R.drawable.frame);
-                }
-            } else {
-                if(x != selectedCell.x || y != selectedCell.y) {
-                    layers = new Drawable[2];
-                    if (x == 0 && y == 1)
-                        layers[0] = r.getDrawable(R.drawable.hill2);
-                    else
-                        layers[0] = r.getDrawable(R.drawable.plain);
-                    layers[1] = d;
-                } else {
-                    layers = new Drawable[3];
-                    if (x == 0 && y == 1)
-                        layers[0] = r.getDrawable(R.drawable.hill2);
-                    else
-                        layers[0] = r.getDrawable(R.drawable.plain);
-                    layers[1] = d;
-                    layers[2] = r.getDrawable(R.drawable.frame);
-                }
-            }
-        }  else {
-            if (x == 0 && y == 0) {
+        Paint paint = new Paint();
+        paint.setColor(Color.parseColor("#CD5C5C"));
+        if(q == 100){
+            paint.setColor(Color.parseColor("#AD3C3C"));
+        }
+        Bitmap bg = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bg);
+        canvas.drawRect(coord, coord, size, size, paint);
+        Drawable d = new BitmapDrawable(getResources(), bg);
 
-                if(x != selectedCell.x || y != selectedCell.y) {
-                    layers = new Drawable[2];
-                    layers[0] = r.getDrawable(R.drawable.plain);
-                    layers[1] = r.getDrawable(R.drawable.pump);
-                } else {
-                    layers = new Drawable[3];
-                    layers[0] = r.getDrawable(R.drawable.plain);
-                    layers[1] = r.getDrawable(R.drawable.pump);
-                    layers[2] = r.getDrawable(R.drawable.frame);
-                }
-            } else {
-                if(x != selectedCell.x || y != selectedCell.y) {
-                    layers = new Drawable[1];
-                    if (x == 0 && y == 1)
-                        layers[0] = r.getDrawable(R.drawable.hill2);
-                    else
-                        layers[0] = r.getDrawable(R.drawable.plain);
-                } else {
-                    layers = new Drawable[2];
-                    if (x == 0 && y == 1)
-                        layers[0] = r.getDrawable(R.drawable.hill2);
-                    else
-                        layers[0] = r.getDrawable(R.drawable.plain);
-                    layers[1] = r.getDrawable(R.drawable.frame);
-                }
+
+        if(x == 0 && y == 0) {
+            drawableList.add(r.getDrawable(R.drawable.plain));
+            if(q > 0) {
+                drawableList.add(d);
+            }
+            drawableList.add(r.getDrawable(R.drawable.pump));
+            if(x == selectedCell.x && y == selectedCell.y) {
+                drawableList.add(r.getDrawable(R.drawable.frame));
+            }
+        } else {
+            if (x == 0 && y == 1)
+                drawableList.add(r.getDrawable(R.drawable.hill2));
+            else
+                drawableList.add(r.getDrawable(R.drawable.plain));
+            if(q > 0) {
+                drawableList.add(d);
+            }
+            if(x == selectedCell.x && y == selectedCell.y) {
+                drawableList.add(r.getDrawable(R.drawable.frame));
             }
         }
-            LayerDrawable layerDrawable = new LayerDrawable(layers);
-            ImageView cell1 = (ImageView) findViewById(gridPipes[x][y].id);
-            cell1.setImageDrawable(layerDrawable);
+
+
+        layers = new Drawable[drawableList.size()];
+        int idx = 0;
+        for(Drawable draw : drawableList){
+            layers[idx] = draw;
+            idx++;
+        }
+        LayerDrawable layerDrawable = new LayerDrawable(layers);
+        ImageView cell1 = (ImageView) findViewById(gridPipes[x][y].id);
+        cell1.setImageDrawable(layerDrawable);
 
 
     }
