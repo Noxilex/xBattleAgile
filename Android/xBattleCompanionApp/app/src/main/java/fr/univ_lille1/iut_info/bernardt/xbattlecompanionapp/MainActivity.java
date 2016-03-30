@@ -1,6 +1,7 @@
 package fr.univ_lille1.iut_info.bernardt.xbattlecompanionapp;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
+
+        TextView title = (TextView) findViewById(R.id.title);
+        Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/Bangers.ttf");
+        title.setTypeface(customFont);
     }
 
     @Override
