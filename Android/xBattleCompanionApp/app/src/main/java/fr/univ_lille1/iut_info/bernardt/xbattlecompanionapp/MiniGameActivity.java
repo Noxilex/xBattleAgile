@@ -87,22 +87,23 @@ public class MiniGameActivity extends AppCompatActivity {
 
                 if(!s.toString().isEmpty()) {
                     if(gridPipes[selectedCell.x][selectedCell.y].direction != 5) {
-                        handler[selectedCell.x + selectedCell.y * 2] = new Handler();
+                        handler[selectedCell.x + selectedCell.y * 2].removeCallbacksAndMessages(null);
                     }
 
-                    if (s.toString().equals("1")) {
-                        gridPipes[selectedCell.x][selectedCell.y].direction = 1;
-                        if(selectedCell.x == 1 && selectedCell.y == 0)
+                    if (s.toString().equals("7")) {
+                        gridPipes[selectedCell.x][selectedCell.y].direction = 7;
+                        if(selectedCell.x == 1 && selectedCell.y == 0) {
                             fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x - 1, selectedCell.y));
                             fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x, selectedCell.y + 1));
+                        }
                     } else
-                    if (s.toString().equals("2")) {
-                        gridPipes[selectedCell.x][selectedCell.y].direction = 2;
+                    if (s.toString().equals("8")) {
+                        gridPipes[selectedCell.x][selectedCell.y].direction = 8;
                         if(selectedCell.y == 0)
                             fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x, selectedCell.y + 1));
                     } else
-                    if (s.toString().equals("3")) {
-                        gridPipes[selectedCell.x][selectedCell.y].direction = 3;
+                    if (s.toString().equals("9")) {
+                        gridPipes[selectedCell.x][selectedCell.y].direction = 9;
                         if(selectedCell.x == 0 && selectedCell.y == 0) {
                             fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x + 1, selectedCell.y));
                             fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x, selectedCell.y + 1));
@@ -122,24 +123,29 @@ public class MiniGameActivity extends AppCompatActivity {
                         if(selectedCell.x == 0)
                             fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x + 1, selectedCell.y));
                     } else
-                    if (s.toString().equals("7")) {
-                        gridPipes[selectedCell.x][selectedCell.y].direction = 7;
+                    if (s.toString().equals("1")) {
+                        gridPipes[selectedCell.x][selectedCell.y].direction = 1;
                         if(selectedCell.x == 1 && selectedCell.y == 1){
                             fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x - 1, selectedCell.y));
                             fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x, selectedCell.y - 1));
                         }
                     } else
-                    if (s.toString().equals("8")) {
-                        gridPipes[selectedCell.x][selectedCell.y].direction = 8;
+                    if (s.toString().equals("2")) {
+                        gridPipes[selectedCell.x][selectedCell.y].direction = 2;
                         if(selectedCell.y == 1)
                             fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x, selectedCell.y - 1));
                     } else
-                    if (s.toString().equals("9")) {
-                        gridPipes[selectedCell.x][selectedCell.y].direction = 9;
-                        if(selectedCell.x == 0 && selectedCell.y == 1)
+                    if (s.toString().equals("3")) {
+                        gridPipes[selectedCell.x][selectedCell.y].direction = 3;
+                        if(selectedCell.x == 0 && selectedCell.y == 1) {
                             fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x + 1, selectedCell.y));
                             fromC1toC2(new Coord(selectedCell.x, selectedCell.y), new Coord(selectedCell.x, selectedCell.y - 1));
+                        }
                     }
+                    drawCell(0, 0);
+                    drawCell(0, 1);
+                    drawCell(1, 0);
+                    drawCell(1, 1);
                     keyPad.setText("");
                 }
             }
@@ -214,14 +220,14 @@ public class MiniGameActivity extends AppCompatActivity {
         Bitmap bitmapPipe = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
         Canvas canvasPipe = new Canvas(bitmapPipe);
         switch (gridPipes[x][y].direction){
-            case 1:
+            case 7:
                 canvasPipe.drawRect(0, 45, 50, 55, paintPipe);
                 canvasPipe.drawRect(45, 50, 55, 100, paintPipe);
                 break;
-            case 2:
+            case 8:
                 canvasPipe.drawRect(45, 50, 55, 100, paintPipe);
                 break;
-            case 3:
+            case 9:
                 canvasPipe.drawRect(45, 50, 55, 100, paintPipe);
                 canvasPipe.drawRect(50, 45, 100, 55, paintPipe);
                 break;
@@ -234,14 +240,14 @@ public class MiniGameActivity extends AppCompatActivity {
             case 6:
                 canvasPipe.drawRect(50, 45, 100, 55, paintPipe);
                 break;
-            case 7:
+            case 1:
                 canvasPipe.drawRect(45, 0, 55, 50, paintPipe);
                 canvasPipe.drawRect(0, 45, 50, 55, paintPipe);
                 break;
-            case 8:
+            case 2:
                 canvasPipe.drawRect(45, 0, 55, 50, paintPipe);
                 break;
-            case 9:
+            case 3:
                 canvasPipe.drawRect(45, 0, 55, 50, paintPipe);
                 canvasPipe.drawRect(50, 45, 100, 55, paintPipe);
                 break;
