@@ -76,13 +76,14 @@ function updatePipe(keycode){
 
 }
 
-function Cell(x, y, type, player=0, level=0, pipe=5){
+function Cell(x, y, type, player=0, level=0, pipe=5, pump=false){
 	this.x = x;
 	this.y = y;
 	this.type = type;
 	this.player = player;
 	this.pipe = pipe;
 	this.level = level;
+	this.pump = pump;
 }
 
 /****************************** Début gestion Map **********************************/
@@ -131,7 +132,7 @@ function buildMapNew(remoteMap){
 		//console.log(map);
 		var subMap = [];
 		for(i=0;i<MAP_X;i++){
-			subMap.push(new Cell(i, j, remoteMap[i].item[j].fieldType, remoteMap[i].item[j].owner, remoteMap[i].item[j].level, remoteMap[i].item[j].pipes));
+			subMap.push(new Cell(i, j, remoteMap[i].item[j].fieldType, remoteMap[i].item[j].owner, remoteMap[i].item[j].level, remoteMap[i].item[j].pipes, remoteMap[i].item[j].pump));
 		}
 		mapTmp.push(subMap);
 	}
@@ -215,11 +216,19 @@ function drawMap(){
 			
 			
 			if(lastCellUnderMouse!=null){
-				ctx.fillStyle="rgba(200, 255, 255, 0.5)";
+				ctx.fillStyle="rgba(200, 255, 255, 0.2)";
 				ctx.fillRect(lastCellUnderMouse.x*CELL_SIZE+1, lastCellUnderMouse.y*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
 			}
 
 			ctx.fillStyle="#000000";
+			if(map[j][i].pump){
+				//Drawing pump
+				ctx.beginPath();
+				ctx.arc(i*CELL_SIZE+CELL_SIZE/2, j*CELL_SIZE+CELL_SIZE/2, (CELL_SIZE-2)/2, 0, 2 * Math.PI, false);
+				ctx.lineWidth = 2;
+				ctx.strokeStyle = '#000000';
+				ctx.stroke();
+			}
 
 			var pipe = map[j][i].pipe;
 			if(pipe === 1 || pipe === 4 || pipe === 7){
@@ -227,6 +236,7 @@ function drawMap(){
 			    ctx.moveTo(i*CELL_SIZE, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
 			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2));
 			    ctx.lineWidth = 2;
+				ctx.strokeStyle = '#000000';
 			    ctx.stroke();
 			}
 			if(pipe >= 7 && pipe <= 9){
@@ -234,6 +244,7 @@ function drawMap(){
 			    ctx.moveTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE);
 			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2));
 			    ctx.lineWidth = 2;
+				ctx.strokeStyle = '#000000';
 			    ctx.stroke();
 			}
 			if(pipe === 3 || pipe === 6 || pipe === 9){
@@ -241,6 +252,7 @@ function drawMap(){
 			    ctx.moveTo((i+1)*CELL_SIZE, j*CELL_SIZE+Math.floor(CELL_SIZE/2));
 			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2));
 			    ctx.lineWidth = 2;
+				ctx.strokeStyle = '#000000';
 			    ctx.stroke();
 			}
 			if(pipe >= 1 && pipe <= 3){
@@ -248,6 +260,7 @@ function drawMap(){
 			    ctx.moveTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), (j+1)*CELL_SIZE);
 			    ctx.lineTo(i*CELL_SIZE+Math.floor(CELL_SIZE/2), j*CELL_SIZE+Math.floor(CELL_SIZE/2));
 			    ctx.lineWidth = 2;
+				ctx.strokeStyle = '#000000';
 			    ctx.stroke();
 			}
 
