@@ -19,6 +19,7 @@ public class Case {
 	public Case(){
 		level=0;
 		fieldType=1;
+		this.pump = false;
 	}
 
 	public Case(Coord coord, int fieldType) {
@@ -26,6 +27,7 @@ public class Case {
 		this.owner = 0;
 		this.pipes = 5 ;
 		this.fieldType = fieldType;
+		this.pump = false;
 		/*
 		switch (fieldType){
 		case 5:

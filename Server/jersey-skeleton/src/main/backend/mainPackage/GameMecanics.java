@@ -45,6 +45,14 @@ public class GameMecanics {
 						down = map[x][y+1];
 					}
 				
+					if (c.getPump()) {
+						c.setLevel(c.getLevel()+2);
+					}
+					
+/*					if (c.getFieldType()==1) {
+						c.setLevel(c.getLevel()-1);
+					}
+*/					
 //					tmp = (int)c.getLevel()/5;
 					boolean done = true;
 					int transit = 2;

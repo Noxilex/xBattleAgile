@@ -48,8 +48,6 @@ public class Map {
 		this.caseMap[15][15].setLevel(100);
 		this.caseMap[10][10].setOwner(1);
 		this.caseMap[10][10].setLevel(100);
-/*		this.caseMap[8][8].setPump(true);
-		this.caseMap[18][18].setP*/
 		logDisplayMap(caseMap);
 	}
 	
