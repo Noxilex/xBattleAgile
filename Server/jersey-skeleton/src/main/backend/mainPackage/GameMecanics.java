@@ -22,7 +22,7 @@ public class GameMecanics {
 	}
 
 	private void levelManager() {
-		double tmp = 0;
+		int tmp = 0;
 		for (int x=0; x<map.length; x++) {
 			for (int y=0; y<map[0].length; y++) {
 				Case c 		= map[x][y];
@@ -41,7 +41,7 @@ public class GameMecanics {
 						down = map[x][y+1];
 					}
 				
-					tmp = c.getLevel()*0.20;
+					tmp = (int)c.getLevel()/5;
 				
 				
 					//c.setLevel(tmp);
@@ -52,12 +52,12 @@ public class GameMecanics {
 
 							down.setLevel(down.getLevel()+tmp/2);
 							down.setOwner(c.getOwner());
-							c.setLevel(tmp);
+							c.setLevel(c.getLevel()-tmp);
 						break;
 						case 2:
 							down.setLevel(down.getLevel()+tmp);
 							down.setOwner(c.getOwner());
-							c.setLevel(tmp);
+							c.setLevel(c.getLevel()-tmp);
 						break;
 						case 3:
 							down.setLevel(down.getLevel()+tmp/2);
@@ -65,12 +65,12 @@ public class GameMecanics {
 							
 							right.setLevel(right.getLevel()+tmp/2);						
 							right.setOwner(c.getOwner());
-							c.setLevel(tmp);
+							c.setLevel(c.getLevel()-tmp);
 						break;
 						case 4:
 							left.setLevel(left.getLevel()+tmp);
 							left.setOwner(c.getOwner());
-							c.setLevel(tmp);
+							c.setLevel(c.getLevel()-tmp);
 						break;
 						case 5:
 							//neutral pipe
@@ -78,7 +78,7 @@ public class GameMecanics {
 						case 6:
 							right.setLevel(right.getLevel()+tmp);						
 							right.setOwner(c.getOwner());
-							c.setLevel(tmp);
+							c.setLevel(c.getLevel()-tmp);
 						break;
 						case 7:
 							left.setLevel(left.getLevel()+tmp/2);
@@ -86,12 +86,12 @@ public class GameMecanics {
 
 							up.setLevel(up.getLevel()+tmp/2);
 							up.setOwner(c.getOwner());
-							c.setLevel(tmp);
+							c.setLevel(c.getLevel()-tmp);
 						break;
 						case 8:
 							up.setLevel(up.getLevel()+tmp);
 							up.setOwner(c.getOwner());
-							c.setLevel(tmp);
+							c.setLevel(c.getLevel()-tmp);
 						break;
 						case 9:
 							up.setLevel(up.getLevel()+tmp/2);
@@ -99,7 +99,7 @@ public class GameMecanics {
 
 							right.setLevel(right.getLevel()+tmp/2);						
 							right.setOwner(c.getOwner());
-							c.setLevel(tmp);
+							c.setLevel(c.getLevel()-tmp);
 						break;
 						default:
 							System.out.println("Direction Bug");
