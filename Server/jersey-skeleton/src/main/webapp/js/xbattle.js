@@ -76,11 +76,11 @@ function updatePipe(keycode){
 
 }
 
-function Cell(x, y, type, level=0, pipe=5){
+function Cell(x, y, type, player=0, level=0, pipe=5){
 	this.x = x;
 	this.y = y;
 	this.type = type;
-	this.player = 0;
+	this.player = player;
 	this.pipe = pipe;
 	this.level = level;
 }
@@ -131,7 +131,7 @@ function buildMapNew(remoteMap){
 		//console.log(map);
 		var subMap = [];
 		for(i=0;i<MAP_X;i++){
-			subMap.push(new Cell(i, j, remoteMap[i].item[j].fieldType, remoteMap[i].item[j].level, remoteMap[i].item[j].pipes));
+			subMap.push(new Cell(i, j, remoteMap[i].item[j].fieldType, remoteMap[i].item[j].owner, remoteMap[i].item[j].level, remoteMap[i].item[j].pipes));
 		}
 		mapTmp.push(subMap);
 	}
