@@ -7,7 +7,7 @@ function login(){
 			//drawMap();
 			$("#authent-page").hide();
 		  	$("#lobby-page").show();
-		  	update();		
+		  	updateLobby();	
 		}
 		console.log(data);
 		console.log(status);
