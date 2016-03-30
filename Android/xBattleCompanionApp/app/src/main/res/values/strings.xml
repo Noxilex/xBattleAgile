@@ -8,22 +8,20 @@
     <string name="button3">Statistiques</string>
 
     <string name="pres_title1">Qu\'est-ce que xBattle ?</string>
-    <string name="pres_text1">C\'est un jeu de stratégie en temps réel datant de 1991. Le jeu et son concept ont malheureusement été abandonnés au fil du temps</string>
+    <string name="pres_text1">C\'est un jeu de stratégie en temps réel datant de 1991. Le jeu a fait très peu de bruit, et a été quasiment abandonné au fil du temps.</string>
     <string name="pres_title2">Et xBattle Awakening alors ?</string>
-    <string name="pres_text2">La nouvelle version! Nous avons pour objectif de redonner vie à ce jeu tactique tout en lui donnant un coup de neuf! Le projet est disponnible par navigateur et cette application vous donne les #règles ainsi que les #statistiques de vos dernières parties.</string>
+    <string name="pres_text2">Le réveil de XBattle ! Une toute nouvelle version ayant pour objectif de redonner une vie, et une publicité à ce jeu tactique très intéressant, tout en lui donnant un coup de neuf ! Le jeu est disponible par navigateur, et cette application sert à vous guider en vous donnant les règles autant qu\'à vous évaluer en regardant les statistiques de vos dernières parties !</string>
     <string name="pres_title3">Qui êtes-vous ?</string>
-    <string name="pres_text3">Un groupe d\'étudiants en deuxième année de DUT informatique ou de DUT GEA. Nous développons ce projet avec la méthodologie agile pendant 1 semaine.</string>
+    <string name="pres_text3">Nous sommes un groupe de 8 étudiants en deuxième année de DUT informatique et de DUT Gestion des Entreprises et des Administrations. Nous développons ce projet selon la méthodologie agile sur 1 semaine dans le cadre de nos formations respectives et notre motivation à faire renaître ce jeu.</string>
 
     <string name="tuto_title1">Types de terrain</string>
     <string name="tuto_title2">Placement des tuyaux</string>
     <string name="tuto_title3">Tuto 3</string>
 
-    <string name="tuto_type1">La plaine est le type de terrain basique. Demandant un temps normal pour être conquises et n\'ayant pas de caractéristiques spéciales, les plaines sont des zones idéales pour les affrontements. (Vitesse de prise : 1.00 | Caractéristique : Aucune)</string>
-    <string name="tuto_type2">Les montagnes sont plus difficiles à prendre que les plaine. Dominant le terrain, ces reliefs vous demanderons beaucoup de temps pour les capturer. Néanmoins, passer par les montagnes peut être un atout de placement décisif. Plus la montagne est haute, plus la vitesse de prise est faible. ( Vitesse de prise : 0.75/0.50/0.25  | Caractéristique : Aucune)</string>
-    <string name="tuto_type3">Les cases de sable sont, à l\'apparence, comme des plaines. Mais attention à ne pas rester dans le sable trop longtemps ! Il draine petit à petit vos ressources jusqu\'à ce qu\'il ne reste plus rien : un passage dangereux qui peut être une porte d\'entrée... ou de sortie!
-(Vitesse de prise : 1.00 | Caractéristique : draine les ressources du joueur : 0.10 case/seconde)</string>
-    <string name="tuto_type4">Les mers (qu\'on voit danser...), à l\'instar des plaines ou des montagnes ne sont en soit pas franchissables. Cependant, vous pouver utiliser des ressources pour les drainer et les transformer en plaine. Ainsi la création de chemins inattendus est possible! Plus les mers sont hautes, plus il faudrait de ressources pour les changer en plaines.
-( Vitesse de prise : 0.00 | Caractéristique : Vitesse de drain : 1.00, Quantité : 0.25 case/0.5 case/1 case)</string>
+    <string name="tuto_type1">La case plaine est la case terrain de base. N\'ayant pas de caractéristiques spéciales, les plaines sont des zones idéales pour les affrontements, les déplacements, et les prises de positions stratégiques. (Vitesse de conquête : 100 | Caractéristique : Aucune)</string>
+    <string name="tuto_type2">Les cases montagnes sont plus difficiles à prendre que les plaines. Dominant le terrain, ces reliefs vous demanderons du temps pour les capturer. Néanmoins, passer par les montagnes peut être un atout de placement décisif. Plus la montagne est haute, plus la vitesse de conquête est lente. Il existe 3 niveaux de reliefs. (Vitesse de conquête : 75/50/25 | Caractéristique : Aucune)</string>
+    <string name="tuto_type3">Les cases de sable sont, en apparence, presque comme des plaines. Mais attention à ne pas y rester trop longtemps ! Il draine petit à petit vos ressources jusqu\'à ce qu\'il ne reste plus rien : un passage dangereux qui peut être une porte d\'entrée... ou de sortie! (Vitesse de conquête : 100 | Caractéristique : draine les ressources du joueur selon une vitesse de 10)</string>
+    <string name="tuto_type4">Les cases d\'eau, bien que cela soit plus complexe, elles ne sont pas franchissables. Vous devez remplir la case afin de vous créer un pont, et les transformer en plaine. Plus la case est profonde, plus il faudra la remplir ! Il existe 3 niveaux de profondeur. En vous frayant un chemin inattendu, vous pourriez surprendre votre adverse ! (Vitesse de conquête : 0 | Caractéristique : Vitesse de remplissage : 100, Profondeur : 25/50/100)</string>
 
 
     <string name="tuto_pipes_button">Lancer le tutoriel</string>
