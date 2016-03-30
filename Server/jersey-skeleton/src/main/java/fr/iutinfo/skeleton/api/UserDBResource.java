@@ -107,6 +107,9 @@ public class UserDBResource {
 	@Path("/lobby/")
 	public List<Player> getlobby() {
 		//lobby.addPlayer(new Player("alex", 1, ""));
+		for(Player p:lobby.getListPlayer()){
+			System.out.println("nb de joueur:"+lobby.getListPlayer().size()+"non du joueur :"+p.getPseudo());
+		}
 		return lobby.getListPlayer();
 	}
 	
@@ -114,8 +117,9 @@ public class UserDBResource {
 	@Path("/lobby/adduser")
 	public List<Player> addtolobby(@QueryParam("pseudo") String pseudo,@QueryParam("id") int gameId,@QueryParam("skin") String skinImg) {
 		lobby.addPlayer(new Player(pseudo, gameId, skinImg));
-		System.out.println("nb de joueur:"+lobby.getListPlayer().size()+"non du joueur 1:"+lobby.getListPlayer().get(0).getPseudo());
-		lobby.setTest("123456");
+
+		//System.out.println("nb de joueur:"+lobby.getListPlayer().size()+"non du joueur 1:"+lobby.getListPlayer().get(0).getPseudo());
+
 		return lobby.getListPlayer();
 	}
 	@DELETE
