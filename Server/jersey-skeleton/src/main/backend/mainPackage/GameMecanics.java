@@ -11,7 +11,7 @@ public class GameMecanics {
 	public Map refreshMap(Map originMap) {
 
 		originMap.setCaseMap(calculateEverything(originMap.getCaseMap()));
-
+		System.out.println("{}"+originMap.getCaseMap()[5][5].getLevel()+"{}\n");
 		return originMap;
 	}
 
