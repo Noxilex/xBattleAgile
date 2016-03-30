@@ -132,7 +132,7 @@ public class GameMecanics {
 								up.setLevel(up.getLevel()+tmp/2);
 								up.setOwner(c.getOwner());
 								done = true;
-								System.out.println("Left Pipe activated. "+tmp/2+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+								System.out.println("Up Pipe activated. "+tmp/2+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
 							}
 							if (done) {
 								c.setLevel(c.getLevel()-tmp);
@@ -143,7 +143,7 @@ public class GameMecanics {
 								up.setLevel(up.getLevel()+tmp);
 								up.setOwner(c.getOwner());
 								done = true;
-								System.out.println("Left Pipe activated. "+tmp+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+								System.out.println("Up Pipe activated. "+tmp+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
 							}
 							if (done) {
 								c.setLevel(c.getLevel()-tmp);
@@ -154,13 +154,13 @@ public class GameMecanics {
 								up.setLevel(up.getLevel()+tmp/2);
 								up.setOwner(c.getOwner());
 								done = true;
-								System.out.println("Left Pipe activated. "+tmp/2+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+								System.out.println("Up Pipe activated. "+tmp/2+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
 							}
 							if (isAllowed(c, DRIGHT, x, y)) {
 								right.setLevel(right.getLevel()+tmp/2);						
 								right.setOwner(c.getOwner());
 								done = true;
-								System.out.println("Left Pipe activated. "+tmp+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+								System.out.println("Right Pipe activated. "+tmp+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
 							}
 							if (done) {
 								c.setLevel(c.getLevel()-tmp);
