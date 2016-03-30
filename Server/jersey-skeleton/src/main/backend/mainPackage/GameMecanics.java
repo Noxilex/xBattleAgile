@@ -5,6 +5,10 @@ import utilities.Case;
 public class GameMecanics {
 
 	private Case[][] map;
+	private final int DLEFT =4; 
+	private final int DBOT = 2;
+	private final int DTOP = 8;
+	private final int DRIGHT = 6;
 
 	public GameMecanics() {}
 
@@ -42,64 +46,125 @@ public class GameMecanics {
 					}
 				
 					tmp = (int)c.getLevel()/5;
-				
+					boolean done = false;
 				
 					//c.setLevel(tmp);
 					switch (c.getPipes()) {
 						case 1:
-							left.setLevel(left.getLevel()+tmp/2);
-							left.setOwner(c.getOwner());
+							if (isAllowed(c, DLEFT, x, y)) {
+								left.setLevel(left.getLevel()+tmp/2);
+								left.setOwner(c.getOwner());
+								done = true;
+								System.out.println("Left Pipe activated. "+tmp/2+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+							}
 
-							down.setLevel(down.getLevel()+tmp/2);
-							down.setOwner(c.getOwner());
-							c.setLevel(c.getLevel()-tmp);
+							if (isAllowed(c, DBOT, x, y)) {
+								down.setLevel(down.getLevel()+tmp/2);
+								down.setOwner(c.getOwner());
+								done = true;
+								System.out.println("Down Pipe activated. "+tmp/2+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+							}
+							if (done) {
+								c.setLevel(c.getLevel()-tmp);
+							}
 						break;
 						case 2:
-							down.setLevel(down.getLevel()+tmp);
-							down.setOwner(c.getOwner());
-							c.setLevel(c.getLevel()-tmp);
+							if (isAllowed(c, DBOT, x, y)) {
+								down.setLevel(down.getLevel()+tmp);
+								down.setOwner(c.getOwner());
+								done = true;
+								System.out.println("Down Pipe activated. "+tmp+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+							}
+							if (done) {
+								c.setLevel(c.getLevel()-tmp);
+							}
 						break;
 						case 3:
-							down.setLevel(down.getLevel()+tmp/2);
-							down.setOwner(c.getOwner());
-							
-							right.setLevel(right.getLevel()+tmp/2);						
-							right.setOwner(c.getOwner());
-							c.setLevel(c.getLevel()-tmp);
+							if (isAllowed(c, DBOT, x, y)) {
+								down.setLevel(down.getLevel()+tmp/2);
+								down.setOwner(c.getOwner());
+								done = true;
+								System.out.println("Down Pipe activated. "+tmp/2+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+							}
+							if (isAllowed(c, DRIGHT, x, y)) {							
+								right.setLevel(right.getLevel()+tmp/2);						
+								right.setOwner(c.getOwner());
+								done = true;
+								System.out.println("Right Pipe activated. "+tmp/2+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+							}
+							if (done) {
+								c.setLevel(c.getLevel()-tmp);
+							}
 						break;
 						case 4:
-							left.setLevel(left.getLevel()+tmp);
-							left.setOwner(c.getOwner());
-							c.setLevel(c.getLevel()-tmp);
+							if (isAllowed(c, DLEFT, x, y)) {
+								left.setLevel(left.getLevel()+tmp);
+								left.setOwner(c.getOwner());
+								done = true;
+								System.out.println("Left Pipe activated. "+tmp+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+							}
+							if (done) {
+								c.setLevel(c.getLevel()-tmp);
+							}
 						break;
 						case 5:
 							//neutral pipe
 						break;
 						case 6:
-							right.setLevel(right.getLevel()+tmp);						
-							right.setOwner(c.getOwner());
-							c.setLevel(c.getLevel()-tmp);
+							if (isAllowed(c, DRIGHT, x, y)) {
+								right.setLevel(right.getLevel()+tmp);						
+								right.setOwner(c.getOwner());
+								done = true;
+								System.out.println("Right Pipe activated. "+tmp+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+							}
+							if (done) {
+								c.setLevel(c.getLevel()-tmp);
+							}
 						break;
 						case 7:
-							left.setLevel(left.getLevel()+tmp/2);
-							left.setOwner(c.getOwner());
-
-							up.setLevel(up.getLevel()+tmp/2);
-							up.setOwner(c.getOwner());
-							c.setLevel(c.getLevel()-tmp);
+							if (isAllowed(c, DLEFT, x, y)) {
+								left.setLevel(left.getLevel()+tmp/2);
+								left.setOwner(c.getOwner());
+								done = true;
+								System.out.println("Left Pipe activated. "+tmp/2+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+							}								
+							if (isAllowed(c, DTOP, x, y)) {
+								up.setLevel(up.getLevel()+tmp/2);
+								up.setOwner(c.getOwner());
+								done = true;
+								System.out.println("Left Pipe activated. "+tmp/2+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+							}
+							if (done) {
+								c.setLevel(c.getLevel()-tmp);
+							}
 						break;
 						case 8:
-							up.setLevel(up.getLevel()+tmp);
-							up.setOwner(c.getOwner());
-							c.setLevel(c.getLevel()-tmp);
+							if (isAllowed(c, DTOP, x, y)) {
+								up.setLevel(up.getLevel()+tmp);
+								up.setOwner(c.getOwner());
+								done = true;
+								System.out.println("Left Pipe activated. "+tmp+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+							}
+							if (done) {
+								c.setLevel(c.getLevel()-tmp);
+							}
 						break;
 						case 9:
-							up.setLevel(up.getLevel()+tmp/2);
-							up.setOwner(c.getOwner());
-
-							right.setLevel(right.getLevel()+tmp/2);						
-							right.setOwner(c.getOwner());
-							c.setLevel(c.getLevel()-tmp);
+							if (isAllowed(c, DTOP, x, y)) {
+								up.setLevel(up.getLevel()+tmp/2);
+								up.setOwner(c.getOwner());
+								done = true;
+								System.out.println("Left Pipe activated. "+tmp/2+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+							}
+							if (isAllowed(c, DRIGHT, x, y)) {
+								right.setLevel(right.getLevel()+tmp/2);						
+								right.setOwner(c.getOwner());
+								done = true;
+								System.out.println("Left Pipe activated. "+tmp+" transfered from "+c.coord.toString()+"[lvl:"+c.getLevel()+"]");
+							}
+							if (done) {
+								c.setLevel(c.getLevel()-tmp);
+							}
 						break;
 						default:
 							System.out.println("Direction Bug");
@@ -112,16 +177,16 @@ public class GameMecanics {
 	}
 
 	private boolean isAllowed(Case c, int direction, int x, int y) {
-		if (getBorderType(c, x, y).contains("left") && (direction==1 || direction==4 || direction==7)) {
+		if (getBorderType(c, x, y).contains("left") && direction==4) {
 			return false;
 		}
-		if (getBorderType(c, x, y).contains("bot") && (direction==1 || direction==2 || direction==3)) {
+		if (getBorderType(c, x, y).contains("bot") && direction==2) {
 			return false; 
 		}
-		if (getBorderType(c, x, y).contains("right") && (direction==3 || direction==6 || direction==9)) {
+		if (getBorderType(c, x, y).contains("right") && direction==6) {
 			return false;
 		}
-		if (getBorderType(c, x, y).contains("top") && (direction==7 || direction==8 || direction==9)) {
+		if (getBorderType(c, x, y).contains("top") && direction==8) {
 			return false;
 		}
 		return true;

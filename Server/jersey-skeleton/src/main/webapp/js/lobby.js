@@ -16,11 +16,11 @@ function updateLobby(){
 		//console.log(typeof(data));
 	})
 	.done(function() {
-		console.log("done");
+		console.log("Update lobby complete.");
     	//alert( "second success" );
   	})
 	.fail(function() {
-		console.log("fail");
+		console.log("Update lobby failed.");
   	});
 
 	var playersList = $(".queue_container .queue_line .queue_item");
