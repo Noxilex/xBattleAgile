@@ -187,7 +187,7 @@ function drawMap(){
 					//ctx.fillStyle="#000099";
 				break;
 				case 1:
-					ctx.fillStyle="#F00000";
+					ctx.fillStyle="#FF0000";
 				break;
 				case 2:
 					ctx.fillStyle="#0F0000";
