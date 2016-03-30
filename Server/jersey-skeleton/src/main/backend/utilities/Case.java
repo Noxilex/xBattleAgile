@@ -26,6 +26,7 @@ public class Case {
 		this.owner = 0;
 		this.pipes = 5 ;
 		this.fieldType = fieldType;
+		/*
 		switch (fieldType){
 		case 5:
 			this.level = 25;
@@ -39,7 +40,7 @@ public class Case {
 		default:
 			this.level = 0;
 			break;
-		}
+		}*/
 	}
 
 	public boolean getPump() {

@@ -105,16 +105,18 @@ public class UserDBResource {
 
 	@GET
 	@Path("/lobby/")
-	public Lobby getlobby() {
-		return lobby;
+	public List<Player> getlobby() {
+		//lobby.addPlayer(new Player("alex", 1, ""));
+		return lobby.getListPlayer();
 	}
 	
 	@PUT
 	@Path("/lobby/adduser")
-	public Lobby addtolobby(@QueryParam("pseudo") String pseudo,@QueryParam("id") int gameId,@QueryParam("skin") String skinImg) {
+	public List<Player> addtolobby(@QueryParam("pseudo") String pseudo,@QueryParam("id") int gameId,@QueryParam("skin") String skinImg) {
 		lobby.addPlayer(new Player(pseudo, gameId, skinImg));
-		System.out.println(lobby.getListPlayer());
-		return lobby;
+		System.out.println("nb de joueur:"+lobby.getListPlayer().size()+"non du joueur 1:"+lobby.getListPlayer().get(0).getPseudo());
+		lobby.setTest("123456");
+		return lobby.getListPlayer();
 	}
 	@DELETE
 	@Path("/lobby/deluser")
