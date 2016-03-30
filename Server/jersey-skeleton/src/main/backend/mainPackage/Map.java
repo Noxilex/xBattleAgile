@@ -40,7 +40,7 @@ public class Map {
 		this.intMap = generateNewMap(30, 20);
 		this.caseMap = generateCaseMap(intMap);
 		this.caseMap[5][5].setOwner(1);
-		this.caseMap[5][5].setLevel(1);
+		this.caseMap[5][5].setLevel(100);
 		//this.caseMap = new Case[30][20];
 		logDisplayMap(caseMap);
 	}
