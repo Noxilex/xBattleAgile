@@ -41,8 +41,10 @@ public class Map {
 		//this.intMap = generateEmptyMap(30,20);
 		//this.caseMap = generateCaseMap(intMap);
 		this.caseMap = new Case[30][20];
-		this.caseMap[5][5].setOwner(1);
+		this.caseMap[5][5].setOwner(2);
 		this.caseMap[5][5].setLevel(100);
+		this.caseMap[5][5].setPipes(8);
+		//this.caseMap = new Case[30][20];
 		logDisplayMap(caseMap);
 	}
 	

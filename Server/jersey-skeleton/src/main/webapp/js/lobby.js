@@ -3,11 +3,16 @@ var players = [	{name: "Toto", avatar: "red"},
 				{name: "Titi", avatar: "green"}];
 
 
-function update(){
+function updateLobby(){
+
+	players = [];
 
 	$.get("v1/userdb/lobby/", function(data, status){
 		console.log(data);
 		console.log(status);
+		for(var i in data){
+			console.log(data[i]);
+		}
 		//console.log(typeof(data));
 	})
 	.done(function() {
@@ -32,7 +37,20 @@ function update(){
 }
 
 function join(){
-		
+	var pseudo = $("#nickname-input").val();
+	var url = "v1/userdb/lobby/adduser?pseudo="+pseudo+"&id=0&skin=red";
+	$.ajax({
+   		type: "PUT",
+   		url: url,
+   		success: function(response) {
+			console.log(response);
+     		console.log("User joinded lobby.");
+     		updateLobby();
+   		},
+		error: function(response){
+			console.log("Add user error.");
+		}
+	});
 }
 
 function leave(){
