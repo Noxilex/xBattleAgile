@@ -37,10 +37,8 @@ public class Map {
 	
 	public Map() {
 		this.activeTexturePack = "Default";
-		//this.intMap = generateNewMap(30, 20);
-		//this.intMap = generateEmptyMap(30,20);
-		//this.caseMap = generateCaseMap(intMap);
-		this.caseMap = new Case[30][20];
+		this.intMap = generateNewMap(30, 20);
+		this.caseMap = generateCaseMap(intMap);
 		this.caseMap[5][5].setOwner(2);
 		this.caseMap[5][5].setLevel(100);
 		this.caseMap[5][5].setPipes(8);
